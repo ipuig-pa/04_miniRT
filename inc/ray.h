@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   drawing.c                                          :+:      :+:    :+:   */
+/*   ray.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 11:18:18 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 11:27:44 by ipuig-pa         ###   ########.fr       */
+/*   Created: 2025/02/19 11:52:45 by ipuig-pa          #+#    #+#             */
+/*   Updated: 2025/02/19 12:57:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#ifndef RAY_H
+# define RAY_H
 
-void	my_pixel_put(t_env *env, int x, int y, int color)
+#include "linalg.h"
+
+typedef struct s_ray
 {
-	int		offset;
-	char	*pixel;
+	t_point		p; //these will keep changing as the ray is reflected, refracted or absorbed
+	t_vector	v;
+	int			color; //in hex
+	bool		end;
+}			t_ray;
 
-	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
-		finish_env(env, 1, "Points out of bounds");
-	offset = (y * env->img.line_length + x * (env->img.bits_per_pixel / 8));
-	pixel = env->img.addr + offset;
-	*(unsigned int *)pixel = color;
-}
+#endif

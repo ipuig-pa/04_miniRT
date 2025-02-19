@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 10:24:39 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 15:31:25 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #ifndef SCENE_H
 # define SCHE_H
 # include "linalg.h"
+
+//colors maybe also as an structure of 3 int: R, G, B??
 
 typedef struct s_amblight
 {
