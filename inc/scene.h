@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 16:52:28 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 17:15:14 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_amblight
 
 typedef struct s_camera
 {
-	t_point		p_cam; //coordinate of the viewpoint
-	t_vector	orient;
+	t_point		p; //coordinate of the viewpoint
+	t_vector	v;
 	float		fov; // field of view, in degrees? Or already converted to rad?
 }			t_camera;
 
@@ -80,8 +80,6 @@ typedef struct s_obj
 	t_objtype	type;
 	int			color; //in hex
 }			t_obj;
-
-
 
 typedef struct s_scene
 {

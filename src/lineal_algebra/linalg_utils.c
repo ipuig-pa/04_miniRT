@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   linalg_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 17:35:59 by ipuig-pa         ###   ########.fr       */
+/*   Created: 2025/02/19 19:17:08 by ipuig-pa          #+#    #+#             */
+/*   Updated: 2025/02/19 19:17:22 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minirt.h"
+#include "linalg.h"
 
-int	main(int ac, char **av)
+float	dot_vroduct(t_vector *v1, t_vector *v2)
 {
-	t_env	env;
+	float	res;
 
-	if (ac != 2)
-		return (1); // and print error wrong number of args
-	//check if file (av[1]) can be opened, etc..? (here or inside parsing??)
-	parse(&env, av[1]);
-	init_env(&env);
-	ray_tracer(&env);
-	put_image(&env);
-	//display window and hooks (rotation, translation)
-	return (0);
+	res = v1.x * v2.x + v1.y * v2.y + v1.z * v2.z;
+	return (res);
+}
+
+float	scalar_mult(t_vector *v, int s)
+{
+	float	res;
+
+	res = v.x * s + v.y * s + v.z * s;
+	return (res);
 }
