@@ -6,8 +6,10 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 10:26:21 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:22:28 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "minirt.h"
 
 //things needed to manage window: hooks, etc

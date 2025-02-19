@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 13:02:39 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/15 12:16:42 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:23:12 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 char	*gc_strtrim(char const *s1, char const *set)
 {

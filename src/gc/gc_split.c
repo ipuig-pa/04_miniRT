@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 14:55:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/17 15:00:12 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:22:59 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 static size_t	f_word_count(char const *s, char c)
 {

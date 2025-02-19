@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   gc_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 11:16:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/14 12:58:18 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:23:17 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 char	*gc_substr(char const *s, unsigned int start, size_t len)
 {

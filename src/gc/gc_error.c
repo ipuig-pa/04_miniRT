@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:12:59 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/29 15:39:12 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:22:41 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 //handle allocation fail using gc_malloc, forcing cleaning everything before
 //if malloc fails, exit whole program

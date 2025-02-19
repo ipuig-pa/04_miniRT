@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 12:30:49 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/29 15:49:02 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:23:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 char	*gc_strjoin(char const *s1, char const *s2)
 {

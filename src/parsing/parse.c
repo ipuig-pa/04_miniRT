@@ -6,11 +6,10 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 10:40:12 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:22:19 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linalg.h"
-#include "scene.h"
+#include "minirt.h"
 
 //parsing functions (with error checking)

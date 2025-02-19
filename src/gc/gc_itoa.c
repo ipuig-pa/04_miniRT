@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 16:08:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/15 13:37:30 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:22:46 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 static int	get_num_len(int n)
 {

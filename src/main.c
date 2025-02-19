@@ -6,15 +6,16 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 10:38:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:23:45 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "scene.h"
+#include "minirt.h"
 
 int	main(int ac, char **av)
 {
-	t_scene	*scene;
+	t_env	env;
+	t_scene	*scene; //scene inside env struct?
 
 	if (ac != 2)
 		return (1); // and print error wrong number of args

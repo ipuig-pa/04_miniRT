@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:39:59 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/11 15:50:43 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:22:50 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 //returns a pointer to the first element of gc_list (garbage collector list)
 t_gc_list	**get_gc_list(void)

@@ -6,11 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 10:46:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/01/11 15:50:35 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 11:23:03 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "minirt.h"
 
 char	*gc_strdup(const char *s1)
 {
