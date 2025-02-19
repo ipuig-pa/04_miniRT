@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 15:31:25 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/19 16:52:28 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,24 @@ typedef struct s_cyl
 	int			color; //in hex //DELETE IF WE USE THE T_OBJ
 }			t_cyl;
 
+typedef enum e_objtype
+{
+	SPH,
+	PL,
+	CYL
+}			t_objtype;
 
-//DON'T KNOW IF THIS IS NEEDED??? MAYBE ONE DIFFERENT STRUCT FOR EACH IS ENOUGH
-typedef union u_objtype
+typedef union u_objparam
 {
 	t_sph	sph; //use it as the direct object or as pointers to?
 	t_pl	pl;
 	t_cyl	cyl;
-}			t_objtype;
+}			t_objparam;
 
 typedef struct s_obj
 {
-	t_objtype	*type;
+	t_objparam	*param;
+	t_objtype	type;
 	int			color; //in hex
 }			t_obj;
 
@@ -82,7 +88,7 @@ typedef struct s_scene
 	t_amblight	*amblight;
 	t_camera	*cam;
 	t_light		*light;
-	t_obj		*obj;//pointer to an object array?? Or use linked list?
+	t_obj		*obj;//pointer to an object array?? Or use linked list? In principle, an array (allocate enough space for obj_num)
 	int			obj_num;//needed or not depending on if we use array or linked list
 }			t_scene;
 
