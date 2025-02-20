@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 17:35:59 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:30:31 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	main(int ac, char **av)
 	parse(&env, av[1]);
 	init_env(&env);
 	ray_tracer(&env);
-	put_image(&env);
-	//display window and hooks (rotation, translation)
+	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
+	//hooks (rotation, translation, etc)
+	mlx_loop(env.mlx);
 	return (0);
 }

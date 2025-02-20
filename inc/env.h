@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   image.h                                            :+:      :+:    :+:   */
+/*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:13:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 13:02:46 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/20 18:09:20 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef IMAGE_H
-# define IMAGE_H
+#ifndef ENV_H
+# define ENV_H
 
 # include "scene.h"
 
@@ -42,5 +42,9 @@ typedef struct s_env
 	t_data	img;
 	t_scene	*scene;
 }			t_env;
+
+void	init_env(t_env *env);
+void	finish_env(t_env *env, int return_val, char *str);
+void	my_pixel_put(t_env *env, int x, int y, int color);
 
 #endif

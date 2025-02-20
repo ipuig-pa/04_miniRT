@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:12:59 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 11:22:41 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/20 16:56:13 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,3 @@ void	gc_malloc_error(void)
 	}
 }
 
-//sets the indicator of malloc error to true and the exit status to 1
-void	set_malloc_error(t_data *data)
-{
-	data->malloc_err = true;
-	data->exit_status = 1;
-}
