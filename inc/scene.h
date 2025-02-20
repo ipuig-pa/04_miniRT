@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 17:15:14 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/20 14:56:37 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ typedef struct s_camera
 
 typedef struct s_light
 {
-	t_point	p_light;
-	float	br_ratio;
+	t_point	p;
+	float	ratio;
 	int		color; //in hex
 }			t_light;
 
 typedef struct s_sph
 {
 	t_point	c; //coordinates of the sphere center
-	float	d; //sphere diameter
+	float	d; //sphere diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	int		color; //in hex //DELETE IF WE USE THE T_OBJ
 }			t_sph;
 
@@ -55,7 +55,7 @@ typedef struct s_cyl
 {
 	t_point		c; //coordinates of the center of the cylinder
 	t_vector	axis;
-	float		d; //cylinder diameter
+	float		d; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	float		h; //cylinder height
 	int			color; //in hex //DELETE IF WE USE THE T_OBJ
 }			t_cyl;

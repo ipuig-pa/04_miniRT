@@ -1,7 +1,7 @@
 IRENE (rendering):
 
 THIS WEEK:
-- 20/02/2025: intersect functions for each object type (first sph and next points, and leave it pending the plane and cylinder? add one by one?)
+- 20/02/2025: intersect functions for each object type (first sph and next steps, and leave it pending the plane and cylinder? add one by one?)
 - 20-21/02/2025: understand what to do when hit is found and continue the code (light ratios, bouncing, shading)
 - 22-23/02/2025: build first static image with at least 1 sph
 

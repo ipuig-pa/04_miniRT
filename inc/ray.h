@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:52:45 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/19 17:05:15 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/20 15:44:57 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_hit
 	t_point		p;
 	int			obj_id; //then, they have to be in an array, not a linked list
 	float		dist; //distance from the camera to the point of intersection
+	t_vector	normal;
 }			t_hit;
 
 #endif
