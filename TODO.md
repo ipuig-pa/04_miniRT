@@ -12,6 +12,7 @@ week 03/03/2025: optimize checking of ALL objects to find first hit? objects as 
 
 MORE
 - Bouncing, reflextion, refraction, etc
+- Antialiasing (to smooth contours)
 
 - Include functions for vector operation (add and substract without needing to do everytime in each function)
 

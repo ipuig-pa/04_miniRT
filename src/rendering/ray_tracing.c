@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 18:49:31 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/21 19:29:45 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	//ray->color = col_add(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight->color), scene->amblight->ratio)); //adding ambient light
 	sh_hit.occur = false;
 	find_hit(&sh_hit, ray, scene, hit->obj_id);
+	//if hit then do whatever needed for shadows
 	if (sh_hit.occur == false || sh_hit.dist > hit_light_d)//there is no other object intersecting the path from hit object to light
 	{
 		//ray->color = WHITE;
@@ -123,9 +124,9 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 			//ray->color = WHITE;
 			//ray->color = col_add(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio));
 			cos_theta = powf(cos_theta, 0.8); //smoothing effect. Needed to get rid of psychodelic patterns?!?!
-			ray->color = col_sc_prod(ray->color, cos_theta);
+			//ray->color = col_sc_prod(ray->color, cos_theta);
 			//ray->color = col_prod(ray->color, col_sc_prod(col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio), cos_theta));
-			// ray->color = col_add(ray->color, col_sc_prod(col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio), cos_theta));
+			ray->color = col_add(ray->color, diffuse_comp());
 		}
 		// if (cos_theta > 0.8)
 		// 	ray->color = WHITE;
@@ -134,4 +135,19 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 		// else if (cos_theta > 0)
 		// 	ray->color = BLUE;
 	}
+}
+
+t_color	diffuse_comp(t_hit *hit, t_scene *scene, float cos_theta) //or move everything related to cos_theta inside
+{
+	t_color	diffuse_col;
+
+	diffuse_col = col_sc_prod(col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio), cos_theta);
+	return (diffuse_col);
+}
+
+t_color	specular()
+{
+	t_color	spec_col;
+
+	spec_col = scene->light->color * 
 }
