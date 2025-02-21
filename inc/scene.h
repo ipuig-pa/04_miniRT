@@ -6,21 +6,23 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/20 17:44:13 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/21 16:39:37 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //For definition of the elements of the scene
 #ifndef SCENE_H
 # define SCENE_H
+
 # include "linalg.h"
+# include "color.h"
 
 //colors maybe also as an structure of 3 int: R, G, B??
 
 typedef struct s_amblight
 {
 	float	ratio;
-	int		color; //in hex
+	t_color	color;
 }			t_amblight;
 
 typedef struct s_camera
@@ -34,21 +36,19 @@ typedef struct s_light
 {
 	t_point	p;
 	float	ratio;
-	int		color; //in hex
+	t_color	color;
 }			t_light;
 
 typedef struct s_sph
 {
 	t_point	c; //coordinates of the sphere center
 	float	d; //sphere diameter (maybe it would be more useful to store the radius r instead of diameter d)
-	//int		color; //in hex //DELETE IF WE USE THE T_OBJ
 }			t_sph;
 
 typedef struct s_pl
 {
 	t_point		p; //coordinates of a point in the plane
 	t_vector	v; //normal vector
-	//int			color; //in hex //DELETE IF WE USE THE T_OBJ
 }			t_pl;
 
 typedef struct s_cyl
@@ -57,7 +57,6 @@ typedef struct s_cyl
 	t_vector	axis;
 	float		d; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	float		h; //cylinder height
-	//int			color; //in hex //DELETE IF WE USE THE T_OBJ
 }			t_cyl;
 
 typedef enum e_objtype
@@ -78,7 +77,7 @@ typedef struct s_obj
 {
 	t_objparam	param;
 	t_objtype	type;
-	int			color; //in hex
+	t_color		color;
 }			t_obj;
 
 typedef struct s_scene

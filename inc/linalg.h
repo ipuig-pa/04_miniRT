@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:57:14 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/20 17:27:28 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/21 12:09:20 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ float		dot_product(const t_vector *v1, const t_vector *v2);
 float		scalar_mult(const t_vector *v, int s);
 float		dist(const t_point *p1, const t_point *p2);
 t_vector	invert_v(t_vector *v);
+float		v_modulus(const t_vector *v);
 
 
 #endif

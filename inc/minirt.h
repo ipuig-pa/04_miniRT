@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:19:05 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/20 18:07:37 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/21 15:50:58 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "linalg.h"
 # include "scene.h"
 # include "env.h"
+# include "color.h"
 # include "ray.h"
 # include "gc.h"
 # include <unistd.h>// for open, close, read, write
