@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:18:18 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 17:04:32 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 12:35:47 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	clamp_col(t_color *color)
 int	convert_rgba(t_color *color)
 {
 	clamp_col(color);
-	return (color->s_comp.a * 255 * pow(2, 24) + color->s_comp.r * 255 * pow(2, 16) + color->s_comp.g * 255 * pow(2, 8) + color->s_comp.b * 255);
-
+	return ((int)(color->s_comp.a * 255.0f) << 24) | ((int)(color->s_comp.r * 255.0f) << 16) | ((int)(color->s_comp.g * 255.0f) << 8) | ((int)(color->s_comp.b * 255.0f));
 }
 
 t_color	col_prod(t_color c1, t_color c2)
