@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 11:54:09 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:32:23 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ static void	normal_sph(t_hit *hit, t_sph *sph)
 
 static void	normal_pl(t_hit *hit, t_pl *pl)
 {
-	(void) pl;
-	(void) hit;
+	hit->normal.x = pl->v.x / v_modulus(&pl->v);
+	hit->normal.y = pl->v.y / v_modulus(&pl->v);
+	hit->normal.z = pl->v.z / v_modulus(&pl->v);
 }
 
 static void	normal_cyl(t_hit *hit, t_cyl *cyl)

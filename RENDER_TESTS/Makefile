@@ -19,10 +19,11 @@ SOURCES =	gc_malloc_free.c\
 			gc_substr.c\
 			linalg_utils.c\
 			init.c\
-			drawing.c\
+			ray_tracing.c\
 			intersect.c\
 			normal.c\
-			ray_tracing.c\
+			shading.c\
+			drawing.c\
 			main_render.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)

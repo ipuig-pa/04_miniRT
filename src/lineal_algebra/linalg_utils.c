@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 12:09:24 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:31:55 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,14 @@ t_vector	invert_v(t_vector *v)
 float	v_modulus(const t_vector *v)
 {
 	return(sqrtf(powf(v->x, 2) + powf(v->y, 2) + powf(v->z, 2)));
+}
+
+t_vector	point_subt(const t_point *p2, const t_point *p1)
+{
+	t_vector	v;
+
+	v.x = p2->x - p1->x;
+	v.y = p2->y - p1->y;
+	v.z = p2->z - p1->z;
+	return (v);
 }

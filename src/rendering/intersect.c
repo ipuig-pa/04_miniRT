@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 16:40:38 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:30:54 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //calculates intersect point between ray and sphere
 //gives the lowest (if the 2 possible solutions)
-static void	intersect_sph(t_hit *hit, t_ray *ray, t_scene *scene, int i)
+static void	intersect_sph(t_hit *hit, t_ray *ray, t_sph *sph, int i)
 {
 	float		root;
 	float		a;
@@ -22,12 +22,10 @@ static void	intersect_sph(t_hit *hit, t_ray *ray, t_scene *scene, int i)
 	float		c;
 	t_vector	v2;
 
-	v2.x = scene->obj[i].param.sph.c.x - ray->p.x;
-	v2.y = scene->obj[i].param.sph.c.y - ray->p.y;
-	v2.z = scene->obj[i].param.sph.c.z - ray->p.z;
+	v2 = point_subt(&sph->c, &ray->p);
 	a = dot_product(&ray->v, &ray->v);
 	h = dot_product(&ray->v, &v2);
-	c = dot_product(&v2, &v2) - powf(scene->obj[i].param.sph.d / 2.0, 2); //maybe it will be easier if the value stored is the radius instead of the diameter
+	c = dot_product(&v2, &v2) - powf(sph->d / 2.0, 2); //maybe it will be easier if the value stored is the radius instead of the diameter
 	root = powf(h, 2) - a * c;
 	if (root >= 0)
 	{
@@ -38,30 +36,46 @@ static void	intersect_sph(t_hit *hit, t_ray *ray, t_scene *scene, int i)
 	}
 }
 
-static void	intersect_pl(t_hit *hit, t_ray *ray, t_scene *scene, int i)
+static void	intersect_pl(t_hit *hit, t_ray *ray, t_pl *pl, int i)
 {
-	(void) hit;
-	(void) ray;
-	(void) scene;
-	(void) i;
+	float		cos_theta;
+	t_vector	v2;
+	float		d;
+
+	cos_theta = dot_product(&pl->v, &ray->v);
+	v2 = point_subt(&pl->p, &ray->p);
+	if (cos_theta == 0)
+	{
+		return ; // do it either if they are coincident or parallel with no intersection??
+		// if (dot_product(pl->v,v2) == 0) //they are coincident
+		// {
+		// 	d = distance from the camera to that point of the ;
+		// 	update_hit(d, hit, ray, i);
+		// }
+		// else //they are parallel (no intersection)
+		// 	return ();
+	}
+	d = dot_product(&pl->v, &v2) / dot_product(&pl->v, &ray->v);
+	if (d > 0)
+		update_hit(d, hit, ray, i);
 }
 
-static void	intersect_cyl(t_hit *hit, t_ray *ray, t_scene *scene, int i)
+static void	intersect_cyl(t_hit *hit, t_ray *ray, t_cyl *cyl, int i)
 {
 	(void) hit;
 	(void) ray;
-	(void) scene;
+	(void) cyl;
 	(void) i;
 }
 
 void	calc_intersect(t_hit *hit, t_ray *ray, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
 {
 	if (scene->obj[i].type == SPH)
-		intersect_sph(hit, ray, scene, i);
+		intersect_sph(hit, ray, &scene->obj[i].param.sph, i);
 	else if (scene->obj[i].type == PL)
-		intersect_pl(hit, ray, scene, i);
+		intersect_pl(hit, ray, &scene->obj[i].param.pl, i);
 	else if (scene->obj[i].type == CYL)
-		intersect_cyl(hit, ray, scene, i);
+		intersect_cyl(hit, ray, &scene->obj[i].param.cyl, i);
 }
 
 //return the point of the first intersect of the ray
