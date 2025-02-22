@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 10:02:52 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 16:40:38 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,6 @@ static void	intersect_sph(t_hit *hit, t_ray *ray, t_scene *scene, int i)
 	float		c;
 	t_vector	v2;
 
-	// v2.x = scene->obj[i].param.sph.c.x - scene->cam->p.x;
-	// v2.y = scene->obj[i].param.sph.c.y - scene->cam->p.y;
-	// v2.z = scene->obj[i].param.sph.c.z - scene->cam->p.z;
 	v2.x = scene->obj[i].param.sph.c.x - ray->p.x;
 	v2.y = scene->obj[i].param.sph.c.y - ray->p.y;
 	v2.z = scene->obj[i].param.sph.c.z - ray->p.z;
@@ -32,20 +29,12 @@ static void	intersect_sph(t_hit *hit, t_ray *ray, t_scene *scene, int i)
 	h = dot_product(&ray->v, &v2);
 	c = dot_product(&v2, &v2) - powf(scene->obj[i].param.sph.d / 2.0, 2); //maybe it will be easier if the value stored is the radius instead of the diameter
 	root = powf(h, 2) - a * c;
-	// if (root>0)
-	// 	printf("2 sols\n");
-	// if (root==0)
-	// 	printf("1 sol\n");
 	if (root >= 0)
 	{
 		if (((h - sqrtf(root)) / a) > 0)
-		//if ((int)((h - sqrtf(root)) / a) != 0)
 			update_hit(((h - sqrtf(root)) / a), hit, ray, i);
-
 		else if (root > 0 && (((h + sqrtf(root)) / a) > 0))
 			update_hit(((h + sqrtf(root)) / a), hit, ray, i);
-		// else if (root > 0)
-		// 	update_hit(((h + sqrtf(root)) / a), hit, ray, i);
 	}
 }
 
