@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:19:05 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 15:50:58 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 11:36:49 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "color.h"
 # include "ray.h"
 # include "gc.h"
+# include "parser.h"
 # include <unistd.h>// for open, close, read, write
 # include <stdio.h> // for printf, perror
 # include <stdlib.h>// for malloc, free, exit
@@ -27,6 +28,7 @@
 # include <math.h>// for math functions (requires -lm when compiling)
 # include <fcntl.h>// for open flags like O_RDONLY, O_WRONLY, etc.
 # include <stdbool.h>//to use bool variables
-# include "../minilibx_macos/mlx.h" //minilibx
+# include "../MLX42/include/MLX42/MLX42.h"
+//# include "../minilibx_macos/mlx.h" //minilibx
 
 #endif
