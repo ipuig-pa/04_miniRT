@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 19:29:45 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 10:03:25 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,85 +69,4 @@ void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 	ray->v.z = ray->v.z / v_modul;
 	ray->color = FILTER; //or take it from the scene file if we are introducing a filter??
 	// ray->end = false;
-}
-
-//return the point of the first intersect of the ray
-//recalculates ray direction (p and v) according to material properties
-void	find_hit(t_hit	*hit, t_ray *ray, t_scene *scene, int h) //allocate the hit if needed
-{
-	int		i;
-
-	i = 0;
-	//allocate for a maximum of 2 times for each object?
-	//what about planes exactly coincident with the ray? (line contained in a plane)
-	while (i < scene->obj_num)//optimize somehow to not iterate through ALL the objects
-	{
-		if (i != h)
-			calc_intersect(hit, ray, scene, i);
-		i++;
-	}
-}
-
-//cast a ray from the light source to the hit point
-//finds if it hits some object
-//determine if the hit is before or after the light source
-//change the ray color according (in light or shadow)
-void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
-{
-	float		hit_light_d;
-	t_hit		sh_hit;
-	float		cos_theta;
-
-	ray->p = scene->light->p; //do a hard_copy or like this is ok?
-	hit_light_d = dist(&scene->light->p, &hit->p);
-	ray->v.x = (scene->light->p.x - hit->p.x) / hit_light_d; //unitary vector
-	ray->v.y = (scene->light->p.y - hit->p.y) / hit_light_d;
-	ray->v.z = (scene->light->p.z - hit->p.z) / hit_light_d;
-	//dont know if the initial color of the ray has to be multiplied or added?!?!?
-	ray->color = scene->obj[hit->obj_id].color;
-	//ray->color = col_prod(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight->color), scene->amblight->ratio)); //adding ambient light
-	//ray->color = col_add(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight->color), scene->amblight->ratio)); //adding ambient light
-	sh_hit.occur = false;
-	find_hit(&sh_hit, ray, scene, hit->obj_id);
-	//if hit then do whatever needed for shadows
-	if (sh_hit.occur == false || sh_hit.dist > hit_light_d)//there is no other object intersecting the path from hit object to light
-	{
-		//ray->color = WHITE;
-		find_normal(hit, scene);
-		cos_theta = dot_product(&ray->v, &hit->normal);
-		// if (cos_theta < 0)
-		// 	cos_theta = 0;
-		// ray->color = col_sc_prod(ray->color, cos_theta);
-		if (cos_theta > 0)
-		{
-		// printf("L.x:%f ,.y:%f ,.z:%f , HP.x:%f ,.y:%f ,z:%f\n",scene->light->p.x, scene->light->p.y, scene->light->p.z, hit->p.x, hit->p.y, hit->p.z);
-			//ray->color = WHITE;
-			//ray->color = col_add(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio));
-			cos_theta = powf(cos_theta, 0.8); //smoothing effect. Needed to get rid of psychodelic patterns?!?!
-			//ray->color = col_sc_prod(ray->color, cos_theta);
-			//ray->color = col_prod(ray->color, col_sc_prod(col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio), cos_theta));
-			ray->color = col_add(ray->color, diffuse_comp());
-		}
-		// if (cos_theta > 0.8)
-		// 	ray->color = WHITE;
-		// else if (cos_theta > 0.5)
-		// 	ray->color = RED;
-		// else if (cos_theta > 0)
-		// 	ray->color = BLUE;
-	}
-}
-
-t_color	diffuse_comp(t_hit *hit, t_scene *scene, float cos_theta) //or move everything related to cos_theta inside
-{
-	t_color	diffuse_col;
-
-	diffuse_col = col_sc_prod(col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->light->color), scene->light->ratio), cos_theta);
-	return (diffuse_col);
-}
-
-t_color	specular()
-{
-	t_color	spec_col;
-
-	spec_col = scene->light->color * 
 }

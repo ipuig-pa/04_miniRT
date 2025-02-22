@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 13:20:03 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/22 10:02:52 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,23 @@ void	calc_intersect(t_hit *hit, t_ray *ray, t_scene *scene, int i) //or put this
 		intersect_pl(hit, ray, scene, i);
 	else if (scene->obj[i].type == CYL)
 		intersect_cyl(hit, ray, scene, i);
+}
+
+//return the point of the first intersect of the ray
+//recalculates ray direction (p and v) according to material properties
+void	find_hit(t_hit	*hit, t_ray *ray, t_scene *scene, int h) //allocate the hit if needed
+{
+	int		i;
+
+	i = 0;
+	//allocate for a maximum of 2 times for each object?
+	//what about planes exactly coincident with the ray? (line contained in a plane)
+	while (i < scene->obj_num)//optimize somehow to not iterate through ALL the objects
+	{
+		if (i != h)
+			calc_intersect(hit, ray, scene, i);
+		i++;
+	}
 }
 
 void	update_hit(float d, t_hit *hit, t_ray *ray, int i)

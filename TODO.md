@@ -1,10 +1,10 @@
 IRENE (rendering):
 
 THIS WEEK:
+- shadow hits and shading
 - intersect functions for each object type
-- Understand why and get rid of psychodelic patterns (shading)
 Decide if it makes more sense to do calculations of vectors/points with pointers or with the direct copy of variable (change many function parameters to const)
-- Why when using 2 spheres, the smaller gets deformed. 
+- Why when using 2 spheres, the smaller gets deformed. (point of view???)
 - check: granulations, perimeter line on the gradient, etc?
 
 week 24/02/2025: understand matrices, transl and rotations?
