@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/23 11:31:13 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/23 15:11:21 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_camera
 {
 	t_point		p; //coordinate of the viewpoint
 	t_vector	v;
-	float		fov; // field of view, in degrees? Or already converted to rad?
+	float		fov; // field of view, store it already converted to rad
 }			t_camera;
 
 typedef struct s_light
@@ -54,7 +54,7 @@ typedef struct s_pl
 typedef struct s_cyl
 {
 	t_point		c; //coordinates of the center of the cylinder
-	t_vector	axis;
+	t_vector	v;
 	float		d; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	float		h; //cylinder height
 }			t_cyl;

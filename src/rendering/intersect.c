@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 18:30:54 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/23 15:08:23 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,25 @@ static void	intersect_pl(t_hit *hit, t_ray *ray, t_pl *pl, int i)
 		// else //they are parallel (no intersection)
 		// 	return ();
 	}
-	d = dot_product(&pl->v, &v2) / dot_product(&pl->v, &ray->v);
+	d = dot_product(&pl->v, &v2) / cos_theta;
 	if (d > 0)
 		update_hit(d, hit, ray, i);
 }
 
 static void	intersect_cyl(t_hit *hit, t_ray *ray, t_cyl *cyl, int i)
 {
+	if (dot_product(&pl->v, &ray->v) == 0) // it is either parallel outside, intersects the bases or it is coincident to the enveloping plane (both first and last option means no intersection??)
+		return (intersect_circle(hit, ray, cyl, i));
+	else //get the point of intersection and check if it is within the height of the cylinder
+		
 	(void) hit;
 	(void) ray;
 	(void) cyl;
 	(void) i;
 }
+
+static void	intersect_circle(t_hit *hit, t_ray *ray, t_cyl *cyl, int i)
+
 
 void	calc_intersect(t_hit *hit, t_ray *ray, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
 {
