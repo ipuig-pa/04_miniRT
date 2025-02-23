@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   value_check.c                                      :+:      :+:    :+:   */
+/*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/22 13:13:06 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/22 14:44:04 by ewu              ###   ########.fr       */
+/*   Created: 2025/02/23 11:22:25 by ewu               #+#    #+#             */
+/*   Updated: 2025/02/23 11:59:58 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-/*check valid range of value*/
-
 /**
+ * typedef struct s_scene
+{
+	t_amblight	*amblight;
+	t_camera	*cam;
+	t_light		*light;
+	t_obj		*obj;
+	int			obj_num;
+}			t_scene;
+ * typedef struct s_amblight
+{
+	float	ratio;
+	t_color	color;
+}			t_amblight;
  * typedef union u_color
 {
 	struct		s_comp
@@ -27,11 +37,14 @@
 	float		rgba[4];
 }				t_color;
  */
-bool	valid_color_val(t_color clr)
+
+//tokens[1] => ratio(float); tk[2] => rgba
+void parse_ambient(t_amblight *amblight, char **tokens)
 {
-	if (clr.s_comp.a >= 0 && clr.s_comp.a <= 255 && clr.s_comp.r >= 0
-		&& clr.s_comp.r <= 255 && clr.s_comp.g >= 0 && clr.s_comp.g <= 255
-		&& clr.s_comp.b >= 0 && clr.s_comp.b <= 255)
-		return (true);
-	return (false);
+	if (tokens[1] == NULL || tokens[2] == NULL)
+	{
+		print_err("Invalid number of ambient light!", NULL, NULL);
+		return ;
+	}
+	amblight->ratio = ft_atofloat(tokens[1]);
 }

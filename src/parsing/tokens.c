@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:30:54 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/22 15:01:13 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/23 11:19:42 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,30 +94,3 @@ char	**split_tokens(char *content, char delim)
 	int			obj_num;
 }			t_scene;
  */
-//verify token: A(ambient), C(camera), L(light)
-//pl(plane), cy(cylinder), sp(sphere)
-bool parse_valid_tk(t_scene *scene, char *content)
-{
-	char **tokens;
-	
-	tokens = split_tokens(content, ' ');
-	//space as delim, write prompt to indicate valid input format later??
-	if (tokens == NULL || tokens[0] == '\0')
-		return (print_err("Empty input or Malloc failed!", NULL, NULL), false);
-	if (ft_strncmp(tokens[0], "A", 2) == 0)
-		parse_ambient(scene, tokens);//member func implemnted later
-	else if (ft_strncmp(tokens[0], "C", 2) == 0)
-		parse_camera(scene, tokens);
-	else if (ft_strncmp(tokens[0], "L", 2) == 0)
-		parse_light(scene, tokens);
-	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		parse_plane(scene, tokens);
-	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		parse_sphere(scene, tokens);
-	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		parse_cylinder(scene, tokens);
-	else
-		return (print_err("Invalid identifier passed!", NULL, NULL), false);
-	free_double_pointer(tokens);
-	return (true);
-}
