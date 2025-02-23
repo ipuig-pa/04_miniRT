@@ -6,13 +6,29 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:52:40 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 11:59:20 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/23 19:38:14 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//direct copy and modify from my fractol
+static float	ft_fraction(char **s)
+{
+	float	frac;
+	float	n;
+
+	n = 0.1f;
+	frac = 0.0f;
+	while (**s >= '0' && **s <= '9')
+	{
+		frac = frac + (**s - '0') * n;
+		n = n / 10;
+		(*s)++;
+	}
+	return (frac);
+}
+
+//direct copy and modify from fractol
 float	ft_atofloat(char *s)
 {
 	long	i;
@@ -38,22 +54,6 @@ float	ft_atofloat(char *s)
 	while (*s)
 		frac = ft_fraction(&s);
 	return (sign * (i + frac));
-}
-
-static float	ft_fraction(char **s)
-{
-	float	frac;
-	float	n;
-
-	n = 0.1f;
-	frac = 0.0f;
-	while (**s >= '0' && **s <= '9')
-	{
-		frac = frac + (**s - '0') * n;
-		n = n / 10;
-		(*s)++;
-	}
-	return (frac);
 }
 
 /**
