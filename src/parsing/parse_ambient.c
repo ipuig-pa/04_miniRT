@@ -6,27 +6,12 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:22:25 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 21:43:52 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/24 10:42:17 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/**
- * typedef struct s_scene
-{
-	t_amblight	*amblight;
-	t_camera	*cam;
-	t_light		*light;
-	t_obj		*obj;
-	int			obj_num;
-}				t_scene;
- * typedef struct s_amblight
-{
-	float	ratio;
-	t_color	color;
-}				t_amblight;
- */
 // tokens[1] => ratio(float); tk[2] => rgba
 void	parse_ambient(t_amblight *amblight, char **tokens)
 {
@@ -43,3 +28,19 @@ void	parse_ambient(t_amblight *amblight, char **tokens)
 	}
 	amblight->color = parse_color(tokens[2]);
 }
+
+/**
+ * typedef struct s_scene
+{
+	t_amblight	*amblight;
+	t_camera	*cam;
+	t_light		*light;
+	t_obj		*obj;
+	int			obj_num;
+}				t_scene;
+ * typedef struct s_amblight
+{
+	float	ratio;
+	t_color	color;
+}				t_amblight;
+ */

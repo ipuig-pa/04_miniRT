@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 19:55:32 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/24 11:23:46 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	para_nbr(char **arr)
 	return (i);
 }
 
-//in order match the return type, add a helper function to return err_color()
+//tomatch the ret type, add a helper ft to ret err_color()
 //to indicate that errors in parse_color()
 t_color	err_color(void)
 {
@@ -41,7 +41,7 @@ bool	valid_color_val(t_color clr)
 
 // parse color with t_color struct
 // UPDATE: convert to [0.0f-1.0f]
-// convert_rgba(t_color *color) func is called afterwards to convert back
+// convert_rgba(t_color *color) (in drawing.c) is called later
 t_color	parse_color(char *token)
 {
 	t_color	color;
@@ -50,7 +50,7 @@ t_color	parse_color(char *token)
 	clr = gc_split(token, ',');
 	if (!clr || !clr[0] || !clr[1] || !clr[2] || !clr[3] || para_nbr(clr) != 4)
 	{
-		p_err("Invalid parameter number or malloc failed!");
+		p_err("Invalid parameter number for color or malloc failed!");
 		free_double_pointer(clr);
 		return (err_color());
 	}

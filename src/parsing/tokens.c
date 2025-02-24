@@ -6,57 +6,57 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:30:54 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 11:19:42 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/24 13:35:17 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // take the retval from read_file() and count
-int	count_para(char *content)
+int	count_token(char *line)
 {
 	int		count;
 	bool	within;
 
 	count = 0;
 	within = false;
-	while (*content)
+	while (*line)
 	{
-		if (*content == ' ' || *content == '\t')
+		if (*line == ' ' || *line == '\t')
 			within = false;
 		else if (within == false)
 		{
 			within = true;
 			count++;
 		}
-		content++;
+		line++;
 	}
 	return (count);
 }
 
-//get ONE word(token) from *content(ret by read_file())
-char	*get_token(char *content, char delim)
+//get ONE word(token) from *line(single line)
+char	*get_token(char *line, char delim)
 {
 	int		tk_len;
 	char	*token;
 
 	tk_len = 0;
-	while (content[tk_len] && content[tk_len] != delim)
+	while (line[tk_len] && line[tk_len] != delim)
 		tk_len++;
 	token = gc_malloc(sizeof(char) * (tk_len + 1));
 	if (!token)
 		return (NULL);
-	ft_strlcpy(token, content, tk_len + 1);
+	ft_strlcpy(token, line, tk_len + 1);
 	return (token);
 }
 
 //create array of token, and will pass to valid_token_checker()
 /** expected outcome:
  * input = "  sp  11,11,11    5   255,211,221"
- * ret:
+ * ret following:
  * tokens[0]=sp; tks[1]=11,11,11; tks[2]=5; tks[3]=255..; tks[4]=null
 */
-char	**split_tokens(char *content, char delim)
+char	**split_tokens(char *line, char delim)
 {
 	int		i;
 	int		j;
@@ -64,16 +64,16 @@ char	**split_tokens(char *content, char delim)
 
 	i = 0;
 	j = 0;
-	tokens = gc_malloc(sizeof(char *) * (count_para(content) + 1));
+	tokens = gc_malloc(sizeof(char *) * (count_para(line) + 1));
 	if (!tokens)
 		return (NULL);
-	while (j < count_para(content))
+	while (j < count_para(line))
 	{
-		while (content[i] && content[i] == delim)
+		while (line[i] && line[i] == delim)
 			i++;// space check again
-		if (content[i])
+		if (line[i])
 		{
-			tokens[j] = get_token(content + i, delim);
+			tokens[j] = get_token(line + i, delim);
 			if (!tokens[j])
 				return (free_double_pointer(tokens), NULL);
 			i = i + ft_strlen(tokens[j]);

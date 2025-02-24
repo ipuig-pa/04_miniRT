@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 13:01:19 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/24 13:41:11 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /** FUNC:
  * to read *.rt and error check
  */
-//retval: fd of file.rt
+// retval: fd of file.rt
 int	valid_file(const char *filename)
 {
 	int			fd;
@@ -37,25 +37,27 @@ int	valid_file(const char *filename)
 	return (fd);
 }
 
-//Q: do we have to change all-related ft_func in get_next_line() into gc_func()?
-char *read_file(const char *filename)
+// empty in main parsing already, but can also write smth here for safety
+bool	empty_check(int fd);
+
+// Q: do we have to change all-related ft_func in get_next_line() into gc_func()?
+// skip empty
+
+char	*read_file(const char *filename)
 {
-	int fd;
-	char *content;
-	char *line;
-	char *tmp;
+	int		fd;
+	char	*content;
+	char	*line;
+	char	*tmp;
 
 	fd = valid_file(filename);
 	if (fd < 0)
 		return (p_err("Errors in file validation or opening file!"), NULL);
 	content = gc_strdup("");
-	//create empty str
-	while(get_next_line(fd) != NULL)
-	//read as long as line exist
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		line = get_next_line(fd);
 		if (line[0] != '\0')
-		//skip empty
 		{
 			tmp = content;
 			content = gc_strjoin(content, line);
@@ -65,7 +67,25 @@ char *read_file(const char *filename)
 			gc_free(tmp);
 		}
 		free(line);
-		//not using gc here, cuz no gc in GNL
+		line = get_next_line(fd);
 	}
 	return (close(fd), content);
+}
+// not using gc here, cuz no gc in GNL
+
+int	count_objs(char **lines)
+{
+	int	i;
+	int	obj_num;
+
+	i = 0;
+	obj_num = 0;
+	while (lines[i])
+	{
+		if (ft_strncmp(lines[i][0], "sp", 3) == 0 || ft_strncmp(lines[i][0],
+				"cy", 3) == 0 || ft_strncmp(lines[i][0], "pl", 3) == 0)
+			obj_num++;
+		i++;
+	}
+	return (obj_num);
 }
