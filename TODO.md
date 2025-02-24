@@ -1,17 +1,19 @@
 IRENE (rendering):
 
-THIS WEEK:
-- shadow hits and shading
-- intersect functions for each object type
-Decide if it makes more sense to do calculations of vectors/points with pointers or with the direct copy of variable (change many function parameters to const)
-- Why when using 2 spheres, the smaller gets deformed. (point of view???)
-- check: granulations, perimeter line on the gradient, etc?
+25/02/2025:
+- normals for cyl
+- start understanding matrices, transl and rotations?
 
+
+- linalg funcitons, put order: use only add / sub. Use the same for points and vectors??
 week 24/02/2025: understand matrices, transl and rotations?
 week 03/03/2025: rotations etc
 week 10/03/2025: shiny, shadows, reflection, etc
 
+- establish tmax and tmin for ray impact (r(t) = o + td)
+
 MORE
+- include triangle intersection, so we can have complex forms represented as a meshed of triangles
 - Bouncing, reflextion, refraction, etc
 - Antialiasing (to smooth contours)
 - optimize checking of ALL objects to find first hit? objects as a linked list according to their proximity to camera?? OR not, beause when it hits one, we have to change again the order? OR subdivide the space?

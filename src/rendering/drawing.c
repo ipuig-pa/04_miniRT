@@ -6,11 +6,13 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:18:18 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 12:35:47 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:38:24 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+//maybe change the file name to color utils if we change mypixelput into another file
 
 void	my_pixel_put(t_env *env, int x, int y, int color)
 {

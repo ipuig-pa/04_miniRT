@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 19:04:19 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:58:25 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,37 +28,47 @@ int	main(void)
 	obj[0].param.sph.c.x = 0.0;
 	obj[0].param.sph.c.y = 0.0;
 	obj[0].param.sph.c.z = 200.0;
-	obj[0].param.sph.d = 10.0;
+	obj[0].param.sph.r = 5.0;
 	obj[1].type = SPH;
 	obj[1].color = RED;
 	obj[1].param.sph.c.x = 0.0;
 	obj[1].param.sph.c.y = 20.0;
 	obj[1].param.sph.c.z = 200.0;
-	obj[1].param.sph.d = 5.0;
+	obj[1].param.sph.r = 2.5;
 	obj[2].type = PL;
 	obj[2].color = GREEN;
-	obj[2].param.pl.v.x = 0.0;
-	obj[2].param.pl.v.y = 1.0;
-	obj[2].param.pl.v.z = 0.0;
+	obj[2].param.pl.n.x = 0.0;
+	obj[2].param.pl.n.y = 1.0;
+	obj[2].param.pl.n.z = 0.0;
 	obj[2].param.pl.p.x = 0.0;
 	obj[2].param.pl.p.y = -7.0;
 	obj[2].param.pl.p.z = 0.0;
 	obj[3].type = PL;
 	obj[3].color = GREEN;
-	obj[3].param.pl.v.x = 0.0;
-	obj[3].param.pl.v.y = 0.0;
-	obj[3].param.pl.v.z = 1.0;
+	obj[3].param.pl.n.x = 0.0;
+	obj[3].param.pl.n.y = 0.0;
+	obj[3].param.pl.n.z = 1.0;
 	obj[3].param.pl.p.x = 0.0;
 	obj[3].param.pl.p.y = 0.0;
 	obj[3].param.pl.p.z = 207.0;
 	obj[4].type = PL;
 	obj[4].color = GREEN;
-	obj[4].param.pl.v.x = 1.0;
-	obj[4].param.pl.v.y = 0.0;
-	obj[4].param.pl.v.z = 0.0;
+	obj[4].param.pl.n.x = 1.0;
+	obj[4].param.pl.n.y = 0.0;
+	obj[4].param.pl.n.z = 0.0;
 	obj[4].param.pl.p.x = -7.0;
 	obj[4].param.pl.p.y = 0.0;
 	obj[4].param.pl.p.z = 0.0;
+	// obj[5].type = CYL;
+	// obj[5].color = RED;
+	// obj[5].param.cyl.b.x = 2.0;
+	// obj[5].param.cyl.b.y = 3.0;
+	// obj[5].param.cyl.b.z = 150.0;
+	// obj[5].param.cyl.a.x = 2.0; //not working bc vector is not unit
+	// obj[5].param.cyl.a.y = -1.0;
+	// obj[5].param.cyl.a.z = 1.0;
+	// obj[5].param.cyl.r = 1.5;
+	// obj[5].param.cyl.h = 10;
 	amblight.color = WHITE;
 	amblight.ratio = 0.1;
 	cam.p.x = 0.0;

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 10:03:25 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/24 13:03:13 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 	half_viewport_w = tanf(scene->cam->fov / 2.0);
 	px_space = 2.0 * half_viewport_w / WINDOW_WIDTH;
 	half_viewport_h = WINDOW_HEIGHT * half_viewport_w / WINDOW_WIDTH;
-	ray->p = scene->cam->p; //do a hard_copy or like this is ok? (should be ok, because he camera are not supposed to be changed)
-	ray->v.x = scene->cam->p.x - half_viewport_w + (j + 0.5) * px_space;
-	ray->v.y = scene->cam->p.y + half_viewport_h - (i + 0.5) * px_space;
-	ray->v.z = 1.0;
-	v_modul = v_modulus(&ray->v);
-	ray->v.x = ray->v.x / v_modul;
-	ray->v.y = ray->v.y / v_modul;
-	ray->v.z = ray->v.z / v_modul;
+	ray->o = scene->cam->p; //do a hard_copy or like this is ok? (should be ok, because he camera are not supposed to be changed)
+	ray->d.x = scene->cam->p.x - half_viewport_w + (j + 0.5) * px_space;
+	ray->d.y = scene->cam->p.y + half_viewport_h - (i + 0.5) * px_space;
+	ray->d.z = 1.0;
+	v_modul = v_modulus(ray->d);
+	ray->d.x = ray->d.x / v_modul;
+	ray->d.y = ray->d.y / v_modul;
+	ray->d.z = ray->d.z / v_modul;
 	ray->color = FILTER; //or take it from the scene file if we are introducing a filter??
 	// ray->end = false;
 }

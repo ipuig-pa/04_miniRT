@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:19:05 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/22 11:36:49 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/22 16:53:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # include <math.h>// for math functions (requires -lm when compiling)
 # include <fcntl.h>// for open flags like O_RDONLY, O_WRONLY, etc.
 # include <stdbool.h>//to use bool variables
-# include "../MLX42/include/MLX42/MLX42.h"
-//# include "../minilibx_macos/mlx.h" //minilibx
+//# include "../MLX42/include/MLX42/MLX42.h"
+# include "../minilibx_macos/mlx.h" //minilibx
 
 #endif

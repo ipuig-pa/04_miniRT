@@ -6,7 +6,7 @@ CFLAGS = -Wall -Wextra -Werror
 SRC_DIR = src
 OBJ_DIR = obj
 
-VPATH =	$(SRC_DIR):$(SRC_DIR)/gc:$(SRC_DIR)/lineal_algebra:$(SRC_DIR)/manage_env:$(SRC_DIR)/rendering:
+VPATH =	$(SRC_DIR):$(SRC_DIR)/gc:$(SRC_DIR)/linear_algebra:$(SRC_DIR)/manage_env:$(SRC_DIR)/rendering:
 
 SOURCES =	gc_malloc_free.c\
 			gc_error.c\

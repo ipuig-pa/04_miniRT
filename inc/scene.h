@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/23 15:11:21 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/24 15:56:06 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,36 @@ typedef struct s_light
 typedef struct s_sph
 {
 	t_point	c; //coordinates of the sphere center
-	float	d; //sphere diameter (maybe it would be more useful to store the radius r instead of diameter d)
+	float	r; //sphere diameter (maybe it would be more useful to store the radius r instead of diameter d)
 }			t_sph;
 
 typedef struct s_pl
 {
 	t_point		p; //coordinates of a point in the plane
-	t_vector	v; //normal vector
+	t_vector	n; //normal vector (and unit vector!!!???)
 }			t_pl;
 
 typedef struct s_cyl
 {
-	t_point		c; //coordinates of the center of the cylinder
-	t_vector	v;
-	float		d; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
+	t_point		b; //coordinates of the center of the cylinder ->better find b, which is the center at the base, not in the middle of the cyl
+	t_vector	a; //axis vector (unit vector???)
+	float		r; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	float		h; //cylinder height
 }			t_cyl;
+
+typedef struct s_cir
+{
+	t_point		c; //coordinates of the center of the circle
+	t_vector	n; //normal vector (unit vector???)
+	float		r; //circle radius
+}			t_cir;
 
 typedef enum e_objtype
 {
 	SPH,
 	PL,
-	CYL
+	CYL, 
+	CIR
 }			t_objtype;
 
 typedef union u_objparam
@@ -71,6 +79,7 @@ typedef union u_objparam
 	t_sph	sph; //use it as the direct object or as pointers to?
 	t_pl	pl;
 	t_cyl	cyl;
+	t_cir	cir;
 }			t_objparam;
 
 typedef struct s_obj
