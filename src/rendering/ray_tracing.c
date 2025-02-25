@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 19:16:24 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:21:56 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,11 @@ void	create_viewport(t_scene *scene)
 	world_vert.z = 0;
 	scene->vp.right = unit_v(cross_prod(scene->cam->v, world_vert));
 	scene->vp.up = unit_v(cross_prod(scene->vp.right, scene->cam->v));
-	printf("right.x: %f, .y: %f, .z: %f\nup.x: %f, .y: %f, .z: %f\n", scene->vp.right.x, scene->vp.right.y, scene->vp.right.z, scene->vp.up.x, scene->vp.up.y, scene->vp.up.z);
 	scene->vp.front = scene->cam->v;
 	half_vp_w = tanf(scene->cam->fov / 2.0);
 	half_vp_h = WINDOW_HEIGHT * half_vp_w / WINDOW_WIDTH;
-	printf("%f, %f\n", half_vp_w, half_vp_h);
 	scene->vp.px_space = 2.0 * half_vp_w / WINDOW_WIDTH;
 	scene->vp.o = pv_add(scene->cam->p, scene->vp.front);
-	printf("o.x: %f, .y: %f, .z: %f\n", scene->vp.o.x, scene->vp.o.y, scene->vp.o.z);
 	scene->vp.o = pv_add(scene->vp.o, scalar_mult(scene->vp.right, -half_vp_w));
-	printf("o.x: %f, .y: %f, .z: %f\n", scene->vp.o.x, scene->vp.o.y, scene->vp.o.z);
 	scene->vp.o = pv_add(scene->vp.o, scalar_mult(scene->vp.up, half_vp_h));
-	printf("o.x: %f, .y: %f, .z: %f\n", scene->vp.o.x, scene->vp.o.y, scene->vp.o.z);
 }

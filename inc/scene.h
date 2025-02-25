@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 18:51:33 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:22:39 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_camera
 
 typedef struct s_viewport
 {
-	t_vector	front;
+	t_vector	front; //dont know if it is really needed or I can erase
 	t_vector	right;
 	t_vector	up;
 	t_point		o;
