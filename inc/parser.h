@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 14:17:17 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 15:37:58 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ void		parse_cylinder(t_obj *obj, char **tokens);
 void		create_surface(t_obj *obj, char **tokens);
 void		create_topcir(t_obj *obj, char **tokens);
 void		create_basecir(t_obj *obj, char **tokens);
+void		parse_sphere(t_obj *obj, char **tokens);
+void		parse_plane(t_obj *obj, char **tokens);
 
 #endif

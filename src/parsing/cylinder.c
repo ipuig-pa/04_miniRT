@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 14:56:34 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 15:40:43 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parse_cylinder(t_obj *obj, char **tokens)
 /**
  * typedef struct s_cyl
 {
-	t_point		b;
+	t_point		b; 
 	t_vector	a;
 	float		r;
 	float		h; //cylinder height
@@ -54,6 +54,11 @@ void	create_surface(t_obj *obj, char **tokens)
 	c = parse_point(tokens[1]);
 	obj->param.cyl.b = pt_sub_vc(c, scalar_mult(obj->param.cyl.a,
 				obj->param.cyl.h / 2));
+	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
+	{
+		p_err("Diameter and Height must be positive numbers!");
+		return ;
+	}
 }
 
 /**
@@ -77,6 +82,11 @@ void	create_basecir(t_obj *obj, char **tokens)
 	passed_pt = parse_point(tokens[1]);
 	obj->param.cir.c = pt_sub_vc(passed_pt, scalar_mult(obj->param.cir.n,
 				obj->param.cyl.h / 2));
+	if (obj->param.cir.r < 0.0f)
+	{
+		p_err("Diameter must be positive numbers!");
+		return ;
+	}
 }
 
 void	create_topcir(t_obj *obj, char **tokens)
@@ -90,6 +100,11 @@ void	create_topcir(t_obj *obj, char **tokens)
 	passed_pt = parse_point(tokens[1]);
 	obj->param.cir.c = pv_add(passed_pt, scalar_mult(obj->param.cir.n,
 				obj->param.cyl.h / 2));
+	if (obj->param.cir.r < 0.0f)
+	{
+		p_err("Diameter must be positive numbers!");
+		return ;
+	}
 }
 // include obj circle (cir), and for each cyl, create 2 objects circles:
 // ==> create_cir() func
