@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 13:33:42 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 11:39:36 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 // space as delim, write prompt to indicate valid input format later??
 bool	parse_valid_tk(t_scene *scene, char *line)
 {
-	char	**tokens;
+	char		**tokens;
+	static int	i;
 
 	tokens = split_tokens(line, ' ');
 	if (tokens == NULL || tokens[0] == '\0')
@@ -33,13 +34,16 @@ bool	parse_valid_tk(t_scene *scene, char *line)
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
 		parse_light(scene->light, tokens);
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		parse_plane(scene->obj->param.pl, tokens);
+		parse_plane(scene->obj[i]->param.pl, tokens);
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		parse_sphere(scene->obj->param.sph, tokens);
+		parse_sphere(scene->obj[i]->param.sph, tokens);
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-		parse_cylinder(scene->obj->param.cyl, tokens);
+	{
+		parse_cylinder(scene->obj, i, [i]->param.cyl, tokens); //change depending on how the circles are parsed
+	}
 	else
 		return (p_err("Invalid identifier passed!"), false);
+	i++;
 	return (free_double_pointer(tokens), true);
 }
 

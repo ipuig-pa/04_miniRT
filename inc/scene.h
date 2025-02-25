@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 15:56:06 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:34:40 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,9 +92,6 @@ typedef struct s_obj
 //PTR to mlx42 added(comment out now, just for you to see hpw it like)
 typedef struct s_scene
 {
-	// mlx_t		*mlx;
-	// mlx_image_t	*scene_img;
-	// char		*obj_name;
 	t_amblight	*amblight;
 	t_camera	*cam;
 	t_light		*light;
