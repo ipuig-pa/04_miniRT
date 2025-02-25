@@ -6,21 +6,11 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/24 11:23:46 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 12:26:55 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-int	para_nbr(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 //tomatch the ret type, add a helper ft to ret err_color()
 //to indicate that errors in parse_color()

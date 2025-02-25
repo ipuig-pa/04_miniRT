@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/24 13:41:11 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 10:25:29 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,12 @@ int	count_objs(char **lines)
 	{
 		if (ft_strncmp(lines[i][0], "sp", 3) == 0 || ft_strncmp(lines[i][0],
 				"cy", 3) == 0 || ft_strncmp(lines[i][0], "pl", 3) == 0)
-			obj_num++;
+		{
+			if (ft_strncmp(lines[i][0], "cy", 3) == 0)
+				obj_num += 3;
+			else
+				obj_num += 1;
+		}
 		i++;
 	}
 	return (obj_num);

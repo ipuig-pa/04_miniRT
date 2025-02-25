@@ -6,20 +6,18 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:22:25 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/24 10:42:17 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 12:25:26 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // tokens[1] => ratio(float); tk[2] => rgba
+//A 0.2 255,255,255
 void	parse_ambient(t_amblight *amblight, char **tokens)
 {
-	if (tokens[1] == NULL || tokens[2] == NULL)
-	{
-		p_err("Invalid number of ambient light!");
-		return ;
-	}
+	if (check_para_num(tokens, 'a') == -1)
+		return ;//is clean needed?
 	amblight->ratio = ft_atofloat(tokens[1]);
 	if (amblight->ratio < 0.0f || amblight->ratio > 1.0f)
 	{
@@ -29,6 +27,11 @@ void	parse_ambient(t_amblight *amblight, char **tokens)
 	amblight->color = parse_color(tokens[2]);
 }
 
+	// if (tokens[1] == NULL || tokens[2] == NULL)
+	// {
+	// 	p_err("Invalid number of ambient light!");
+	// 	return ;
+	// }
 /**
  * typedef struct s_scene
 {

@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:21 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 21:45:38 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 15:46:23 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_vector	norm_vector(t_point dirct_vec)
 	v.x = dirct_vec.x;
 	v.y = dirct_vec.y;
 	v.z = dirct_vec.z;
-	vec_len = v_modulus(&v);
+	vec_len = v_modulus(v);
 	if (vec_len == 0)
 	{
 		p_err("Invalid Camera direction! Default orientation called!");

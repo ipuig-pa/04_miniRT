@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:00 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/23 21:53:43 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 12:29:44 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void	parse_camera(t_camera *camera, char **tokens)
 {
 	float	degree;
 
-	if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL)
-	{
-		p_err("Invalid number of Camera parameter!");
+	if (check_para_num(tokens, 'a') == -1)
 		return ;
-	}
 	camera->p = parse_point(tokens[1]);
 	camera->v = norm_vector(parse_point(tokens[2]));
 	degree = ft_atofloat(tokens[2]);
@@ -37,6 +34,11 @@ void	parse_camera(t_camera *camera, char **tokens)
 	camera->fov = degree * (M_PI / 180.0f);
 }
 
+	// if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL)
+	// {
+	// 	p_err("Invalid number of Camera parameter!");
+	// 	return ;
+	// }
 /**
 typedef struct s_camera
 {
