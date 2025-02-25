@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/02/25 11:01:11 by ewu              ###   ########.fr       */
+=======
+/*   Updated: 2025/02/25 11:39:36 by ipuig-pa         ###   ########.fr       */
+>>>>>>> ed7cf5e1b25b6f917a12c7ae2a53b957f28aaf66
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +50,8 @@ void	parsing_scene(t_scene *scene, const char *filename)
 // space as delim, write prompt to indicate valid input format later??
 bool	parse_valid_tk(t_scene *scene, char *line)
 {
-	char	**tokens;
+	char		**tokens;
+	static int	i;
 
 	tokens = split_tokens(line, ' ');
 	if (tokens == NULL || tokens[0] == '\0')
@@ -58,12 +63,19 @@ bool	parse_valid_tk(t_scene *scene, char *line)
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
 		parse_light(scene->light, tokens);
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		parse_plane(scene->obj->param.pl, tokens);
+		parse_plane(scene->obj[i]->param.pl, tokens);
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		parse_sphere(scene->obj->param.sph, tokens);
+		parse_sphere(scene->obj[i]->param.sph, tokens);
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
+<<<<<<< HEAD
 		parse_cylinder(scene->obj->param.cyl, scene->obj->param.cir, tokens);
+=======
+	{
+		parse_cylinder(scene->obj, i, [i]->param.cyl, tokens); //change depending on how the circles are parsed
+	}
+>>>>>>> ed7cf5e1b25b6f917a12c7ae2a53b957f28aaf66
 	else
 		return (p_err("Invalid identifier passed!"), false);
+	i++;
 	return (free_double_pointer(tokens), true);
 }

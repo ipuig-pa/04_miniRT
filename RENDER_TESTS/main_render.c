@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_render.c                                      :+:      :+:    :+:   */
+/*   main_render copy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 15:58:25 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:08:21 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,20 @@ int	main(void)
 {
 	t_env		env;
 	t_scene		scene;
-	t_obj		obj[5];
+	t_obj		obj[8];
 	t_amblight	amblight;
 	t_camera	cam;
 	t_light		light;
+	float		temp;
 
 	init_env(&env);
-	scene.obj_num = 5;
-	obj[0].type = SPH;
-	obj[0].color = PINK;
-	obj[0].param.sph.c.x = 0.0;
-	obj[0].param.sph.c.y = 0.0;
-	obj[0].param.sph.c.z = 200.0;
-	obj[0].param.sph.r = 5.0;
+	scene.obj_num = 8;
+	obj[7].type = SPH;
+	obj[7].color = PINK;
+	obj[7].param.sph.c.x = 0.0;
+	obj[7].param.sph.c.y = 0.0;
+	obj[7].param.sph.c.z = 200.0;
+	obj[7].param.sph.r = 5.0;
 	obj[1].type = SPH;
 	obj[1].color = RED;
 	obj[1].param.sph.c.x = 0.0;
@@ -59,16 +60,31 @@ int	main(void)
 	obj[4].param.pl.p.x = -7.0;
 	obj[4].param.pl.p.y = 0.0;
 	obj[4].param.pl.p.z = 0.0;
-	// obj[5].type = CYL;
-	// obj[5].color = RED;
-	// obj[5].param.cyl.b.x = 2.0;
-	// obj[5].param.cyl.b.y = 3.0;
-	// obj[5].param.cyl.b.z = 150.0;
-	// obj[5].param.cyl.a.x = 2.0; //not working bc vector is not unit
-	// obj[5].param.cyl.a.y = -1.0;
-	// obj[5].param.cyl.a.z = 1.0;
-	// obj[5].param.cyl.r = 1.5;
-	// obj[5].param.cyl.h = 10;
+	obj[0].type = CYL;
+	obj[0].color = RED;
+	obj[0].param.cyl.b.x = 2.0;
+	obj[0].param.cyl.b.y = 3.0;
+	obj[0].param.cyl.b.z = 150.0;
+	obj[0].param.cyl.a.x = 2.0; //not working bc vector is not unit
+	obj[0].param.cyl.a.y = -1.0;
+	obj[0].param.cyl.a.z = 1.0;
+	(void) temp;
+	temp = v_modulus(obj[0].param.cyl.a);
+	obj[0].param.cyl.a.x = 2.0 / temp;
+	obj[0].param.cyl.a.y = -1.0 / temp;
+	obj[0].param.cyl.a.z = 1.0 / temp;
+	obj[0].param.cyl.r = 1.5;
+	obj[0].param.cyl.h = 10;
+	obj[6].type = CIR;
+	obj[6].color = RED;
+	obj[6].param.cir.c = obj[0].param.cyl.b;
+	obj[6].param.cir.n = obj[0].param.cyl.a;
+	obj[6].param.cir.r = obj[0].param.cyl.r;
+	obj[5].type = CIR;
+	obj[5].color = RED;
+	obj[5].param.cir.c = pv_add(obj[0].param.cyl.b, scalar_mult(obj[0].param.cyl.a, obj[0].param.cyl.h));
+	obj[5].param.cir.n = invert_v(obj[0].param.cyl.a);
+	obj[5].param.cir.r = obj[0].param.cyl.r;
 	amblight.color = WHITE;
 	amblight.ratio = 0.1;
 	cam.p.x = 0.0;
@@ -81,7 +97,7 @@ int	main(void)
 	light.p.x = 6.0;
 	light.p.y = 0.0;
 	//light.p.y = 500.0;
-	light.p.z = 200.0;
+	light.p.z = 50.0;
 	//light.p.z = 150.0;
 	light.ratio = 0.6;
 	light.color = WHITE;

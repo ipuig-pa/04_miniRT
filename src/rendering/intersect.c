@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 15:56:55 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:04:38 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,13 @@ static void	intersect_cyl(t_hit *hit, t_ray *ray, t_cyl *cyl, int i)
 		dxa = cross_prod(ray->d, cyl->a);
 		root = (dot_prod(dxa, dxa)) * powf(cyl->r, 2) - powf(dot_prod(v2, dxa), 2);
 		d = (dot_prod(dxa, cross_prod(v2, cyl->a)) - sqrtf(root)) / dot_prod(dxa, dxa);
-		
 		t = dot_prod(cyl->a, v_subt(scalar_mult(ray->d, d), v2));
 		if (d < 0 || t > cyl->h || t < 0)
 		{
-			d = (dot_prod(dxa, cross_prod(v2, cyl->a)) + (sqrtf(root)) / dot_prod(dxa, dxa));
+			d = (dot_prod(dxa, cross_prod(v2, cyl->a)) + sqrtf(root)) / dot_prod(dxa, dxa);
 			t = dot_prod(cyl->a, v_subt(scalar_mult(ray->d, d), v2));
 		}
-		if (t >= 0 && t <= cyl->h)
+		if (d > 0 && t >= 0 && t <= cyl->h)
 			update_hit(d, hit, ray, i);
 	}
 }
