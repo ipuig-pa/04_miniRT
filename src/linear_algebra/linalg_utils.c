@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 13:42:20 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:05:52 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,26 @@ t_vector v_subt(t_vector v2, t_vector v1)
 	res.y = v2.y - v1.y;
 	res.z = v2.z - v1.z;
 	return (res);
+}
+
+t_vector v_add(t_vector v1, t_vector v2)
+{
+	t_vector	res;
+
+	res.x = v1.x + v2.x;
+	res.y = v1.y + v2.y;
+	res.z = v1.z + v2.z;
+	return (res);
+}
+
+t_vector	unit_v(t_vector v)
+{
+	float		mod;
+	t_vector	u_v;
+
+	mod = v_modulus(v);
+	u_v.x = v.x / mod;
+	u_v.y = v.y / mod;
+	u_v.z = v.z / mod;
+	return (u_v);
 }

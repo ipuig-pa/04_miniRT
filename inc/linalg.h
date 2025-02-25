@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:53:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 15:34:17 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:16:46 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ float		v_modulus(t_vector v);
 t_vector	point_subt(t_point p2, t_point p1);
 t_point		pv_add(t_point p, t_vector v);
 t_vector	v_subt(t_vector v2, t_vector v1);
+t_vector	unit_v(t_vector v);
 
 #endif

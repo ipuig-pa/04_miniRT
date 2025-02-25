@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_render copy.c                                 :+:      :+:    :+:   */
+/*   main_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 11:08:21 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:18:44 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ int	main(void)
 	obj[7].color = PINK;
 	obj[7].param.sph.c.x = 0.0;
 	obj[7].param.sph.c.y = 0.0;
-	obj[7].param.sph.c.z = 200.0;
+	obj[7].param.sph.c.z = -200.0;
 	obj[7].param.sph.r = 5.0;
 	obj[1].type = SPH;
 	obj[1].color = RED;
 	obj[1].param.sph.c.x = 0.0;
 	obj[1].param.sph.c.y = 20.0;
-	obj[1].param.sph.c.z = 200.0;
+	obj[1].param.sph.c.z = -200.0;
 	obj[1].param.sph.r = 2.5;
 	obj[2].type = PL;
-	obj[2].color = GREEN;
+	obj[2].color = BLUE;
 	obj[2].param.pl.n.x = 0.0;
 	obj[2].param.pl.n.y = 1.0;
 	obj[2].param.pl.n.z = 0.0;
@@ -51,9 +51,9 @@ int	main(void)
 	obj[3].param.pl.n.z = 1.0;
 	obj[3].param.pl.p.x = 0.0;
 	obj[3].param.pl.p.y = 0.0;
-	obj[3].param.pl.p.z = 207.0;
+	obj[3].param.pl.p.z = -207.0;
 	obj[4].type = PL;
-	obj[4].color = GREEN;
+	obj[4].color = PINK;
 	obj[4].param.pl.n.x = 1.0;
 	obj[4].param.pl.n.y = 0.0;
 	obj[4].param.pl.n.z = 0.0;
@@ -97,7 +97,7 @@ int	main(void)
 	light.p.x = 6.0;
 	light.p.y = 0.0;
 	//light.p.y = 500.0;
-	light.p.z = 50.0;
+	light.p.z = -50.0;
 	//light.p.z = 150.0;
 	light.ratio = 0.6;
 	light.color = WHITE;

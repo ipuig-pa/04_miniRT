@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 11:34:40 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:51:33 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ typedef struct s_camera
 	t_vector	v;
 	float		fov; // field of view, store it already converted to rad
 }			t_camera;
+
+typedef struct s_viewport
+{
+	t_vector	front;
+	t_vector	right;
+	t_vector	up;
+	t_point		o;
+	float		px_space;
+}				t_viewport;
 
 typedef struct s_light
 {
@@ -89,14 +98,16 @@ typedef struct s_obj
 	t_color		color;
 }			t_obj;
 
-//PTR to mlx42 added(comment out now, just for you to see hpw it like)
 typedef struct s_scene
 {
-	t_amblight	*amblight;
+	t_amblight	*amblight; //erase the * for all of them except *obj???
+	t_viewport	vp;
 	t_camera	*cam;
 	t_light		*light;
 	t_obj		*obj;//pointer to an object array?? Or use linked list? In principle, an array (allocate enough space for obj_num)
 	int			obj_num;//needed or not depending on if we use array or linked list
 }			t_scene;
+
+void	create_viewport(t_scene *scene);
 
 #endif
