@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/24 13:36:49 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/25 14:17:17 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ float		ft_atofloat(char *s);
 
 // util
 int			para_nbr(char **arr);
+int			check_para_num(char **tokens, char key);
+int			check_para_2(char **tokens, char key);
 bool		valid_color_val(t_color clr);
 t_color		err_color(void);
 t_point		err_point(void);
@@ -38,10 +40,14 @@ t_vector	err_vector(void);
 t_vector	norm_vector(t_point dirct_vec);
 
 // main parser
+t_color		parse_color(char *token);
 void		parsing_scene(t_scene *scene, const char *filename);
 void		parse_ambient(t_amblight *amblight, char **tokens);
 void		parse_camera(t_camera *camera, char **tokens);
 void		parse_light(t_light *light, char **tokens);
-t_color		parse_color(char *token);
+void		parse_cylinder(t_obj *obj, char **tokens);
+void		create_surface(t_obj *obj, char **tokens);
+void		create_topcir(t_obj *obj, char **tokens);
+void		create_basecir(t_obj *obj, char **tokens);
 
 #endif
