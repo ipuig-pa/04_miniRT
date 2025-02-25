@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 11:04:38 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/25 11:56:44 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static void	intersect_cir(t_hit *hit, t_ray *ray, t_cir *cir, int i)
 	v2 = point_subt(cir->c, ray->o);
 	d = dot_prod(cir->n, v2) / dot_prod(cir->n, ray->d);
 	pc = point_subt(pv_add(ray->o, scalar_mult(ray->d, d)), cir->c);
-	if (dot_prod(pc, pc) < powf(cir->r, 2))
+	if (d > 0 && dot_prod(pc, pc) < powf(cir->r, 2))
 		update_hit(d, hit, ray, i);
 }
 
@@ -117,9 +117,8 @@ void	find_hit(t_hit	*hit, t_ray *ray, t_scene *scene, int h) //allocate the hit 
 	int		i;
 
 	i = 0;
-	//allocate for a maximum of 2 times for each object?
 	//what about planes exactly coincident with the ray? (line contained in a plane)
-	while (i < scene->obj_num)//optimize somehow to not iterate through ALL the objects
+	while (i < scene->obj_num)//optimize somehow to not iterate through ALL the objects??
 	{
 		if (i != h)
 			calc_intersect(hit, ray, scene, i);
