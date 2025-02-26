@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:53:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 17:16:46 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:25:29 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 #ifndef LINALG_H
 # define LINALG_H
 
-typedef struct s_point
+typedef struct s_point // w = 1 (added for vector / point distinction in transformations)
 {
 	float	x;
 	float	y;
 	float	z;
+	int		w;
 }			t_point;
 
-typedef struct s_vector
+typedef struct s_vector // w = 0 (added for vector / point distinction in transformations)
 {
 	float	x;
 	float	y;
 	float	z;
+	int		w;
 }			t_vector;
 
 // //or ????????????????????????

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 19:22:39 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/26 16:14:06 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 # include "linalg.h"
 # include "color.h"
+# include "transform.h"
 
 //colors maybe also as an structure of 3 int: R, G, B??
 
@@ -79,7 +80,7 @@ typedef enum e_objtype
 {
 	SPH,
 	PL,
-	CYL, 
+	CYL,
 	CIR
 }			t_objtype;
 
@@ -96,6 +97,7 @@ typedef struct s_obj
 	t_objparam	param;
 	t_objtype	type;
 	t_color		color;
+	t_matrix	m; //transformation matrix to apply to the ray when checking if intersection occurs
 }			t_obj;
 
 typedef struct s_scene

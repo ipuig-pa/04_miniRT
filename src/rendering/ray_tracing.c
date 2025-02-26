@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 19:21:56 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:06:43 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ray_tracer(t_env *env)
 		{
 			hit.occur = false;
 			cast_ray(&ray, i, j, env->scene);
-			find_hit(&hit, &ray, env->scene, -1);
+			find_hit(&hit, ray, env->scene, -1);
 			//how to distinguish if it hits the light
 			if (hit.occur == true)
 			{

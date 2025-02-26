@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 11:05:51 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:23:16 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static void	normal_cyl(t_hit *hit, t_cyl *cyl)
 
 static void	normal_cir(t_hit *hit, t_cir *cir, t_scene *scene)
 {
-	//hit->normal = cir->n;
-	// if (dot_prod(point_subt(scene->light->p, hit->p), hit->normal) < 0)
+	hit->normal = cir->n;
+	if (dot_prod(point_subt(scene->light->p, hit->p), hit->normal) < 0)
 		hit->normal = invert_v(cir->n);
 	(void) scene;
 }

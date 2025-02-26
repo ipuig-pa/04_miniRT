@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 13:03:53 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/26 17:28:05 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	ray->d.z = (scene->light->p.z - hit->p.z) / hit_light_d;
 	ray->color = col_prod(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight->color), scene->amblight->ratio)); //adding ambient light
 	sh_hit.occur = false;
-	find_hit(&sh_hit, ray, scene, hit->obj_id);
+	find_hit(&sh_hit, *ray, scene, hit->obj_id);
 	//if hit then do whatever needed for shadows
 	if (sh_hit.occur == false || sh_hit.dist > hit_light_d)//there is no other object intersecting the path from hit object to light
 	{

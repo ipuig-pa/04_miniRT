@@ -6,11 +6,13 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 18:05:52 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/26 12:25:53 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+//add component w!!!!
 
 float	dot_prod(t_vector v1, t_vector v2)
 {
