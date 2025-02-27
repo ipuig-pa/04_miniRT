@@ -24,6 +24,8 @@ SOURCES =	gc_malloc_free.c\
 			normal.c\
 			shading.c\
 			drawing.c\
+			transform.c\
+			matrix_utils.c\
 			main_render.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)

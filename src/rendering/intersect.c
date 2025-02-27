@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/26 17:01:58 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:11:53 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void	calc_intersect(t_hit *hit, t_ray ray, t_scene *scene, int i) //or put this 
 
 //return the point of the first intersect of the ray
 //recalculates ray direction (p and v) according to material properties
+//h identifies the object to be excluded from the shadow checking
+//NOT!!!!! DELETE!!!!//h also serve as a flag to understand in which case we are tracking camera ray (h = -1) or shadow ray (h >= 0)
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit if needed
 {
 	int		i;
@@ -123,7 +125,8 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 		if (i != h)
 		{
 			if (scene->obj[i].m.exist == true)
-				calc_intersect(hit, m_transform(ray, scene->obj[i].m), scene, i);
+				calc_intersect(hit, m_transform(ray, m_invert(scene->obj[i].m)), scene, i);
+				//calc_intersect(hit, m_transform(ray, scene->obj[i].m), scene, i);
 			else
 				calc_intersect(hit, ray, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)
 		}
@@ -138,6 +141,7 @@ void	update_hit(float d, t_hit *hit, t_ray ray, int i)
 		hit->p.x = ray.o.x + ray.d.x * d;
 		hit->p.y = ray.o.y + ray.d.y * d;
 		hit->p.z = ray.o.z + ray.d.z * d;
+		hit->p.w = ray.o.w + ray.d.w * d; // put it in a while loop iterating through the elements
 		hit->obj_id = i;
 		hit->dist = d * v_modulus(ray.d);
 		hit->occur = true;

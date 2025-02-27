@@ -6,12 +6,34 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/26 17:06:43 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/27 17:14:02 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //anything related with the tracing of the rays and render of the image
 #include "minirt.h"
+
+static void	do_some_trans(t_env *env) // just for testing purposes, delete from here
+{
+	t_vector	t_vect;
+
+	t_vect.x = -20.0;
+	t_vect.y = 0.0;
+	t_vect.z = 0.0;
+	t_vect.w = 0;
+	//env->scene->obj[0].m = translate(t_vect);
+	// env->scene->obj[6].m = translate(t_vect);
+	// env->scene->obj[5].m = translate(t_vect);
+	//env->scene->obj[0].m = rotate(-0.7, env->scene->vp.front);
+	//env->scene->obj[0].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
+	//env->scene->obj[6].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
+	//env->scene->obj[5].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
+	env->scene->obj[4].m = rotate(0.7, env->scene->vp.front);
+	//env->scene->obj[4].m = translate(t_vect);
+	(void) env;
+	(void) t_vect;
+}
+
 
 //choose if float or double, to have different function prototype in math library function
 
@@ -23,6 +45,7 @@ void	ray_tracer(t_env *env)
 	t_hit	hit;
 
 	create_viewport(env->scene); //maybe call it after parsing and not here?
+	do_some_trans(env); // just for testing purposes, delete from here
 	i = 0;
 	while (i < WINDOW_HEIGHT)
 	{
@@ -60,6 +83,7 @@ void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 	ray->d.x = vp_px.x - scene->cam->p.x;
 	ray->d.y = vp_px.y - scene->cam->p.y;
 	ray->d.z = vp_px.z - scene->cam->p.z;
+	ray->d.w = vp_px.w - scene->cam->p.w;
 	ray->d = unit_v(ray->d);
 	ray->color = FILTER; //or take it from the scene file if we are introducing a filter??
 	// ray->end = false;
@@ -74,6 +98,7 @@ void	create_viewport(t_scene *scene)
 	world_vert.x = 0;
 	world_vert.y = 1;
 	world_vert.z = 0;
+	world_vert.w = 0;
 	scene->vp.right = unit_v(cross_prod(scene->cam->v, world_vert));
 	scene->vp.up = unit_v(cross_prod(scene->vp.right, scene->cam->v));
 	scene->vp.front = scene->cam->v;

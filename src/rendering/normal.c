@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/26 17:23:16 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/27 16:12:15 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	normal_pl(t_hit *hit, t_pl *pl, t_scene *scene)
 	//can have 2 normals. Check the one in the direction towards light!!!
 	hit->normal = pl->n; // if it is already unit vector, which should be for intersect costheta, no need to devide for modulus
 	if (dot_prod(point_subt(scene->light->p, hit->p), hit->normal) < 0)
-		hit->normal = invert_v(pl->n);
+		hit->normal = invert_v(hit->normal);
 }
 
 static void	normal_cyl(t_hit *hit, t_cyl *cyl)
