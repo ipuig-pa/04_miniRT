@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/26 16:14:06 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/02/27 11:21:44 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,16 @@ typedef struct s_obj
 
 typedef struct s_scene
 {
-	t_amblight	*amblight; //erase the * for all of them except *obj???
+	t_amblight	amblight;
+	t_camera	cam;
+	t_light		light;
 	t_viewport	vp;
-	t_camera	*cam;
-	t_light		*light;
-	t_obj		*obj;//pointer to an object array?? Or use linked list? In principle, an array (allocate enough space for obj_num)
-	int			obj_num;//needed or not depending on if we use array or linked list
+	t_obj		*obj;
+	int			obj_num;
 }			t_scene;
+// t_amblight	*amblight; //erase the * for all of them except *obj???
+// t_camera	*cam;
+// t_light		*light;
 
 void	create_viewport(t_scene *scene);
 

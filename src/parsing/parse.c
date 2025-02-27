@@ -6,21 +6,16 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 12:43:12 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/27 11:28:31 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// main parsing (with error checking)
-// directs to specific fts
-// verify token: A(ambient), C(camera), L(light)
-// pl(plane), cy(cylinder), sp(sphere)
-
 // content: big string of multiple lines(delim by \n)
 // lines: split from *content, array of single lines
 // line: single line (lines[i])
-void	parsing_scene(t_scene *scene, const char *filename)
+void	parsing_scene(t_env *env, const char *filename)
 {
 	char	*content;
 	char	**lines;
@@ -34,15 +29,21 @@ void	parsing_scene(t_scene *scene, const char *filename)
 	gc_free(content);
 	if (!lines)
 		return ((void)p_err("Errors in spliting file!"));
-	scene->obj_num = count_objs(lines);
-	scene->obj = gc_malloc(sizeof(t_obj) * (scene->obj_num + 1));
-	while (lines[i] && parse_valid_tk(scene, lines[i]))
+	env->scene = gc_malloc(sizeof(t_scene));
+	if (!env->scene)
+		return ((void)(p_err("Memory allocation for t_scene failed!"),
+			gc_clean()));
+	env->scene->obj_num = count_objs(lines);
+	env->scene->obj = gc_malloc(sizeof(t_obj) * (env->scene->obj_num + 1));
+	if (!env->scene->obj)
+		return ((void)(p_err("Memory allocation for Objects failed!"),
+			gc_clean()));
+	while (lines[i] && parse_valid_tk(env->scene, lines[i]))
 		i++;
 	free_double_pointer(lines);
 }
-// or no +1 for a NULL space at end??
 
-// NOTE: may i make some change to obj struct?
+// verify token: A, C, L, pl, cy, sp
 // space as delim, write prompt to indicate valid input format later??
 bool	parse_valid_tk(t_scene *scene, char *line)
 {
@@ -72,3 +73,24 @@ bool	parse_valid_tk(t_scene *scene, char *line)
 	i++;
 	return (free_double_pointer(tokens), true);
 }
+
+// void	parsing_scene(t_scene *scene, const char *filename)
+// {
+// 	char	*content;
+// 	char	**lines;
+// 	int		i;
+
+// 	i = 0;
+// 	content = read_file(filename);
+// 	if (!content)
+// 		return ((void)p_err("Errors in reading file!"));
+// 	lines = gc_split(content, '\n');
+// 	gc_free(content);
+// 	if (!lines)
+// 		return ((void)p_err("Errors in spliting file!"));
+// 	scene->obj_num = count_objs(lines);
+// 	scene->obj = gc_malloc(sizeof(t_obj) * (scene->obj_num + 1));
+// 	while (lines[i] && parse_valid_tk(scene, lines[i]))
+// 		i++;
+// 	free_double_pointer(lines);
+// }

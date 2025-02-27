@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 10:25:29 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/27 10:50:04 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 /** FUNC:
  * to read *.rt and error check
+ * retval: fd of file.rt
  */
-// retval: fd of file.rt
 int	valid_file(const char *filename)
 {
 	int			fd;
@@ -41,7 +41,6 @@ int	valid_file(const char *filename)
 bool	empty_check(int fd);
 
 // Q: do we have to change all-related ft_func in get_next_line() into gc_func()?
-// skip empty
 
 char	*read_file(const char *filename)
 {
@@ -72,6 +71,23 @@ char	*read_file(const char *filename)
 	return (close(fd), content);
 }
 // not using gc here, cuz no gc in GNL
+
+int	count_lines(const char *content)
+{
+	int	i;
+
+	i = 0;
+	if (content == NULL)
+		return (p_err("Fail to read file or Empty file!"), ft_clean(),
+			-1);
+	while (*content)
+	{
+		if (*content == '\n')
+			i++;
+		content++;
+	}
+	return (i);
+}
 
 int	count_objs(char **lines)
 {
