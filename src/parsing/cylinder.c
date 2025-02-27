@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 15:40:43 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/27 11:39:57 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@
 void	parse_cylinder(t_obj *obj, char **tokens)
 {
 	if (check_para_num(tokens, 'y') == -1)
+	{
+		gc_clean();
 		return ;
+	}
 	create_surface(&obj[0], tokens);
 	create_topcir(&obj[1], tokens);
 	create_basecir(&obj[2], tokens);
@@ -57,6 +60,7 @@ void	create_surface(t_obj *obj, char **tokens)
 	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
 	{
 		p_err("Diameter and Height must be positive numbers!");
+		gc_clean();
 		return ;
 	}
 }
@@ -85,6 +89,7 @@ void	create_basecir(t_obj *obj, char **tokens)
 	if (obj->param.cir.r < 0.0f)
 	{
 		p_err("Diameter must be positive numbers!");
+		gc_clean();
 		return ;
 	}
 }
@@ -103,6 +108,7 @@ void	create_topcir(t_obj *obj, char **tokens)
 	if (obj->param.cir.r < 0.0f)
 	{
 		p_err("Diameter must be positive numbers!");
+		gc_clean();
 		return ;
 	}
 }

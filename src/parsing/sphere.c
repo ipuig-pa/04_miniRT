@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:25:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 15:36:41 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/27 11:48:01 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@
 void	parse_sphere(t_obj *obj, char **tokens)
 {
 	if (check_para_num(tokens, 's') == -1)
-		return ;
+		return (gc_clean());
 	obj->type = SPH;
 	obj->color = parse_color(tokens[3]);
 	obj->param.sph.c = parse_point(tokens[1]);
-	obj->param.sph.r = ft_atofloat(tokens[2]) / 20.f;
+	obj->param.sph.r = ft_atofloat(tokens[2]) / 2.0f;
 	if (obj->param.sph.r < 0.0f)
-	{
-		p_err("Diameter cannot be negative!");
-		return ;
-	}
+		return (p_err("Diameter cannot be negative!"), gc_clean());
 }
 
 /**

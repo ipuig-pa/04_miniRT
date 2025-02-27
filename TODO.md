@@ -1,6 +1,7 @@
 IRENE (rendering):
 
 27/02/2025
+(-Adapt everything to header with cam, etc with direct structures and not pointers, or change back just to test and then change it after solving shadows etc)
 - SHADOW OF BLUE PLANE OVER ROTATED PINK PLANE. GET RID!!! (how to handle direct rays and shadow rays in transformations: look to output, there are some hints, the direct ray is finding the hit below the blue plane (y<-50)!?!?!)
 - try rotations, transl (create port in the main for the moment, to use the axis there for the rotations of planes, etc)
 

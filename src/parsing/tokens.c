@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:30:54 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/24 13:35:17 by ewu              ###   ########.fr       */
+/*   Updated: 2025/02/27 11:49:11 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**split_tokens(char *line, char delim)
 	j = 0;
 	tokens = gc_malloc(sizeof(char *) * (count_para(line) + 1));
 	if (!tokens)
-		return (NULL);
+		return (p_err("Fail in creating token array!"), gc_clean(), NULL);
 	while (j < count_para(line))
 	{
 		while (line[i] && line[i] == delim)
