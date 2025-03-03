@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 11:07:29 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:25:01 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	float		cos_theta;
 
 	ray->o = hit->p;
-	hit_light_d = dist(scene->light.p, hit->p);
-	ray->d.x = (scene->light.p.x - hit->p.x) / hit_light_d;
-	ray->d.y = (scene->light.p.y - hit->p.y) / hit_light_d;
-	ray->d.z = (scene->light.p.z - hit->p.z) / hit_light_d;
-	ray->d.w = 0;
+	hit_light_d = v_modulus(v_subt(scene->light.p, hit->p));
+	ray->d = scalar_div(v_subt(scene->light.p, hit->p), hit_light_d);
 	ray->color = col_prod(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight.color), scene->amblight.ratio)); //adding ambient light
 	sh_hit.occur = false;
 	find_hit(&sh_hit, *ray, scene, hit->obj_id);

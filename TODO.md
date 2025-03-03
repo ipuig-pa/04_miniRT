@@ -1,9 +1,11 @@
 IRENE (rendering):
 
 27/02/2025
-(-Adapt everything to header with cam, etc with direct structures and not pointers, or change back just to test and then change it after solving shadows etc)
-- SHADOW OF BLUE PLANE OVER ROTATED PINK PLANE. GET RID!!! (how to handle direct rays and shadow rays in transformations: look to output, there are some hints, the direct ray is finding the hit below the blue plane (y<-50)!?!?!)
+<!-- (-Adapt everything to header with cam, etc with direct structures and not pointers, or change back just to test and then change it after solving shadows etc) -->
+<!-- - SHADOW OF BLUE PLANE OVER ROTATED PINK PLANE. GET RID!!! (how to handle direct rays and shadow rays in transformations: look to output, there are some hints, the direct ray is finding the hit below the blue plane (y<-50)!?!?!) -->
 - try rotations, transl (create port in the main for the moment, to use the axis there for the rotations of planes, etc)
+- Store all hits and not only the most proximal??? For reflection?
+<!-- !!!!- Normal of planes and circles: do not use both indistintly, because if light is behind they will get illuminated?!?!??! Just the one towards the camera?? or how to chose the one to use? In fact the one towards the camera does not work with rotations/transl -->
 
 - add w dimension in linalg utils
 - cylinder somehow attach the objects circles if there is a rotation /transl / etc? 

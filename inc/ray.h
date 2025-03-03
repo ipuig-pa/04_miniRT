@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:52:45 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 10:01:36 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:27:48 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 typedef struct s_ray
 {
-	t_point		o; //origin point. these will keep changing as the ray is reflected, refracted or absorbed
+	t_vector	o; //origin point. these will keep changing as the ray is reflected, refracted or absorbed
 	t_vector	d; //direction (unitary vector)
 	t_color		color; //in hex
 	// bool		end; //?? neeeded?
@@ -27,7 +27,7 @@ typedef struct s_ray
 
 typedef struct s_hit
 {
-	t_point		p;
+	t_vector	p;
 	int			obj_id; //then, they have to be in an array, not a linked list
 	float		dist; //distance from the camera to the point of intersection
 	bool		occur;

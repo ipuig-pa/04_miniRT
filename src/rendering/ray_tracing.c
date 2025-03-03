@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 09:39:08 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 13:05:23 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,19 @@ static void	do_some_trans(t_env *env) // just for testing purposes, delete from 
 {
 	t_vector	t_vect;
 
-	t_vect.x = -20.0;
-	t_vect.y = 0.0;
-	t_vect.z = 0.0;
-	t_vect.w = 0;
-	//env->scene->obj[0].m = translate(t_vect);
+	t_vect = v_create(5.0, 0.0, 0.0, 0);
+	// env->scene->obj[0].m = translate(t_vect);
 	// env->scene->obj[6].m = translate(t_vect);
 	// env->scene->obj[5].m = translate(t_vect);
 	//env->scene->obj[0].m = rotate(-0.7, env->scene->vp.front);
-	//env->scene->obj[0].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
-	//env->scene->obj[6].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
-	//env->scene->obj[5].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
+	// env->scene->obj[0].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
+	// env->scene->obj[6].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
+	// env->scene->obj[5].m = m_multiply(rotate(-0.7, env->scene->vp.front),translate(t_vect));
 	env->scene->obj[4].m = rotate(0.7, env->scene->vp.front);
 	//env->scene->obj[4].m = translate(t_vect);
 	(void) env;
 	(void) t_vect;
 }
-
 
 //choose if float or double, to have different function prototype in math library function
 
@@ -75,15 +71,12 @@ void	ray_tracer(t_env *env)
 //return the point of origin
 void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 {
-	t_point	vp_px;
+	t_vector	vp_px;
 
 	ray->o = scene->cam.p;
-	vp_px = pv_add(scene->vp.o, scalar_mult(scene->vp.right, (j + 0.5) * scene->vp.px_space));
-	vp_px = pv_add(vp_px, scalar_mult(scene->vp.up, -(i + 0.5) * scene->vp.px_space));
-	ray->d.x = vp_px.x - scene->cam.p.x;
-	ray->d.y = vp_px.y - scene->cam.p.y;
-	ray->d.z = vp_px.z - scene->cam.p.z;
-	ray->d.w = vp_px.w - scene->cam.p.w;
+	vp_px = v_add(scene->vp.o, scalar_mult(scene->vp.right, (j + 0.5) * scene->vp.px_space));
+	vp_px = v_add(vp_px, scalar_mult(scene->vp.up, -(i + 0.5) * scene->vp.px_space));
+	ray->d = v_subt(vp_px, scene->cam.p);
 	ray->d = unit_v(ray->d);
 	ray->color = FILTER; //or take it from the scene file if we are introducing a filter??
 	// ray->end = false;
@@ -95,17 +88,14 @@ void	create_viewport(t_scene *scene)
 	float		half_vp_w;
 	float		half_vp_h;
 
-	world_vert.x = 0;
-	world_vert.y = 1;
-	world_vert.z = 0;
-	world_vert.w = 0;
+	world_vert = v_create(0.0, 1.0, 0.0, 0.0);
 	scene->vp.right = unit_v(cross_prod(scene->cam.v, world_vert));
 	scene->vp.up = unit_v(cross_prod(scene->vp.right, scene->cam.v));
 	scene->vp.front = scene->cam.v;
 	half_vp_w = tanf(scene->cam.fov / 2.0);
 	half_vp_h = WINDOW_HEIGHT * half_vp_w / WINDOW_WIDTH;
 	scene->vp.px_space = 2.0 * half_vp_w / WINDOW_WIDTH;
-	scene->vp.o = pv_add(scene->cam.p, scene->vp.front);
-	scene->vp.o = pv_add(scene->vp.o, scalar_mult(scene->vp.right, -half_vp_w));
-	scene->vp.o = pv_add(scene->vp.o, scalar_mult(scene->vp.up, half_vp_h));
+	scene->vp.o = v_add(scene->cam.p, scene->vp.front);
+	scene->vp.o = v_add(scene->vp.o, scalar_mult(scene->vp.right, -half_vp_w));
+	scene->vp.o = v_add(scene->vp.o, scalar_mult(scene->vp.up, half_vp_h));
 }

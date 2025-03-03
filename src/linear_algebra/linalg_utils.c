@@ -6,13 +6,44 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 09:16:07 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:56:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//add component w!!!!
+t_vector	v_create(float x, float y, float z, float w)
+{
+	t_vector	v;
+
+	v.x = x;
+	v.y = y;
+	v.z = z;
+	v.w = w;
+	return (v);
+}
+
+t_vector	v_add(t_vector v1, t_vector v2)
+{
+	t_vector	res;
+
+	res.x = v1.x + v2.x;
+	res.y = v1.y + v2.y;
+	res.z = v1.z + v2.z;
+	res.w = v1.w + v2.w;
+	return (res);
+}
+
+t_vector	v_subt(t_vector v2, t_vector v1)
+{
+	t_vector	res;
+
+	res.x = v2.x - v1.x;
+	res.y = v2.y - v1.y;
+	res.z = v2.z - v1.z;
+	res.w = v2.w - v1.w;
+	return (res);
+}
 
 float	dot_prod(t_vector v1, t_vector v2)
 {
@@ -44,9 +75,15 @@ t_vector	scalar_mult(t_vector v, float s)
 	return (res);
 }
 
-float	dist(t_point p1, t_point p2)
+t_vector	scalar_div(t_vector v, float s)
 {
-	return (sqrtf(powf((p1.x - p2.x), 2) + powf((p1.y - p2.y), 2) + powf((p1.z - p2.z), 2)));
+	t_vector	res;
+
+	res.x = v.x / s;
+	res.y = v.y / s;
+	res.z = v.z / s;
+	res.w = 0;
+	return (res);
 }
 
 t_vector	invert_v(t_vector v)
@@ -65,50 +102,6 @@ float	v_modulus(t_vector v)
 	return(sqrtf(powf(v.x, 2) + powf(v.y, 2) + powf(v.z, 2)));
 }
 
-t_vector	point_subt(t_point p2, t_point p1)
-{
-	t_vector	v;
-
-	v.x = p2.x - p1.x;
-	v.y = p2.y - p1.y;
-	v.z = p2.z - p1.z;
-	v.w = p2.w - p1.w;
-	return (v);
-}
-
-t_point	pv_add(t_point p, t_vector v)
-{
-	t_point	res;
-
-	res.x = p.x + v.x;
-	res.y = p.y + v.y;
-	res.z = p.z + v.z;
-	res.w = p.w + v.w;
-	return (res);
-}
-
-t_vector v_subt(t_vector v2, t_vector v1)
-{
-	t_vector	res;
-
-	res.x = v2.x - v1.x;
-	res.y = v2.y - v1.y;
-	res.z = v2.z - v1.z;
-	res.w = 0;
-	return (res);
-}
-
-t_vector v_add(t_vector v1, t_vector v2)
-{
-	t_vector	res;
-
-	res.x = v1.x + v2.x;
-	res.y = v1.y + v2.y;
-	res.z = v1.z + v2.z;
-	res.w = 0;
-	return (res);
-}
-
 t_vector	unit_v(t_vector v)
 {
 	float		mod;
@@ -121,3 +114,5 @@ t_vector	unit_v(t_vector v)
 	u_v.w = 0;
 	return (u_v);
 }
+
+

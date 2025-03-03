@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:19:05 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/26 17:04:29 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:18:19 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "color.h"
 # include "ray.h"
 # include "gc.h"
-# include "parser.h"
+//# include "parser.h"
 # include "transform.h"
 # include <unistd.h>// for open, close, read, write
 # include <stdio.h> // for printf, perror

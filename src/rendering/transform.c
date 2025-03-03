@@ -6,26 +6,35 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 16:10:34 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:36:58 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_ray	m_transform(t_ray r, t_matrix4 m)
+t_ray	r_transform(t_ray r, t_matrix4 m)
 {
 	t_ray	res_r;
 
-	res_r.o.x = m.m[0][0] * r.o.x + m.m[0][1] * r.o.y + m.m[0][2] * r.o.z + m.m[0][3] * r.o.w;
-	res_r.o.y = m.m[1][0] * r.o.x + m.m[1][1] * r.o.y + m.m[1][2] * r.o.z + m.m[1][3] * r.o.w;
-	res_r.o.z = m.m[2][0] * r.o.x + m.m[2][1] * r.o.y + m.m[2][2] * r.o.z + m.m[2][3] * r.o.w;
-	res_r.o.w = m.m[3][0] * r.o.x + m.m[3][1] * r.o.y + m.m[3][2] * r.o.z + m.m[3][3] * r.o.w;
-	res_r.d.x = m.m[0][0] * r.d.x + m.m[0][1] * r.d.y + m.m[0][2] * r.d.z + m.m[0][3] * r.d.w;
-	res_r.d.y = m.m[1][0] * r.d.x + m.m[1][1] * r.d.y + m.m[1][2] * r.d.z + m.m[1][3] * r.d.w;
-	res_r.d.z = m.m[2][0] * r.d.x + m.m[2][1] * r.d.y + m.m[2][2] * r.d.z + m.m[2][3] * r.d.w;
-	res_r.d.w = m.m[3][0] * r.d.x + m.m[3][1] * r.d.y + m.m[3][2] * r.d.z + m.m[3][3] * r.d.w;
+	res_r.o = v_transform(r.o, m);
+	res_r.d = v_transform(r.d, m);
 	res_r.color = r.color;
 	return (res_r);
+}
+
+t_vector	v_transform(t_vector v, t_matrix4 m)
+{
+	t_vector	res_v;
+
+	res_v.x = m.m[0][0] * v.x + m.m[0][1] * v.y \
+			+ m.m[0][2] * v.z + m.m[0][3] * v.w;
+	res_v.y = m.m[1][0] * v.x + m.m[1][1] * v.y \
+			+ m.m[1][2] * v.z + m.m[1][3] * v.w;
+	res_v.z = m.m[2][0] * v.x + m.m[2][1] * v.y \
+			+ m.m[2][2] * v.z + m.m[2][3] * v.w;
+	res_v.w = m.m[3][0] * v.x + m.m[3][1] * v.y \
+			+ m.m[3][2] * v.z + m.m[3][3] * v.w;
+	return (res_v);
 }
 
 t_matrix4	rotate(float r, t_vector a) //rotate r rad (angle) about an axis defined by the vector a (should be the vectors of up, front and right of viewport!!!)

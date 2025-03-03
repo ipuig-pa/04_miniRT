@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 17:24:44 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:28:25 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_amblight
 
 typedef struct s_camera
 {
-	t_point		p; //coordinate of the viewpoint
+	t_vector	p; //coordinate of the viewpoint
 	t_vector	v;
 	float		fov; // field of view, store it already converted to rad
 }			t_camera;
@@ -38,32 +38,32 @@ typedef struct s_viewport
 	t_vector	front; //dont know if it is really needed or I can erase
 	t_vector	right;
 	t_vector	up;
-	t_point		o;
+	t_vector	o;
 	float		px_space;
 }				t_viewport;
 
 typedef struct s_light
 {
-	t_point	p;
-	float	ratio;
-	t_color	color;
+	t_vector	p;
+	float		ratio;
+	t_color		color;
 }			t_light;
 
 typedef struct s_sph
 {
-	t_point	c; //coordinates of the sphere center
-	float	r; //sphere diameter (maybe it would be more useful to store the radius r instead of diameter d)
+	t_vector	c; //coordinates of the sphere center
+	float		r; //sphere diameter (maybe it would be more useful to store the radius r instead of diameter d)
 }			t_sph;
 
 typedef struct s_pl
 {
-	t_point		p; //coordinates of a point in the plane
+	t_vector	p; //coordinates of a point in the plane
 	t_vector	n; //normal vector (and unit vector!!!???)
 }			t_pl;
 
 typedef struct s_cyl
 {
-	t_point		b; //coordinates of the center of the cylinder ->better find b, which is the center at the base, not in the middle of the cyl
+	t_vector	b; //coordinates of the center of the cylinder ->better find b, which is the center at the base, not in the middle of the cyl
 	t_vector	a; //axis vector (unit vector???)
 	float		r; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	float		h; //cylinder height
@@ -71,7 +71,7 @@ typedef struct s_cyl
 
 typedef struct s_cir
 {
-	t_point		c; //coordinates of the center of the circle
+	t_vector	c; //coordinates of the center of the circle
 	t_vector	n; //normal vector (unit vector???)
 	float		r; //circle radius
 }			t_cir;

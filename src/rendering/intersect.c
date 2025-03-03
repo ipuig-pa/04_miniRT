@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 11:10:43 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 12:19:40 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static float	intersect_sph(t_ray ray, t_sph *sph)
 	float		c;
 	t_vector	v2;
 
-	v2 = point_subt(sph->c, ray.o);
+	v2 = v_subt(sph->c, ray.o);
 	a = dot_prod(ray.d, ray.d);
 	h = dot_prod(ray.d, v2);
 	c = dot_prod(v2, v2) - powf(sph->r, 2); //maybe it will be easier if the value stored is the radius instead of the diameter
@@ -44,7 +44,7 @@ static float	intersect_pl(t_ray ray, t_pl *pl)
 	float		d;
 
 	cos_theta = dot_prod(pl->n, ray.d);
-	v2 = point_subt(pl->p, ray.o);
+	v2 = v_subt(pl->p, ray.o);
 	if (cos_theta == 0)
 	{
 		return (-1); // do it either if they are coincident or parallel with no intersection??
@@ -70,7 +70,7 @@ static float	intersect_cyl(t_ray ray, t_cyl *cyl)
 
 	if (dot_prod(cyl->a, ray.d) != 0)//get the point of intersection and check if it is within the height of the cylinder
 	{
-		v2 = point_subt(cyl->b, ray.o);
+		v2 = v_subt(cyl->b, ray.o);
 		dxa = cross_prod(ray.d, cyl->a);
 		root = (dot_prod(dxa, dxa)) * powf(cyl->r, 2) - powf(dot_prod(v2, dxa), 2);
 		d = (dot_prod(dxa, cross_prod(v2, cyl->a)) - sqrtf(root)) / dot_prod(dxa, dxa);
@@ -92,9 +92,9 @@ static float	intersect_cir(t_ray ray, t_cir *cir)
 	float		d;
 	t_vector	pc;
 
-	v2 = point_subt(cir->c, ray.o);
+	v2 = v_subt(cir->c, ray.o);
 	d = dot_prod(cir->n, v2) / dot_prod(cir->n, ray.d);
-	pc = point_subt(pv_add(ray.o, scalar_mult(ray.d, d)), cir->c);
+	pc = v_subt(v_add(ray.o, scalar_mult(ray.d, d)), cir->c);
 	if (dot_prod(pc, pc) < powf(cir->r, 2))
 		return (d);
 	return (-1);
@@ -144,10 +144,7 @@ void	update_hit(float d, t_hit *hit, t_ray ray, int i)
 {
 	if (hit->occur == false || hit->dist > d)
 	{
-		hit->p.x = ray.o.x + ray.d.x * d;
-		hit->p.y = ray.o.y + ray.d.y * d;
-		hit->p.z = ray.o.z + ray.d.z * d;
-		hit->p.w = ray.o.w + ray.d.w * d; // put it in a while loop iterating through the elements
+		hit->p = v_add(ray.o, scalar_mult(ray.d, d));
 		hit->obj_id = i;
 		hit->dist = d * v_modulus(ray.d);
 		hit->occur = true;
