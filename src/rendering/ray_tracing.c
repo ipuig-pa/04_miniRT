@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 17:14:02 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 09:39:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,13 +77,13 @@ void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 {
 	t_point	vp_px;
 
-	ray->o = scene->cam->p;
+	ray->o = scene->cam.p;
 	vp_px = pv_add(scene->vp.o, scalar_mult(scene->vp.right, (j + 0.5) * scene->vp.px_space));
 	vp_px = pv_add(vp_px, scalar_mult(scene->vp.up, -(i + 0.5) * scene->vp.px_space));
-	ray->d.x = vp_px.x - scene->cam->p.x;
-	ray->d.y = vp_px.y - scene->cam->p.y;
-	ray->d.z = vp_px.z - scene->cam->p.z;
-	ray->d.w = vp_px.w - scene->cam->p.w;
+	ray->d.x = vp_px.x - scene->cam.p.x;
+	ray->d.y = vp_px.y - scene->cam.p.y;
+	ray->d.z = vp_px.z - scene->cam.p.z;
+	ray->d.w = vp_px.w - scene->cam.p.w;
 	ray->d = unit_v(ray->d);
 	ray->color = FILTER; //or take it from the scene file if we are introducing a filter??
 	// ray->end = false;
@@ -99,13 +99,13 @@ void	create_viewport(t_scene *scene)
 	world_vert.y = 1;
 	world_vert.z = 0;
 	world_vert.w = 0;
-	scene->vp.right = unit_v(cross_prod(scene->cam->v, world_vert));
-	scene->vp.up = unit_v(cross_prod(scene->vp.right, scene->cam->v));
-	scene->vp.front = scene->cam->v;
-	half_vp_w = tanf(scene->cam->fov / 2.0);
+	scene->vp.right = unit_v(cross_prod(scene->cam.v, world_vert));
+	scene->vp.up = unit_v(cross_prod(scene->vp.right, scene->cam.v));
+	scene->vp.front = scene->cam.v;
+	half_vp_w = tanf(scene->cam.fov / 2.0);
 	half_vp_h = WINDOW_HEIGHT * half_vp_w / WINDOW_WIDTH;
 	scene->vp.px_space = 2.0 * half_vp_w / WINDOW_WIDTH;
-	scene->vp.o = pv_add(scene->cam->p, scene->vp.front);
+	scene->vp.o = pv_add(scene->cam.p, scene->vp.front);
 	scene->vp.o = pv_add(scene->vp.o, scalar_mult(scene->vp.right, -half_vp_w));
 	scene->vp.o = pv_add(scene->vp.o, scalar_mult(scene->vp.up, half_vp_h));
 }

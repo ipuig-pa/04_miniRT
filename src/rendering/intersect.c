@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 17:11:53 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 11:10:43 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //calculates intersect point between ray and sphere
 //gives the lowest (if the 2 possible solutions)
-static void	intersect_sph(t_hit *hit, t_ray ray, t_sph *sph, int i)
+static float	intersect_sph(t_ray ray, t_sph *sph)
 {
 	float		root;
 	float		a;
@@ -30,13 +30,14 @@ static void	intersect_sph(t_hit *hit, t_ray ray, t_sph *sph, int i)
 	if (root >= 0)
 	{
 		if (((h - sqrtf(root)) / a) > 0)
-			update_hit(((h - sqrtf(root)) / a), hit, ray, i);
+			return ((h - sqrtf(root)) / a);
 		else if (root > 0 && (((h + sqrtf(root)) / a) > 0))
-			update_hit(((h + sqrtf(root)) / a), hit, ray, i);
+			return ((h + sqrtf(root)) / a);
 	}
+	return (-1);
 }
 
-static void	intersect_pl(t_hit *hit, t_ray ray, t_pl *pl, int i)
+static float	intersect_pl(t_ray ray, t_pl *pl)
 {
 	float		cos_theta;
 	t_vector	v2;
@@ -46,7 +47,7 @@ static void	intersect_pl(t_hit *hit, t_ray ray, t_pl *pl, int i)
 	v2 = point_subt(pl->p, ray.o);
 	if (cos_theta == 0)
 	{
-		return ; // do it either if they are coincident or parallel with no intersection??
+		return (-1); // do it either if they are coincident or parallel with no intersection??
 		// if (dot_prod(pl->n,v2) == 0) //they are coincident
 		// {
 		// 	d = distance from the camera to that point of the ;
@@ -56,11 +57,10 @@ static void	intersect_pl(t_hit *hit, t_ray ray, t_pl *pl, int i)
 		// 	return ();
 	}
 	d = dot_prod(pl->n, v2) / cos_theta;
-	if (d > 0)
-		update_hit(d, hit, ray, i);
+	return (d);
 }
 
-static void	intersect_cyl(t_hit *hit, t_ray ray, t_cyl *cyl, int i)
+static float	intersect_cyl(t_ray ray, t_cyl *cyl)
 {
 	t_vector	v2;
 	t_vector	dxa;
@@ -80,12 +80,13 @@ static void	intersect_cyl(t_hit *hit, t_ray ray, t_cyl *cyl, int i)
 			d = (dot_prod(dxa, cross_prod(v2, cyl->a)) + sqrtf(root)) / dot_prod(dxa, dxa);
 			t = dot_prod(cyl->a, v_subt(scalar_mult(ray.d, d), v2));
 		}
-		if (d > 0 && t >= 0 && t <= cyl->h)
-			update_hit(d, hit, ray, i);
+		if (t >= 0 && t <= cyl->h)
+			return (d);
 	}
+	return (-1);
 }
 
-static void	intersect_cir(t_hit *hit, t_ray ray, t_cir *cir, int i)
+static float	intersect_cir(t_ray ray, t_cir *cir)
 {
 	t_vector	v2;
 	float		d;
@@ -94,20 +95,22 @@ static void	intersect_cir(t_hit *hit, t_ray ray, t_cir *cir, int i)
 	v2 = point_subt(cir->c, ray.o);
 	d = dot_prod(cir->n, v2) / dot_prod(cir->n, ray.d);
 	pc = point_subt(pv_add(ray.o, scalar_mult(ray.d, d)), cir->c);
-	if (d > 0 && dot_prod(pc, pc) < powf(cir->r, 2))
-		update_hit(d, hit, ray, i);
+	if (dot_prod(pc, pc) < powf(cir->r, 2))
+		return (d);
+	return (-1);
 }
 
-void	calc_intersect(t_hit *hit, t_ray ray, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
+float	calc_intersect(t_ray ray, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
 {
 	if (scene->obj[i].type == SPH)
-		intersect_sph(hit, ray, &scene->obj[i].param.sph, i);
+		return (intersect_sph(ray, &scene->obj[i].param.sph));
 	else if (scene->obj[i].type == PL)
-		intersect_pl(hit, ray, &scene->obj[i].param.pl, i);
+		return (intersect_pl(ray, &scene->obj[i].param.pl));
 	else if (scene->obj[i].type == CYL)
-		intersect_cyl(hit, ray, &scene->obj[i].param.cyl, i);
+		return (intersect_cyl(ray, &scene->obj[i].param.cyl));
 	else if (scene->obj[i].type == CIR)
-		intersect_cir(hit, ray, &scene->obj[i].param.cir, i);
+		return (intersect_cir(ray, &scene->obj[i].param.cir));
+	return (-1);
 }
 
 //return the point of the first intersect of the ray
@@ -117,6 +120,7 @@ void	calc_intersect(t_hit *hit, t_ray ray, t_scene *scene, int i) //or put this 
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit if needed
 {
 	int		i;
+	float	t;
 
 	i = 0;
 	//what about planes exactly coincident with the ray? (line contained in a plane)
@@ -125,10 +129,12 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 		if (i != h)
 		{
 			if (scene->obj[i].m.exist == true)
-				calc_intersect(hit, m_transform(ray, m_invert(scene->obj[i].m)), scene, i);
+				t = calc_intersect(r_transform(ray, m_invert(scene->obj[i].m)), scene, i);
 				//calc_intersect(hit, m_transform(ray, scene->obj[i].m), scene, i);
 			else
-				calc_intersect(hit, ray, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)
+				t = calc_intersect(ray, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)
+			if (t > 0) // d -1 is returned when no hit occur
+				update_hit(t, hit, ray, i);
 		}
 		i++;
 	}

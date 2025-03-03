@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:52:45 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/26 17:07:17 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:01:36 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ray_tracer(t_env *env);
 void	cast_ray(t_ray *ray, int i, int j, t_scene *scene);
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h);
 void	shading(t_hit *hit, t_ray *ray, t_scene *scene);
-void	calc_intersect(t_hit *hit, t_ray ray, t_scene *scene, int i);
+float	calc_intersect(t_ray ray, t_scene *scenem, int i);
 void	update_hit(float d, t_hit *hit, t_ray ray, int i);
 void	find_normal(t_hit *hit, t_scene *scene);
 

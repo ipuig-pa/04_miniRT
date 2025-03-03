@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:37:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 15:16:31 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 10:59:09 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,9 @@ typedef struct s_matrix3
 	float	m[3][3];
 }			t_matrix3;
 
-t_ray		m_transform(t_ray r, t_matrix4 m);
+t_ray		r_transform(t_ray r, t_matrix4 m);
+t_point		p_transform(t_point p, t_matrix4 m);
+t_vector	v_transform(t_vector v, t_matrix4 m);
 t_matrix4	rotate(float r, t_vector a);
 t_matrix4	translate(t_vector t);
 t_matrix4	scale(float s);
