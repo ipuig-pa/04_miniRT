@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 12:24:33 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:30:31 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 static void	normal_sph(t_hit *hit, t_sph *sph, t_scene *scene)
 {
-	hit->normal = scalar_div(v_subt(hit->p, sph->c), sph->r);
+	t_vector	trans_c;
+
+	trans_c = sph->c;
 	if (scene->obj[hit->obj_id].m.exist == true)
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+		trans_c = v_transform(sph->c, scene->obj[hit->obj_id].m);
+	hit->normal = scalar_div(v_subt(hit->p, trans_c), sph->r);
 }
 
 static void	normal_pl(t_hit *hit, t_pl *pl, t_scene *scene)
@@ -33,17 +36,19 @@ static void	normal_cyl(t_hit *hit, t_cyl *cyl, t_scene *scene)
 {
 	t_vector	bp;
 	t_vector	tan;
-	t_vector	n;
+	t_vector	trans_b;
+	t_vector	trans_a;
 
-	bp = v_subt(hit->p, cyl->b);
-	tan = cross_prod(bp, cyl->a);
-	n = cross_prod(cyl->a, tan);
-	hit->normal.x = n.x / v_modulus(n);
-	hit->normal.y = n.y / v_modulus(n);
-	hit->normal.z = n.z / v_modulus(n);
-	hit->normal.w = 0;
+	trans_b = cyl->b;
+	trans_a = cyl->a;
 	if (scene->obj[hit->obj_id].m.exist == true)
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+	{
+		trans_b = v_transform(cyl->b, scene->obj[hit->obj_id].m);
+		trans_a = v_transform(cyl->a, scene->obj[hit->obj_id].m);
+	}
+	bp = v_subt(hit->p, trans_b);
+	tan = cross_prod(bp, trans_a);
+	hit->normal = unit_v(cross_prod(trans_a, tan));
 }
 
 static void	normal_cir(t_hit *hit, t_cir *cir, t_scene *scene)
@@ -53,7 +58,6 @@ static void	normal_cir(t_hit *hit, t_cir *cir, t_scene *scene)
 		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
 	if (dot_prod(v_subt(scene->cam.p, hit->p), hit->normal) < 0)
 		hit->normal = invert_v(cir->n);
-	(void) scene;
 }
 
 void	find_normal(t_hit *hit, t_scene *scene)

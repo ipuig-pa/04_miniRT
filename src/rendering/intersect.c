@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 12:19:40 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 16:28:59 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ float	calc_intersect(t_ray ray, t_scene *scene, int i) //or put this chunk of co
 //return the point of the first intersect of the ray
 //recalculates ray direction (p and v) according to material properties
 //h identifies the object to be excluded from the shadow checking
-//NOT!!!!! DELETE!!!!//h also serve as a flag to understand in which case we are tracking camera ray (h = -1) or shadow ray (h >= 0)
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit if needed
 {
 	int		i;
@@ -130,7 +129,6 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 		{
 			if (scene->obj[i].m.exist == true)
 				t = calc_intersect(r_transform(ray, m_invert(scene->obj[i].m)), scene, i);
-				//calc_intersect(hit, m_transform(ray, scene->obj[i].m), scene, i);
 			else
 				t = calc_intersect(ray, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)
 			if (t > 0) // d -1 is returned when no hit occur
@@ -140,6 +138,7 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 	}
 }
 
+//If reflexion is included, we want to keep track of all the hits (not just the most poximal one). Then, caluclate the normal in situ (do not apply that much matrix transformations)
 void	update_hit(float d, t_hit *hit, t_ray ray, int i)
 {
 	if (hit->occur == false || hit->dist > d)

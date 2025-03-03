@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 11:36:58 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:26:16 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ t_matrix4	translate(t_vector t)
 	m.m[3][0] = 0;
 	m.m[3][1] = 0;
 	m.m[3][2] = 0;
-	m.m[3][3] = t.w;
+	m.m[3][3] = 1;
 	m.exist = true;
 	return (m);
 }

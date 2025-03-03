@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:34:14 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 11:56:18 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/03 15:26:10 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_matrix4	m_multiply(t_matrix4 m1, t_matrix4 m2)
 		}
 		i++;
 	}
+	m.exist = true;
 	return (m);
 }
 
