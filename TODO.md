@@ -3,13 +3,15 @@ IRENE (rendering):
 27/02/2025
 <!-- (-Adapt everything to header with cam, etc with direct structures and not pointers, or change back just to test and then change it after solving shadows etc) -->
 <!-- - SHADOW OF BLUE PLANE OVER ROTATED PINK PLANE. GET RID!!! (how to handle direct rays and shadow rays in transformations: look to output, there are some hints, the direct ray is finding the hit below the blue plane (y<-50)!?!?!) -->
-- try rotations, transl (create port in the main for the moment, to use the axis there for the rotations of planes, etc)
+- try rotations, transl (create port in the main for the moment, to use the axis there for the rotations of planes, etc) 
+-> understand the proper meaning of axis rotation!!! (with respect to the base, ...? movement broadness??) (pivot point: proximal or distal) -> //to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
+-> resize!!!
 - Store all hits and not only the most proximal??? For reflection?
 <!-- !!!!- Normal of planes and circles: do not use both indistintly, because if light is behind they will get illuminated?!?!??! Just the one towards the camera?? or how to chose the one to use? In fact the one towards the camera does not work with rotations/transl -->
 
-- add w dimension in linalg utils
+<!-- - add w dimension in linalg utils -->
 - cylinder somehow attach the objects circles if there is a rotation /transl / etc? 
-- Instead of compute the inverse matrix in find hit and shading functions, store directly the inverse mtrix in the object m.
+- Instead of compute the inverse matrix in find hit and shading functions, store directly the inverse mtrix in the object m??
 
 LINALG:
 - linalg funcitons, put order: use only add / sub.
@@ -21,7 +23,7 @@ LINALG:
 
 week 24/02/2025: understand matrices, transl and rotations?
 week 03/03/2025: rotations etc
-week 10/03/2025: shiny, shadows, reflection, etc
+week 10/03/2025: shiny, shadows, reflection, patterns, etc
 
 - establish tmax and tmin for ray impact (r(t) = o + td)
 - decide pointers or direct objects inside scene

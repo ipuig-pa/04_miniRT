@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 16:40:58 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/04 17:15:12 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static void	do_some_trans(t_env *env) // just for testing purposes, delete from 
 {
 	t_vector	t_vect;
 
-	t_vect = v_create(10.0, 0.0, 0.0, 0);
-	env->scene->obj[7].m = translate(t_vect);
+	t_vect = v_create(2.0, 0.0, 0.0, 0);
+	//env->scene->obj[7].m = m_multiply(m_multiply(translate(env->scene->obj[7].param.sph.c),scale(20)),translate(invert_v(env->scene->obj[7].param.sph.c)));
 	// env->scene->obj[0].m = translate(t_vect);
 	// env->scene->obj[6].m = translate(t_vect);
 	// env->scene->obj[5].m = translate(t_vect);
 	//env->scene->obj[0].m = rotate(-0.7, env->scene->vp.front);
-	env->scene->obj[0].m = rotate(-0.1, env->scene->vp.up);
-	env->scene->obj[6].m = rotate(-0.1, env->scene->vp.up);
-	env->scene->obj[5].m = rotate(-0.1, env->scene->vp.up);
+	//env->scene->obj[0].m = rotate(-0.1, env->scene->vp.up);
+	//env->scene->obj[6].m = rotate(-0.1, env->scene->vp.up);
+	//env->scene->obj[5].m = rotate(-0.1, env->scene->vp.up);
 	// env->scene->obj[0].m = m_multiply(rotate(-0.4, env->scene->vp.up),translate(t_vect));
 	// env->scene->obj[6].m = m_multiply(rotate(-0.4, env->scene->vp.up),translate(t_vect));
 	// env->scene->obj[5].m = m_multiply(rotate(-0.4, env->scene->vp.up),translate(t_vect));
-	//env->scene->obj[4].m = rotate(0.7, env->scene->vp.front);
+	env->scene->obj[4].m = rotate(0.7, env->scene->vp.front);
 	//env->scene->obj[4].m = translate(t_vect);
 	(void) env;
 	(void) t_vect;

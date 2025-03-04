@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 15:26:16 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:31:42 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,25 @@ t_ray	r_transform(t_ray r, t_matrix4 m)
 {
 	t_ray	res_r;
 
-	res_r.o = v_transform(r.o, m);
+	res_r.o = p_transform(r.o, m);
 	res_r.d = v_transform(r.d, m);
+	// res_r.d = unit_v(v_transform(r.d, m));
 	res_r.color = r.color;
 	return (res_r);
+}
+
+t_vector	p_transform(t_vector p, t_matrix4 m)
+{
+	t_vector	res_p;
+
+	res_p.x = m.m[0][0] * p.x + m.m[0][1] * p.y \
+			+ m.m[0][2] * p.z + m.m[0][3] * p.w;
+	res_p.y = m.m[1][0] * p.x + m.m[1][1] * p.y \
+			+ m.m[1][2] * p.z + m.m[1][3] * p.w;
+	res_p.z = m.m[2][0] * p.x + m.m[2][1] * p.y \
+			+ m.m[2][2] * p.z + m.m[2][3] * p.w;
+	res_p.w = 1;
+	return (res_p);
 }
 
 t_vector	v_transform(t_vector v, t_matrix4 m)
@@ -32,11 +47,11 @@ t_vector	v_transform(t_vector v, t_matrix4 m)
 			+ m.m[1][2] * v.z + m.m[1][3] * v.w;
 	res_v.z = m.m[2][0] * v.x + m.m[2][1] * v.y \
 			+ m.m[2][2] * v.z + m.m[2][3] * v.w;
-	res_v.w = m.m[3][0] * v.x + m.m[3][1] * v.y \
-			+ m.m[3][2] * v.z + m.m[3][3] * v.w;
+	res_v.w = 0;
 	return (res_v);
 }
 
+//to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
 t_matrix4	rotate(float r, t_vector a) //rotate r rad (angle) about an axis defined by the vector a (should be the vectors of up, front and right of viewport!!!)
 {
 	t_matrix4	m;

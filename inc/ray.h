@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:52:45 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 11:27:48 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/04 12:24:49 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_ray
 typedef struct s_hit
 {
 	t_vector	p;
+	t_vector	real_p;
 	int			obj_id; //then, they have to be in an array, not a linked list
 	float		dist; //distance from the camera to the point of intersection
 	bool		occur;
@@ -38,7 +39,7 @@ void	ray_tracer(t_env *env);
 void	cast_ray(t_ray *ray, int i, int j, t_scene *scene);
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h);
 void	shading(t_hit *hit, t_ray *ray, t_scene *scene);
-float	calc_intersect(t_ray ray, t_scene *scenem, int i);
+void	calc_intersect(t_ray ray, t_hit *hit, t_scene *scene, int i);
 void	update_hit(float d, t_hit *hit, t_ray ray, int i);
 void	find_normal(t_hit *hit, t_scene *scene);
 

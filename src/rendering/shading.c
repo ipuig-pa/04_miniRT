@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 12:25:01 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:23:10 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,14 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	t_hit		sh_hit;
 	float		cos_theta;
 
-	ray->o = hit->p;
-	hit_light_d = v_modulus(v_subt(scene->light.p, hit->p));
-	ray->d = scalar_div(v_subt(scene->light.p, hit->p), hit_light_d);
+	if (scene->obj[hit->obj_id].m.exist == true)
+		hit->real_p = p_transform(hit->p, scene->obj[hit->obj_id].m);
+	else
+		hit->real_p = hit->p;
+	ray->o = hit->real_p;
+	ray->d = v_subt(scene->light.p, ray->o);
+	hit_light_d = v_modulus(ray->d);
+	ray->d = scalar_div(ray->d, hit_light_d);
 	ray->color = col_prod(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight.color), scene->amblight.ratio)); //adding ambient light
 	sh_hit.occur = false;
 	find_hit(&sh_hit, *ray, scene, hit->obj_id);
@@ -38,8 +43,8 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	//if hit then do whatever needed for shadows
 	// else
 	// {
-	// 	// if (hit->obj_id == 4)
-	// 	// 	printf("HIT	x:%f, y:%f, z:%f, w:%i\nSHA	x:%f, y:%f, z:%f, w:%i\nLIG	x:%f, y:%f, z:%f, w:%i\n\n", hit->p.x, hit->p.y, hit->p.z, hit->p.w, sh_hit.p.x, sh_hit.p.y, sh_hit.p.z, sh_hit.p.w, scene->light.p.x, scene->light.p.y, scene->light.p.z, scene->light.p.w);
+	// 	if (hit->obj_id == 4)
+	// 		printf("HIT	x:%f, y:%f, z:%f, w:%f\nSHA	x:%f, y:%f, z:%f, w:%f\nLIG	x:%f, y:%f, z:%f, w:%f\n\n", hit->p.x, hit->p.y, hit->p.z, hit->p.w, sh_hit.p.x, sh_hit.p.y, sh_hit.p.z, sh_hit.p.w, scene->light.p.x, scene->light.p.y, scene->light.p.z, scene->light.p.w);
 	// 	ray->color = scene->obj[sh_hit.obj_id].color; // just to check which object is making the shadow we see
 	// 	//ray->color = col_sc_prod(ray->color, 0.0);//Not working!
 	// }

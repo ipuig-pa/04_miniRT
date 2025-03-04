@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 16:28:59 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:34:01 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,17 +100,21 @@ static float	intersect_cir(t_ray ray, t_cir *cir)
 	return (-1);
 }
 
-float	calc_intersect(t_ray ray, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
+void	calc_intersect(t_ray ray, t_hit *hit, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
 {
+	float	t;
+
+	t = -1;
 	if (scene->obj[i].type == SPH)
-		return (intersect_sph(ray, &scene->obj[i].param.sph));
+		t = intersect_sph(ray, &scene->obj[i].param.sph);
 	else if (scene->obj[i].type == PL)
-		return (intersect_pl(ray, &scene->obj[i].param.pl));
+		t = intersect_pl(ray, &scene->obj[i].param.pl);
 	else if (scene->obj[i].type == CYL)
-		return (intersect_cyl(ray, &scene->obj[i].param.cyl));
+		t = intersect_cyl(ray, &scene->obj[i].param.cyl);
 	else if (scene->obj[i].type == CIR)
-		return (intersect_cir(ray, &scene->obj[i].param.cir));
-	return (-1);
+		t = intersect_cir(ray, &scene->obj[i].param.cir);
+	if (t > 0) // d -1 is returned when no hit occur
+		update_hit(t, hit, ray, i);
 }
 
 //return the point of the first intersect of the ray
@@ -119,7 +123,7 @@ float	calc_intersect(t_ray ray, t_scene *scene, int i) //or put this chunk of co
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit if needed
 {
 	int		i;
-	float	t;
+	//t_ray	t_ray;
 
 	i = 0;
 	//what about planes exactly coincident with the ray? (line contained in a plane)
@@ -128,11 +132,13 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 		if (i != h)
 		{
 			if (scene->obj[i].m.exist == true)
-				t = calc_intersect(r_transform(ray, m_invert(scene->obj[i].m)), scene, i);
+			{
+				// t_ray = r_transform(ray, m_invert(scene->obj[i].m));
+				// printf("i:		%i\nT_RAY POS	x:%f, y:%f, z:%f, w:%f\nT_RAY DIR	x:%f, y:%f, z:%f, w:%f\n\n", i, t_ray.o.x, t_ray.o.y, t_ray.o.z, t_ray.o.w, t_ray.d.x, t_ray.d.y, t_ray.d.z, t_ray.d.w);
+				calc_intersect(r_transform(ray, m_invert(scene->obj[i].m)), hit, scene, i);
+			}
 			else
-				t = calc_intersect(ray, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)
-			if (t > 0) // d -1 is returned when no hit occur
-				update_hit(t, hit, ray, i);
+				calc_intersect(ray, hit, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)
 		}
 		i++;
 	}
