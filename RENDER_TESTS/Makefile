@@ -42,7 +42,7 @@ MLX = $(MLX_DIR)/libmlx.a
 all : $(NAME)
 
 $(NAME) : $(OBJ_DIR)  $(MLX) $(OBJECTS) $(LIBFT)
-	cc $(CFLAGS) $(OBJECTS) -L$(MLX_DIR) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -o $(NAME)
+	cc $(CFLAGS) $(OBJECTS) -L$(MLX_DIR) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -lm -o $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)

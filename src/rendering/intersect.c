@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/04 13:34:01 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:55:56 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,13 +145,14 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 }
 
 //If reflexion is included, we want to keep track of all the hits (not just the most poximal one). Then, caluclate the normal in situ (do not apply that much matrix transformations)
-void	update_hit(float d, t_hit *hit, t_ray ray, int i)
+void	update_hit(float t, t_hit *hit, t_ray ray, int i)
 {
-	if (hit->occur == false || hit->dist > d)
+	if (hit->occur == false || hit->dist > t)
 	{
-		hit->p = v_add(ray.o, scalar_mult(ray.d, d));
+		hit->p = v_add(ray.o, scalar_mult(ray.d, t));
 		hit->obj_id = i;
-		hit->dist = d * v_modulus(ray.d);
+		// hit->dist = t * v_modulus(ray.d);
+		hit->dist = t;
 		hit->occur = true;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/04 13:31:42 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:04:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ t_ray	r_transform(t_ray r, t_matrix4 m)
 
 	res_r.o = p_transform(r.o, m);
 	res_r.d = v_transform(r.d, m);
-	// res_r.d = unit_v(v_transform(r.d, m));
 	res_r.color = r.color;
 	return (res_r);
 }
@@ -104,21 +103,22 @@ t_matrix4	translate(t_vector t)
 	return (m);
 }
 
-t_matrix4	scale(float s)
+//combine to translation to the origin of coordinates and back to original position.
+t_matrix4	scale(float sx, float sy, float sz)
 {
 	t_matrix4	m;
 
-	m.m[0][0] = s;
+	m.m[0][0] = sx;
 	m.m[0][1] = 0;
 	m.m[0][2] = 0;
 	m.m[0][3] = 0;
 	m.m[1][0] = 0;
-	m.m[1][1] = s;
+	m.m[1][1] = sy;
 	m.m[1][2] = 0;
 	m.m[1][3] = 0;
 	m.m[2][0] = 0;
 	m.m[2][1] = 0;
-	m.m[2][2] = s;
+	m.m[2][2] = sz;
 	m.m[2][3] = 0;
 	m.m[3][0] = 0;
 	m.m[3][1] = 0;

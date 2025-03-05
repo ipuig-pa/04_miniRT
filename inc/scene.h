@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 11:28:25 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 14:48:11 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ typedef struct s_pl
 
 typedef struct s_cyl
 {
-	t_vector	b; //coordinates of the center of the cylinder ->better find b, which is the center at the base, not in the middle of the cyl
+	t_vector	c; //coordinates of the center of the cylinder
+	t_vector	b; //coordinates of the center at the base, not in the middle of the cyl as c
 	t_vector	a; //axis vector (unit vector???)
 	float		r; //cylinder diameter (maybe it would be more useful to store the radius r instead of diameter d)
 	float		h; //cylinder height

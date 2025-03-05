@@ -4,13 +4,20 @@ IRENE (rendering):
 <!-- (-Adapt everything to header with cam, etc with direct structures and not pointers, or change back just to test and then change it after solving shadows etc) -->
 <!-- - SHADOW OF BLUE PLANE OVER ROTATED PINK PLANE. GET RID!!! (how to handle direct rays and shadow rays in transformations: look to output, there are some hints, the direct ray is finding the hit below the blue plane (y<-50)!?!?!) -->
 - try rotations, transl (create port in the main for the moment, to use the axis there for the rotations of planes, etc) 
--> understand the proper meaning of axis rotation!!! (with respect to the base, ...? movement broadness??) (pivot point: proximal or distal) -> //to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
--> resize!!!
+<!-- -> understand the proper meaning of axis rotation!!! (with respect to the base, ...? movement broadness??) (pivot point: proximal or distal) -> //to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
+-> resize!!! -->
+-> light movement!?!?
+-> cylinder somehow attach the objects circles if there is a rotation /transl / etc? ->PROBLEMS IN SCALE, because we have to translate to circle center to origin but then not back to original position of the center, but moved having in mind the crescent ratio of the cylinder
+-> for rotations and scaling, combine always with translation to origin and back!!!
 - Store all hits and not only the most proximal??? For reflection?
+
+- Rotations and scaling will be done in relation to the center of the object or the given point for planes!?
+- thickness of planes?!?! when are exactly in the camera center?!
+
 <!-- !!!!- Normal of planes and circles: do not use both indistintly, because if light is behind they will get illuminated?!?!??! Just the one towards the camera?? or how to chose the one to use? In fact the one towards the camera does not work with rotations/transl -->
 
 <!-- - add w dimension in linalg utils -->
-- cylinder somehow attach the objects circles if there is a rotation /transl / etc? 
+
 - Instead of compute the inverse matrix in find hit and shading functions, store directly the inverse mtrix in the object m??
 
 LINALG:
@@ -44,6 +51,7 @@ EDGE CASES:
 
 TOGETHER DECIDE:
 - Use float or double (different function prototype in math library function)
+- Eliminate cylinder caps (make scaling and rotation difficult)
 - Bonus:
 	- Include light color
 	- Take from the scene file if we are introducing a filter??
