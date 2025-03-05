@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:53:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 16:52:00 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:11:48 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ t_vector	scalar_div(t_vector v, float s);
 t_vector	invert_v(t_vector v);
 float		v_modulus(t_vector v);
 t_vector	unit_v(t_vector v);
+t_vector	v_reflect(t_vector in, t_vector n);
 
 #endif

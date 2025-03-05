@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 16:51:48 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:11:42 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,4 +126,7 @@ t_vector	unit_v(t_vector v)
 	return (u_v);
 }
 
-
+t_vector	v_reflect(t_vector in, t_vector n)
+{
+	return (v_subt(in, scalar_mult(n, 2 * dot_prod(in, n))));
+}

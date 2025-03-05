@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:18:18 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/24 15:38:24 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:45:34 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,15 @@ t_color	col_add(t_color c1, t_color c2)
 	}
 	clamp_col(&res_col);
 	return (res_col);
+}
+
+t_color	set_color(float r, float g, float b, float a)
+{
+	t_color	col;
+
+	col.s_comp.r = r;
+	col.s_comp.g = g;
+	col.s_comp.b = b;
+	col.s_comp.a = a;
+	return (col);
 }

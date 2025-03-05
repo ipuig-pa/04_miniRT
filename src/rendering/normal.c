@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/04 12:24:53 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:31:19 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	normal_pl(t_hit *hit, t_pl *pl, t_scene *scene)
 	if (scene->obj[hit->obj_id].m.exist == true)
 		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
 	if (dot_prod(v_subt(scene->cam.p, hit->real_p), hit->normal) < 0)
-		hit->normal = invert_v(hit->normal);
+		hit->normal = invert_v(hit->normal); //make unit vector??!?
 }
 
 static void	normal_cyl(t_hit *hit, t_cyl *cyl, t_scene *scene)
@@ -38,7 +38,7 @@ static void	normal_cyl(t_hit *hit, t_cyl *cyl, t_scene *scene)
 	tan = cross_prod(bp, cyl->a);
 	hit->normal = unit_v(cross_prod(cyl->a, tan));
 	if (scene->obj[hit->obj_id].m.exist == true)
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m); //make unit vector??!?
 }
 
 static void	normal_cir(t_hit *hit, t_cir *cir, t_scene *scene)

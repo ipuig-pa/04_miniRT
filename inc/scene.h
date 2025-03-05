@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 17:09:03 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:37:01 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ typedef struct s_obj
 	t_objparam	param;
 	t_objtype	type;
 	t_color		color;
+	float		shine;
 	t_matrix4	m; //transformation matrix to apply to the ray when checking if intersection occurs
 }			t_obj;
 

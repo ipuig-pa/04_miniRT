@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 17:39:52 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 18:53:22 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	do_some_trans(t_env *env) // just for testing purposes, delete from 
 
 	t_vect = v_create(2.0, 0.0, 0.0, 0);
 	// o_rotate(&env->scene->obj[5], 0.7, env->scene->vp.up);
-	o_scale(&env->scene->obj[5], 2, 2, 2);
+	//o_scale(&env->scene->obj[5], 2, 2, 2);
 	// // env->scene->obj[0].m = m_multiply(m_multiply(translate(env->scene->obj[7].param.sph.c),scale(3, 3, 3)),translate(invert_v(env->scene->obj[7].param.sph.c)));
 	// // env->scene->obj[5].m = translate(t_vect);
 	// // env->scene->obj[6].m = translate(t_vect);

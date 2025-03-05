@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:47:07 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/21 18:29:01 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 19:19:27 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,6 @@ int		convert_rgba(t_color *color);
 t_color	col_prod(t_color c1, t_color c2);
 t_color	col_sc_prod(t_color c, float s);
 t_color	col_add(t_color c1, t_color c2);
+t_color	set_color(float r, float g, float b, float a);
 
 #endif
