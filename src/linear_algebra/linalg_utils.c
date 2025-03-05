@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/03 12:56:08 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/05 16:51:48 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,17 @@ t_vector	scalar_mult(t_vector v, float s)
 	res.x = v.x * s;
 	res.y = v.y * s;
 	res.z = v.z * s;
+	res.w = 0;
+	return (res);
+}
+
+t_vector	element_mult(t_vector v, t_vector s)
+{
+	t_vector	res;
+
+	res.x = v.x * s.x;
+	res.y = v.y * s.y;
+	res.z = v.z * s.z;
 	res.w = 0;
 	return (res);
 }

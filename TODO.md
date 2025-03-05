@@ -7,8 +7,10 @@ IRENE (rendering):
 <!-- -> understand the proper meaning of axis rotation!!! (with respect to the base, ...? movement broadness??) (pivot point: proximal or distal) -> //to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
 -> resize!!! -->
 -> light movement!?!?
--> cylinder somehow attach the objects circles if there is a rotation /transl / etc? ->PROBLEMS IN SCALE, because we have to translate to circle center to origin but then not back to original position of the center, but moved having in mind the crescent ratio of the cylinder
+-> cylinder somehow attach the objects circles if there is a rotation /transl / etc? ->PROBLEMS IN SCALE, because we have to translate to circle center to origin but then not back to original position of the center, but moved having in mind the crescent ratio of the cylinder (or think how can we keep track of them)
+-> be careful that circles are contigupus cyl and the first is subtracting axis * h/2 and the second is adding axis * h/2 to the center of the cyl
 -> for rotations and scaling, combine always with translation to origin and back!!!
+-> initialize all objects with identity matrix
 - Store all hits and not only the most proximal??? For reflection?
 
 - Rotations and scaling will be done in relation to the center of the object or the given point for planes!?
@@ -19,6 +21,9 @@ IRENE (rendering):
 <!-- - add w dimension in linalg utils -->
 
 - Instead of compute the inverse matrix in find hit and shading functions, store directly the inverse mtrix in the object m??
+
+
+- Initialize all the objects with identity matrix
 
 LINALG:
 - linalg funcitons, put order: use only add / sub.
