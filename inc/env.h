@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:13:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/25 11:33:11 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/04 09:23:54 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	// double	delta_x;
+	// double	delta_y;
+	// int		mouse_select; these 3 var is for mouse scorolling event
 }			t_data;
 
 typedef struct s_env

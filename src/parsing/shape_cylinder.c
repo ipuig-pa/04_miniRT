@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder.c                                         :+:      :+:    :+:   */
+/*   shape_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 11:39:57 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/06 13:47:56 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,22 @@ void	parse_cylinder(t_obj *obj, char **tokens)
 }				t_cyl;
  * cy (b: 50,0,20) (a: 0,1,0) (d: 14.2) (h: 21.42) 10,0,255; para = 6
  */
-static t_point	pt_sub_vc(t_point p, t_vector v)
+
+//returns a point (w == 1)
+static t_vector	pt_sub_vc(t_vector p, t_vector v)
 {
-	t_point	base;
+	t_vector	base;
 
 	base.x = p.x - v.x;
 	base.y = p.y - v.y;
 	base.z = p.z - v.z;
+	base.w = p.w - v.w;
 	return (base);
 }
 
 void	create_surface(t_obj *obj, char **tokens)
 {
-	t_point	c;
+	t_vector	c;
 
 	obj->type = CYL;
 	obj->color = parse_color(tokens[5]);
@@ -73,9 +76,11 @@ typedef struct s_cir
 	float		r; //circle radius
 }				t_cir;
  */
+
+// passed_pt is a POINT, w==1
 void	create_basecir(t_obj *obj, char **tokens)
 {
-	t_point		passed_pt;
+	t_vector	passed_pt;
 	t_vector	tmp_n;
 
 	obj->type = CIR;
@@ -96,14 +101,14 @@ void	create_basecir(t_obj *obj, char **tokens)
 
 void	create_topcir(t_obj *obj, char **tokens)
 {
-	t_point	passed_pt;
+	t_vector	passed_pt;
 
 	obj->type = CIR;
 	obj->color = parse_color(tokens[5]);
 	obj->param.cir.n = norm_vector(parse_point(tokens[2]));
 	obj->param.cir.r = ft_atofloat(tokens[3]) / 2.0f;
 	passed_pt = parse_point(tokens[1]);
-	obj->param.cir.c = pv_add(passed_pt, scalar_mult(obj->param.cir.n,
+	obj->param.cir.c = v_add(passed_pt, scalar_mult(obj->param.cir.n,
 				obj->param.cyl.h / 2));
 	if (obj->param.cir.r < 0.0f)
 	{
