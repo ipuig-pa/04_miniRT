@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 11:33:17 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/06 13:37:23 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,10 @@ int			check_para_num(char **tokens, char key);
 int			check_para_2(char **tokens, char key);
 bool		valid_color_val(t_color clr);
 t_color		err_color(void);
-t_point		err_point(void);
-t_point		parse_point(char *token);
+t_vector	err_point(void);
+t_vector	parse_point(char *token);
 t_vector	err_vector(void);
-t_vector	norm_vector(t_point dirct_vec);
+t_vector	norm_vector(t_vector dirct_vec);
 
 // main parser
 void		parsing_scene(t_env *env, const char *filename);
