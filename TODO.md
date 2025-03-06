@@ -57,6 +57,8 @@ EDGE CASES:
 
 TOGETHER DECIDE:
 - Use float or double (different function prototype in math library function)
+E -> Parsing material type (metal, plstic, matte) an initialize k_s and n_s accordint to that
+- Define materials? (shiny metal / glossy plastic / matte) with specific k_s and n_s?? Or have directly the parameters in the object?
 <!-- - Eliminate cylinder caps (make scaling and rotation difficult)?? -->
 - Bonus:
 	- Include light color

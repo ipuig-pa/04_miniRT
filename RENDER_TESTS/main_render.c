@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 19:32:46 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:21:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,54 +23,55 @@ int	main(void)
 
 	obj[0].type = SPH;
 	obj[0].color = PINK;
-	obj[0].shine = 10;
+	obj[0].mat.type = PLA;
 	obj[0].param.sph.c = v_create(0.0, 0.0, -200.0, 1.0);
 	obj[0].param.sph.r = 5.0;
 
 	obj[1].type = SPH;
 	obj[1].color = RED;
-	obj[1].shine = 20;
+	obj[1].mat.type = MET;
 	obj[1].param.sph.c = v_create(0.0, 20.0, -200.0, 1.0);
 	obj[1].param.sph.r = 2.5;
 
 	obj[2].type = PL;
 	obj[2].color = BLUE;
-	obj[2].shine = 0;
+	obj[2].mat.type = MET;
 	obj[2].param.pl.n = v_create(0.0, 1.0, 0.0, 0.0);
 	obj[2].param.pl.p = v_create(0.0, -7.0, 0.0, 1.0);
 
 	obj[3].type = PL;
 	obj[3].color = GREEN;
-	obj[3].shine = 0;
+	obj[3].mat.type = MET;
 	obj[3].param.pl.n = v_create(0.0, 0.0, 1.0, 0.0);
 	obj[3].param.pl.p = v_create(0.0, 0.0, -250.0, 1.0);
 
 	obj[4].type = PL;
 	obj[4].color = PINK;
-	obj[4].shine = 0;
+	obj[4].mat.type = PLA;
 	obj[4].param.pl.n = v_create(1.0, 0.0, 0.0, 0.0);
 	obj[4].param.pl.p = v_create(-7.0, 0.0, 0.0, 1.0);
 
 	obj[5].type = CYL;
 	obj[5].color = RED;
-	obj[5].shine = 200;
+	obj[5].mat.type = MET;
 	obj[5].param.cyl.c = v_create(2.0, 3.0, -150.0, 1.0);
 	// obj[5].param.cyl.a = unit_v(v_create(0.0, 0.0, 1.0, 0.0));
-	obj[5].param.cyl.a = unit_v(v_create(2.0, -1.0, 1.0, 0.0));
+	obj[5].param.cyl.a = unit_v(v_create(0.0, 1.0, 1.0, 0.0));
 	obj[5].param.cyl.r = 1.5;
 	obj[5].param.cyl.h = 10.0;
+
 	obj[5].param.cyl.b = v_subt(obj[5].param.cyl.c, scalar_mult(obj[5].param.cyl.a, obj[5].param.cyl.h / 2));
 
 	obj[6].type = CIR;
 	obj[6].color = RED;
-	obj[6].shine = 200;
+	obj[6].mat.type = obj[5].mat.type;
 	obj[6].param.cir.c = obj[5].param.cyl.b;
 	obj[6].param.cir.n = invert_v(obj[5].param.cyl.a);
 	obj[6].param.cir.r = obj[5].param.cyl.r;
 
 	obj[7].type = CIR;
 	obj[7].color = RED;
-	obj[7].shine = 200;
+	obj[7].mat.type = obj[5].mat.type;
 	obj[7].param.cir.c = v_add(obj[5].param.cyl.b, scalar_mult(obj[5].param.cyl.a, obj[5].param.cyl.h));
 	obj[7].param.cir.n = obj[5].param.cyl.a;
 	obj[7].param.cir.r = obj[5].param.cyl.r;
@@ -84,6 +85,13 @@ int	main(void)
 	obj[6].m = identity();
 	obj[7].m = identity();
 
+	int	i = 0;
+	while (i < scene.obj_num)
+	{
+		get_material(&obj[i]);
+		i++;
+	}
+
 	scene.obj = obj;
 
 	scene.amblight.color = WHITE;
@@ -93,7 +101,7 @@ int	main(void)
 	scene.cam.v = v_create(0.0, 0.0, -1.0, 0.0);
 	scene.cam.fov = 0.5;
 
-	scene.light.p = v_create(6.0, 0.0, -50.0, 1.0);
+	scene.light.p = v_create (2.0, 3.0, -140.0, 1.0);
 	scene.light.ratio = 0.6;
 	scene.light.color = WHITE;
 

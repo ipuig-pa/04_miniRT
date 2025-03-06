@@ -6,12 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 19:31:05 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/06 15:08:13 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
 
 static void	phong(t_hit *hit, t_ray *ray, t_scene *scene, float cos_theta)
 {
@@ -22,13 +21,14 @@ static void	phong(t_hit *hit, t_ray *ray, t_scene *scene, float cos_theta)
 
 	diff = BLACK;
 	spec = BLACK;
-	amb = col_prod(ray->color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight.color), scene->amblight.ratio)); //adding ambient light
+	amb = col_prod(scene->obj[hit->obj_id].color, col_sc_prod(col_prod(scene->obj[hit->obj_id].color, scene->amblight.color), scene->amblight.ratio));
 	if (cos_theta > 0)
 	{
 		diff = col_prod(scene->obj[hit->obj_id].color,(col_sc_prod(scene->light.color, scene->light.ratio * cos_theta)));
-		cos_theta2 = dot_prod(unit_v(v_reflect(unit_v(invert_v(ray->d)), unit_v(hit->normal))), unit_v(v_subt(scene->cam.p, ray->o)));
+		//cos_theta2 = dot_prod(unit_v(v_reflect(unit_v(invert_v(ray->d)), unit_v(hit->normal))), unit_v(v_subt(scene->cam.p, ray->o)));
+		cos_theta2 = dot_prod(unit_v(v_reflect(invert_v(ray->d), hit->normal)), unit_v(v_subt(scene->cam.p, ray->o)));
 		if (cos_theta2 > 0)
-			spec = col_sc_prod(scene->light.color, scene->light.ratio * 0.9 * powf(cos_theta2, scene->obj[hit->obj_id].shine)); // miss multiply by specular 0.9 or whatever, but I dont know where to put it
+			spec = col_sc_prod(scene->light.color, scene->light.ratio * scene->obj[hit->obj_id].mat.k_s * powf(cos_theta2, scene->obj[hit->obj_id].mat.n_s));
 	}
 	ray->color = col_add(spec, col_add (diff, amb));
 	(void) cos_theta2; //for testing purpose. DELETE!s
@@ -51,7 +51,7 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	ray->o = hit->real_p;
 	ray->d = v_subt(scene->light.p, ray->o);
 	hit->light_dist = v_modulus(ray->d);
-	ray->d = scalar_div(ray->d, hit->light_dist);
+	ray->d = scalar_div(ray->d, hit->light_dist); //make unitary
 	sh_hit.occur = false;
 	find_hit(&sh_hit, *ray, scene, hit->obj_id);
 	if (sh_hit.occur == false || sh_hit.dist > hit->light_dist)//there is no other object intersecting the path from hit object to light
