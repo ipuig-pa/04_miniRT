@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/27 11:28:31 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 12:38:46 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // content: big string of multiple lines(delim by \n)
 // lines: split from *content, array of single lines
 // line: single line (lines[i])
-void	parsing_scene(t_env *env, const char *filename)
+int	parsing_scene(t_env *env, const char *filename)
 {
 	char	*content;
 	char	**lines;
@@ -24,23 +24,28 @@ void	parsing_scene(t_env *env, const char *filename)
 	i = 0;
 	content = read_file(filename);
 	if (!content)
-		return ((void)p_err("Errors in reading file!"));
+		return (p_err("Errors in reading file!"), 0);
 	lines = gc_split(content, '\n');
 	gc_free(content);
 	if (!lines)
-		return ((void)p_err("Errors in spliting file!"));
+		return (p_err("Errors in spliting file!"), 0);
 	env->scene = gc_malloc(sizeof(t_scene));
 	if (!env->scene)
-		return ((void)(p_err("Memory allocation for t_scene failed!"),
-			gc_clean()));
+	{
+		p_err("Memory allocation for t_scene failed!");
+		return (gc_clean(), 0);
+	}
 	env->scene->obj_num = count_objs(lines);
 	env->scene->obj = gc_malloc(sizeof(t_obj) * (env->scene->obj_num + 1));
 	if (!env->scene->obj)
-		return ((void)(p_err("Memory allocation for Objects failed!"),
-			gc_clean()));
+	{
+		p_err("Memory allocation for Objects failed!");
+		return (gc_clean(), 0);
+	}
 	while (lines[i] && parse_valid_tk(env->scene, lines[i]))
 		i++;
 	free_double_pointer(lines);
+	return (1);
 }
 
 // verify token: A, C, L, pl, cy, sp
@@ -51,7 +56,7 @@ bool	parse_valid_tk(t_scene *scene, char *line)
 	static int	i = 0;
 
 	tokens = split_tokens(line, ' ');
-	if (tokens == NULL || tokens[0] == '\0')
+	if (!tokens || !tokens[0])
 		return (p_err("Empty input or Malloc failed!"), false);
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
 		parse_ambient(scene->amblight, tokens);

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 18:37:01 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/06 10:49:20 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,13 +93,28 @@ typedef union u_objparam
 	t_cir	cir;
 }			t_objparam;
 
+typedef enum e_mattype
+{
+	MET, //shiny metal
+	PLA, //glossy plastic
+	MATTE //matte surface
+}			t_mattype;
+
+//A shiny metal might have a high k_s (0.8-1.0) and a high n_s (100-200), a glossy plastic might have a medium k_s (0.4-0.7) and medium n_s (20-50), a matte surface might have a low k_s (0.1-0.3) and low n_s (1-10)
+typedef struct s_material
+{
+	t_mattype	type;
+	float		k_s;
+	float		n_s; //This controls the size and concentration of the specular highlight. It's typically a positive value, often between 1 and 1000. It determines how "focused" or "sharp" the highlight appears. Higher values create smaller, more focused highlights (like polished metal). Lower values create broader highlights (like matte plastic)
+}				t_material;
+
 typedef struct s_obj
 {
 	t_objparam	param;
 	t_objtype	type;
 	t_color		color;
-	float		shine;
-	t_matrix4	m; //transformation matrix to apply to the ray when checking if intersection occurs
+	t_material	mat;
+	t_matrix4	m; //transformation matrix to apply to the ray when checking if intersection occur
 }			t_obj;
 
 typedef struct s_scene
@@ -116,5 +131,6 @@ typedef struct s_scene
 // t_light		*light;
 
 void	create_viewport(t_scene *scene);
+void	get_material(t_obj	*obj); //maybe move to parsing?!
 
 #endif

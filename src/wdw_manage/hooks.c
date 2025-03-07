@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/06 13:59:19 by ewu              ###   ########.fr       */
+=======
+/*   Updated: 2025/03/07 10:47:15 by ipuig-pa         ###   ########.fr       */
+>>>>>>> b2081e0a12fdf63afd37be08a2637436ef53e6f2
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +31,7 @@ void	set_hooks(t_env *env)
  * Yaw (left/right) → Rotate around up axis.
  * Pitch (up/down) → Rotate around right axis
  */
-void	key_action(int keysym, t_env *env)
+int	key_action(int keysym, t_env *env)
 {
 	float	rad;
 
@@ -53,35 +57,47 @@ void	key_action(int keysym, t_env *env)
 	else if (keysym == UP)
 		rotate_cam(&env->scene->vp, rad, env->scene->vp.right);
 	ray_tracer(env);
+	return (0); // check where exactly do I have to retrun and where!?
 }
 
 // scroll the wheel to zoom in(UP)/out(DOWN)
 // edge case(0 && PI) check; +-3 is randomly set
+<<<<<<< HEAD
 void	mouse_scroll(int button, float xdelta, float ydelta, t_env *env)
+=======
+int	mouse_scroll(int button, int x_delta, int y_delta, t_env *env)
+>>>>>>> b2081e0a12fdf63afd37be08a2637436ef53e6f2
 {
 	(void)xdelta;
 	(void)ydelta;
 	if (button == SCROLL_UP)
 	{
 		if (env->scene->cam.fov <= 0)
-			return ;
+			return (0); // check where exactly do I have to retrun and where!?
 		env->scene->cam.fov -= 3;
 	}
 	else if (button == SCROLL_DOWN)
 	{
 		if (env->scene->cam.fov >= M_PI)
-			return ;
+			return (0); // check where exactly do I have to retrun and where!?
 		env->scene->cam.fov += 3;
 	}
 	ray_tracer(env);
+	return (0); // check where exactly do I have to retrun and where!?
 }
 
 // should lock cursor at centre or not??
 // move the mouse itself to rotate Cam(cursor regarded as the cam)
-int	mouse_move(float xdelta, float ydelta, t_env *env)
+int	mouse_move(int xdelta, int ydelta, t_env *env)
 {
 	static int	origin_x = (float)WINDOW_WIDTH / 2;
 	static int	origin_y = (float)WINDOW_HEIGHT / 2;
 
+	//TO IMPLEMENT WHAT IS NEEDED!!!
+	(void) origin_x;
+	(void) origin_y;
+	(void) xdelta;
+	(void) ydelta;
+	(void) env;
 	return (0);
 }

@@ -11,7 +11,9 @@ IRENE (rendering):
 E -> be careful that circles are contigupus cyl and the first is subtracting axis * h/2 and the second is adding axis * h/2 to the center of the cyl
 <!-- -> for rotations and scaling, combine always with translation to origin and back!!! -->
 E -> initialize all objects with identity matrix
-E -> create port after parsing? 
+E -> initialize material properties!?
+E -> create port after parsing?
+-> resize according to cylinder height and width!?
 - Store all hits and not only the most proximal??? For reflection?
 - need to normalize vector after transformations?!?!! (try with different cases!)
 
@@ -41,7 +43,7 @@ week 10/03/2025: shiny, shadows, reflection, patterns, etc
 <!-- - decide pointers or direct objects inside scene -->
 - light color not working properly
 
-- somehow do all the hits and then all the shading, to be easier when light changes, no need to re-render
+- somehow do all the hits and then all the shading, to be easier when light changes, no need to re-render -> correspondance of each pixel to each hit (store the pixel i, j in the hit structure) and have a structure of hits inside the scene instead of just one hit that is updated
 
 MORE
 - include triangle intersection, so we can have complex forms represented as a meshed of triangles
@@ -56,7 +58,10 @@ EDGE CASES:
 - camera inside an object??
 
 TOGETHER DECIDE:
+- norm_vector and u_vector are the same!?!? unify!?!
 - Use float or double (different function prototype in math library function)
+E -> Parsing material type (metal, plstic, matte) an initialize k_s and n_s accordint to that
+- Define materials? (shiny metal / glossy plastic / matte) with specific k_s and n_s?? Or have directly the parameters in the object?
 <!-- - Eliminate cylinder caps (make scaling and rotation difficult)?? -->
 - Bonus:
 	- Include light color

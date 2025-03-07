@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_read_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 10:50:04 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 12:05:48 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,14 +98,11 @@ int	count_objs(char **lines)
 	obj_num = 0;
 	while (lines[i])
 	{
-		if (ft_strncmp(lines[i][0], "sp", 3) == 0 || ft_strncmp(lines[i][0],
-				"cy", 3) == 0 || ft_strncmp(lines[i][0], "pl", 3) == 0)
-		{
-			if (ft_strncmp(lines[i][0], "cy", 3) == 0)
-				obj_num += 3;
-			else
-				obj_num += 1;
-		}
+		if (ft_strncmp(lines[i], "sp ", 3) == 0 || \
+			ft_strncmp(lines[i], "pl ", 3) == 0)
+			obj_num += 1;
+		else if (ft_strncmp(lines[i], "cy ", 3) == 0)
+			obj_num += 3;
 		i++;
 	}
 	return (obj_num);
