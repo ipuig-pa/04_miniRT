@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 12:23:16 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:25:30 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	parse_cylinder(t_obj *obj, char **tokens)
 
 int	create_surface(t_obj *obj, char **tokens)
 {
+	parse_material(&obj, tokens[6]);
 	obj->type = CYL;
 	obj->color = parse_color(tokens[5]);
 	obj->param.cyl.a = norm_vector(parse_point(tokens[2]));
@@ -87,6 +88,7 @@ void	create_basecir(t_obj *cyl, t_obj *obj)
 {
 	obj->type = CIR;
 	obj->color = cyl->color;
+	obj->mat.type = cyl->mat.type;
 	obj->param.cir.n = norm_vector(invert_v(cyl->param.cyl.a));
 	obj->param.cir.r = cyl->param.cyl.r;
 	obj->param.cir.c = cyl->param.cyl.b;
@@ -96,6 +98,7 @@ void	create_topcir(t_obj *cyl, t_obj *obj)
 {
 	obj->type = CIR;
 	obj->color = cyl->color;
+	obj->mat.type = cyl->mat.type;
 	obj->param.cir.n = norm_vector(cyl->param.cyl.a);
 	obj->param.cir.r = cyl->param.cyl.r;
 	obj->param.cir.c = v_add(cyl->param.cyl.b, \

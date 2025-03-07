@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/06 13:59:19 by ewu              ###   ########.fr       */
-=======
-/*   Updated: 2025/03/07 10:47:15 by ipuig-pa         ###   ########.fr       */
->>>>>>> b2081e0a12fdf63afd37be08a2637436ef53e6f2
+/*   Updated: 2025/03/07 13:50:35 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,28 +58,25 @@ int	key_action(int keysym, t_env *env)
 
 // scroll the wheel to zoom in(UP)/out(DOWN)
 // edge case(0 && PI) check; +-3 is randomly set
-<<<<<<< HEAD
-void	mouse_scroll(int button, float xdelta, float ydelta, t_env *env)
-=======
-int	mouse_scroll(int button, int x_delta, int y_delta, t_env *env)
->>>>>>> b2081e0a12fdf63afd37be08a2637436ef53e6f2
+//if its edge case, return(0) and nothing will be implemented
+int	mouse_scroll(int button, int xdelta, int ydelta, t_env *env)
 {
 	(void)xdelta;
 	(void)ydelta;
 	if (button == SCROLL_UP)
 	{
 		if (env->scene->cam.fov <= 0)
-			return (0); // check where exactly do I have to retrun and where!?
+			return (0);
 		env->scene->cam.fov -= 3;
 	}
 	else if (button == SCROLL_DOWN)
 	{
 		if (env->scene->cam.fov >= M_PI)
-			return (0); // check where exactly do I have to retrun and where!?
+			return (0);
 		env->scene->cam.fov += 3;
 	}
 	ray_tracer(env);
-	return (0); // check where exactly do I have to retrun and where!?
+	return (0);
 }
 
 // should lock cursor at centre or not??

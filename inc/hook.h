@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/06 14:00:02 by ewu              ###   ########.fr       */
-=======
-/*   Updated: 2025/03/07 10:44:40 by ipuig-pa         ###   ########.fr       */
->>>>>>> b2081e0a12fdf63afd37be08a2637436ef53e6f2
+/*   Updated: 2025/03/07 13:50:46 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +27,12 @@
 # define SCROLL_DOWN 4
 # define SCROLL_UP 5
 
-<<<<<<< HEAD
-void	set_hooks(t_env *env);//go to main to init
-void	mouse_scroll(int button, float xdelta, float ydelta, t_env *env);//tzoom
-int		mouse_move(float xdelta, float ydelta, t_env *env);
-void	key_action(int keysym, t_env *env);//direct to sub_func
-void	rotate_camera(t_viewport *vp, float rad, t_vector axis);
-void	move_camera(t_viewport *vp, t_vector direct, float distance);
-=======
 void	set_hooks(t_env *env);
-int		mouse_scroll(int button, int x_delta, int y_delta, t_env *env);
+int		mouse_scroll(int button, int xdelta, int ydelta, t_env *env);
 int		mouse_move(int xdelta, int ydelta, t_env *env);
 int		key_action(int keysym, t_env *env);
 void	rotate_cam(t_viewport *vp, float rad, t_vector axis);
 void	move_cam(t_viewport *vp, t_vector direct, float distance);
 void	save_picture(void); // to implement!?!??
->>>>>>> b2081e0a12fdf63afd37be08a2637436ef53e6f2
 
 #endif

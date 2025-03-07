@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 12:32:28 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:17:59 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_vector	err_point(void);
 t_vector	parse_point(char *token);
 t_vector	err_vector(void);
 t_vector	norm_vector(t_vector dirct_vec);
+void		parse_material(t_obj *obj, char *token);
 
 // main parser
 int			parsing_scene(t_env *env, const char *filename);

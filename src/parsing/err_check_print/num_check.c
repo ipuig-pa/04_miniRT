@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   num_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:42:11 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 11:36:53 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:26:31 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 /**
  * to check valid number of parameter for each parser
- * a, l, c, sp, pl, y
- * */
-
+ * a, l, c, sp, pl, y (for sp/pl/cy + 1 para for material)
+*/
 int	para_nbr(char **arr)
 {
 	int	i;
@@ -53,27 +52,29 @@ int	check_para_num(char **tokens, char key)
 
 //include here option for material!?! (so || (para_nbr != 4 && para_nbr != 5))
 
-//sp 0,0,0 20 255,0,0; p=4
-//pl 0,-10,0 0,1,0 255,255,0; p=4
-//cy 50,0,20 0,1,0 14.2 21.42 10,0,255; para = 6
+//sp 0,0,0 20 255,0,0; p=4+1
+//pl 0,-10,0 0,1,0 255,255,0; p=4+1
+//cy 50,0,20 0,1,0 14.2 21.42 10,0,255; para = 6+1
 int	check_para_2(char **tokens, char key)
 {
 	if (key == 's')
 	{
-		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) != 4)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4] \
+			|| para_nbr(tokens) != 5)
 			return (p_err("Invalid number for Sphere object!"), -1);
 		return (0);
 	}
 	else if (key == 'p')
 	{
-		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) != 4)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4] \
+			|| para_nbr != 5)
 			return (p_err("Invalid number for Plane object!"), -1);
 		return (0);
 	}
 	else if (key == 'y')
 	{
 		if (!tokens[1] || !tokens[2] || !tokens[3] || !tokens[4] || !tokens[5] \
-			|| para_nbr(tokens) != 6)
+			|| !tokens[6] || para_nbr(tokens) != 7)
 			return (p_err("Invalid number for Cylinder object!"), -1);
 		return (0);
 	}

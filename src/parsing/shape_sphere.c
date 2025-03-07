@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   shape_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:25:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 11:48:01 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 15:27:40 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	parse_sphere(t_obj *obj, char **tokens)
 {
 	if (check_para_num(tokens, 's') == -1)
 		return (gc_clean());
+	parse_material(&obj, tokens[4]);
 	obj->type = SPH;
 	obj->color = parse_color(tokens[3]);
 	obj->param.sph.c = parse_point(tokens[1]);
