@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:37:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 14:46:42 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:02:20 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ void	parse_plane(t_obj *obj, char **tokens)
 	obj->param.pl.p = parse_vector(tokens[1], 'p');
 	obj->param.pl.n = norm_vector(parse_vector(tokens[2], 'v'));
 	obj->m = identity();
-	obj->mat.type = 0;
+	parse_material(&obj, tokens[4]);
 	get_material(obj);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 10:44:40 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 13:50:46 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SCROLL_UP 5
 
 void	set_hooks(t_env *env);
-int		mouse_scroll(int button, int x_delta, int y_delta, t_env *env);
+int		mouse_scroll(int button, int xdelta, int ydelta, t_env *env);
 int		mouse_move(int xdelta, int ydelta, t_env *env);
 int		key_action(int keysym, t_env *env);
 void	rotate_cam(t_viewport *vp, float rad, t_vector axis);

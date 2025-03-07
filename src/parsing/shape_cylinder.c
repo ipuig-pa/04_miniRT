@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 15:50:24 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:01:50 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	create_surface(t_obj *obj, char **tokens)
 	obj->param.cyl.c = parse_vector(tokens[1], 'p');
 	obj->param.cyl.b = v_subt(obj->param.cyl.c, \
 						scalar_mult(obj->param.cyl.a, obj->param.cyl.h / 2));
-	obj->m = identity();
-	obj->mat.type = 0;
+	parse_material(&obj, tokens[6]);
 	get_material(obj);
+	obj->m = identity();
 	return (1);
 }
 

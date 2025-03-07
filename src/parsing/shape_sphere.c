@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:25:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 14:46:32 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:03:26 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_sphere(t_obj *obj, char **tokens)
 	if (obj->param.sph.r < 0.0f)
 		return (p_err("Diameter cannot be negative!"), gc_clean());
 	obj->m = identity();
-	obj->mat.type = 0;
+	parse_material(&obj, tokens[4]);
 	get_material(obj);
 }
 

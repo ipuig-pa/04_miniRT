@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 10:47:15 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 13:50:35 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,24 +58,25 @@ int	key_action(int keysym, t_env *env)
 
 // scroll the wheel to zoom in(UP)/out(DOWN)
 // edge case(0 && PI) check; +-3 is randomly set
-int	mouse_scroll(int button, int x_delta, int y_delta, t_env *env)
+//if its edge case, return(0) and nothing will be implemented
+int	mouse_scroll(int button, int xdelta, int ydelta, t_env *env)
 {
-	(void)x_delta;
-	(void)y_delta;
+	(void)xdelta;
+	(void)ydelta;
 	if (button == SCROLL_UP)
 	{
 		if (env->scene->cam.fov <= 0)
-			return (0); // check where exactly do I have to retrun and where!?
+			return (0);
 		env->scene->cam.fov -= 3;
 	}
 	else if (button == SCROLL_DOWN)
 	{
 		if (env->scene->cam.fov >= M_PI)
-			return (0); // check where exactly do I have to retrun and where!?
+			return (0);
 		env->scene->cam.fov += 3;
 	}
 	ray_tracer(env);
-	return (0); // check where exactly do I have to retrun and where!?
+	return (0);
 }
 
 // should lock cursor at centre or not??
