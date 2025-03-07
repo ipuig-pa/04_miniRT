@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/06 13:12:00 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 10:44:16 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 //vector axis: the vectors of up, front and right of viewport
 //rotate(): create 4x4 matrix based on GIVEN rad and axis
 //change vp.up/right/front; vp.o UNCHANGED!
-void	rotate_camera(t_viewport *vp, float rad, t_vector axis)
+void	rotate_cam(t_viewport *vp, float rad, t_vector axis)
 {
 	t_matrix4	rot_m;
 
@@ -29,12 +29,18 @@ void	rotate_camera(t_viewport *vp, float rad, t_vector axis)
 
 // float: the sensitivity/speed of move
 //change vp.o; vp-.up/right/front UNCHANGED!
-void	move_camera(t_viewport *vp, t_vector direct, float distance)
+void	move_cam(t_viewport *vp, t_vector direct, float distance)
 {
 	t_vector	mv;
 
 	mv = scalar_mult(direct, distance);
 	vp->o = v_add(vp->o, mv);
+}
+
+//TO IMPLEMENT!!!
+void	save_picture(void)
+{
+	
 }
 
 /**
