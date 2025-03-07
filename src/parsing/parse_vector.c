@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_vector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:21 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/06 13:38:35 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 11:38:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_vector	parse_point(char *token)
 	char		**coord;
 
 	coord = gc_split(token, ',');
-	if (!coord || !coord[0] || !coord[1] || !coord[2] || !coord[3])
+	if (!coord || !coord[0] || !coord[1] || !coord[2])
 	{
 		p_err("Invalid format of vector! Default position called!");
 		free_double_pointer(coord);

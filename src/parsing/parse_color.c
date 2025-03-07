@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 12:26:55 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 11:09:32 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 //to indicate that errors in parse_color()
 t_color	err_color(void)
 {
-	return ((t_color){0, 0, 0, 0});
+	return (set_color(0, 0, 0, 0));
 }
 
 /*check valid range of value*/
@@ -38,13 +38,17 @@ t_color	parse_color(char *token)
 	char	**clr;
 
 	clr = gc_split(token, ',');
-	if (!clr || !clr[0] || !clr[1] || !clr[2] || !clr[3] || para_nbr(clr) != 4)
-	{
+	if (para_nbr(clr) != 3 && para_nbr(clr) != 4)
 		p_err("Invalid parameter number for color or malloc failed!");
+	if (!clr || !clr[0] || !clr[1] || !clr[2] || (para_nbr(clr) == 4 && !clr[3]))
+	{
+		p_err("Malloc failed!");
 		free_double_pointer(clr);
 		return (err_color());
 	}
-	color.s_comp.a = ft_atofloat(clr[3]) / 255.0f;
+	color.s_comp.a = 0.0f;
+	if (para_nbr(clr) == 4)
+		color.s_comp.a = ft_atofloat(clr[3]) / 255.0f;
 	color.s_comp.r = ft_atofloat(clr[0]) / 255.0f;
 	color.s_comp.g = ft_atofloat(clr[1]) / 255.0f;
 	color.s_comp.b = ft_atofloat(clr[2]) / 255.0f;

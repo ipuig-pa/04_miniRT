@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   num_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:42:11 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/25 13:44:20 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 11:36:53 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,27 @@ int	check_para_num(char **tokens, char key)
 {
 	if (key == 'a')
 	{
-		if (tokens[1] == NULL || tokens[2] == NULL || para_nbr(tokens) != 3)
+		if (!tokens[1] || !tokens[2] || para_nbr(tokens) != 3)
 			return (p_err("Invalid number of Ambient light!"), -1);
+		return (0);
 	}
 	else if (key == 'c')
 	{
-		if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL
-			|| para_nbr(tokens) != 4)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) != 4)
 			return (p_err("Invalid number of Camera parameter!"), -1);
+		return (0);
 	}
 	else if (key == 'l')
 	{
-		if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL
-			|| para_nbr(tokens) != 4)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) != 4)
 			return (p_err("Invalid number of Light parameter!"), -1);
+		return (0);
 	}
 	else
 		return (check_para_2(tokens, key));
 }
+
+//include here option for material!?! (so || (para_nbr != 4 && para_nbr != 5))
 
 //sp 0,0,0 20 255,0,0; p=4
 //pl 0,-10,0 0,1,0 255,255,0; p=4
@@ -57,25 +60,23 @@ int	check_para_2(char **tokens, char key)
 {
 	if (key == 's')
 	{
-		if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL
-			|| para_nbr(tokens) != 4)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) != 4)
 			return (p_err("Invalid number for Sphere object!"), -1);
+		return (0);
 	}
 	else if (key == 'p')
 	{
-		if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL
-			|| para_nbr(tokens) != 4)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) != 4)
 			return (p_err("Invalid number for Plane object!"), -1);
+		return (0);
 	}
 	else if (key == 'y')
 	{
-		if (tokens[1] == NULL || tokens[2] == NULL || tokens[3] == NULL
-			|| tokens[4] == NULL || tokens[5] == NULL || para_nbr(tokens) != 6)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || !tokens[4] || !tokens[5] \
+			|| para_nbr(tokens) != 6)
 			return (p_err("Invalid number for Cylinder object!"), -1);
+		return (0);
 	}
 	else
-	{
-		p_err("Invalid key passed for parameter number check!");
-		return (-1);
-	}
+		return (p_err("Invalid key passed for parameter number check!"), -1);
 }

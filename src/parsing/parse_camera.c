@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:00 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 11:45:09 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 11:42:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	parse_camera(t_camera camera, char **tokens)
 {
 	float	degree;
 
-	if (check_para_num(tokens, 'a') == -1)
+	if (check_para_num(tokens, 'c') == -1)
 		return (gc_clean());
 	camera.p = parse_point(tokens[1]);
 	camera.v = norm_vector(parse_point(tokens[2]));
-	degree = ft_atofloat(tokens[2]);
+	degree = ft_atofloat(tokens[3]);
 	if (degree <= 0.0f || degree > 180.0f)
 		return (p_err("Invalid degree/radians of FOV!"), gc_clean());
 	camera.fov = degree * (M_PI / 180.0f);

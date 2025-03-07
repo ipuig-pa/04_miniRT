@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/06 13:47:56 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 12:23:16 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	parse_cylinder(t_obj *obj, char **tokens)
 		gc_clean();
 		return ;
 	}
-	create_surface(&obj[0], tokens);
-	create_topcir(&obj[1], tokens);
-	create_basecir(&obj[2], tokens);
+	if (create_surface(&obj[0], tokens))
+	{
+		create_topcir(&obj[0], &obj[1]);
+		create_basecir(&obj[0], &obj[2]);
+	}
 }
 
 /**
@@ -37,35 +39,34 @@ void	parse_cylinder(t_obj *obj, char **tokens)
  */
 
 //returns a point (w == 1)
-static t_vector	pt_sub_vc(t_vector p, t_vector v)
+// static t_vector	pt_sub_vc(t_vector p, t_vector v)
+// {
+// 	t_vector	base;
+
+// 	base.x = p.x - v.x;
+// 	base.y = p.y - v.y;
+// 	base.z = p.z - v.z;
+// 	base.w = p.w - v.w;
+// 	return (base);
+// }
+
+int	create_surface(t_obj *obj, char **tokens)
 {
-	t_vector	base;
-
-	base.x = p.x - v.x;
-	base.y = p.y - v.y;
-	base.z = p.z - v.z;
-	base.w = p.w - v.w;
-	return (base);
-}
-
-void	create_surface(t_obj *obj, char **tokens)
-{
-	t_vector	c;
-
 	obj->type = CYL;
 	obj->color = parse_color(tokens[5]);
 	obj->param.cyl.a = norm_vector(parse_point(tokens[2]));
 	obj->param.cyl.r = ft_atofloat(tokens[3]) / 2.0f;
 	obj->param.cyl.h = ft_atofloat(tokens[4]);
-	c = parse_point(tokens[1]);
-	obj->param.cyl.b = pt_sub_vc(c, scalar_mult(obj->param.cyl.a,
-				obj->param.cyl.h / 2));
 	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
 	{
 		p_err("Diameter and Height must be positive numbers!");
 		gc_clean();
-		return ;
+		return (0);
 	}
+	obj->param.cyl.c = parse_point(tokens[1]);
+	obj->param.cyl.b = v_add(obj->param.cyl.c, \
+						scalar_mult(obj->param.cyl.a, -obj->param.cyl.h / 2));
+	return (1);
 }
 
 /**
@@ -78,44 +79,27 @@ typedef struct s_cir
  */
 
 // passed_pt is a POINT, w==1
-void	create_basecir(t_obj *obj, char **tokens)
-{
-	t_vector	passed_pt;
-	t_vector	tmp_n;
 
+
+//the first is subtracting axis * h/2 and the second is adding axis * h/2 to the center of the cyl
+
+void	create_basecir(t_obj *cyl, t_obj *obj)
+{
 	obj->type = CIR;
-	obj->color = parse_color(tokens[5]);
-	tmp_n = norm_vector(parse_point(tokens[2]));
-	obj->param.cir.n = invert_v(tmp_n);
-	obj->param.cir.r = ft_atofloat(tokens[3]) / 2.0f;
-	passed_pt = parse_point(tokens[1]);
-	obj->param.cir.c = pt_sub_vc(passed_pt, scalar_mult(obj->param.cir.n,
-				obj->param.cyl.h / 2));
-	if (obj->param.cir.r < 0.0f)
-	{
-		p_err("Diameter must be positive numbers!");
-		gc_clean();
-		return ;
-	}
+	obj->color = cyl->color;
+	obj->param.cir.n = norm_vector(invert_v(cyl->param.cyl.a));
+	obj->param.cir.r = cyl->param.cyl.r;
+	obj->param.cir.c = cyl->param.cyl.b;
 }
 
-void	create_topcir(t_obj *obj, char **tokens)
+void	create_topcir(t_obj *cyl, t_obj *obj)
 {
-	t_vector	passed_pt;
-
 	obj->type = CIR;
-	obj->color = parse_color(tokens[5]);
-	obj->param.cir.n = norm_vector(parse_point(tokens[2]));
-	obj->param.cir.r = ft_atofloat(tokens[3]) / 2.0f;
-	passed_pt = parse_point(tokens[1]);
-	obj->param.cir.c = v_add(passed_pt, scalar_mult(obj->param.cir.n,
-				obj->param.cyl.h / 2));
-	if (obj->param.cir.r < 0.0f)
-	{
-		p_err("Diameter must be positive numbers!");
-		gc_clean();
-		return ;
-	}
+	obj->color = cyl->color;
+	obj->param.cir.n = norm_vector(cyl->param.cyl.a);
+	obj->param.cir.r = cyl->param.cyl.r;
+	obj->param.cir.c = v_add(cyl->param.cyl.b, \
+						scalar_mult(cyl->param.cyl.a, cyl->param.cyl.h));
 }
 // include obj circle (cir), and for each cyl, create 2 objects circles:
 // ==> create_cir() func
