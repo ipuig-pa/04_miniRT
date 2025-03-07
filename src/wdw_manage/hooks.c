@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/06 13:25:33 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/06 13:59:19 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	key_action(int keysym, t_env *env)
 
 // scroll the wheel to zoom in(UP)/out(DOWN)
 // edge case(0 && PI) check; +-3 is randomly set
-void	mouse_scroll(int button, float x_delta, float y_delta, t_env *env)
+void	mouse_scroll(int button, float xdelta, float ydelta, t_env *env)
 {
-	(void)x_delta;
-	(void)y_delta;
+	(void)xdelta;
+	(void)ydelta;
 	if (button == SCROLL_UP)
 	{
 		if (env->scene->cam.fov <= 0)
