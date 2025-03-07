@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bonus_material.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:52:27 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 15:21:18 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 16:14:06 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@ void	parse_material(t_obj *obj, char *token)
 {
 	int	_mat;
 
+	if (!token)
+	{
+		p_err("Lack of identifier for material, default Matte called!\n");
+		obj->mat.type = MATTE;
+		return ;
+	}
 	_mat = ft_atoi(token);
 	if (_mat == 0 || _mat == 1 || _mat == 2)
 	{
@@ -32,6 +38,25 @@ void	parse_material(t_obj *obj, char *token)
 	{
 		p_err("Invalid identifier for material, default Matte called!\n");
 		obj->mat.type = MATTE;
+	}
+}
+
+void	get_material(t_obj	*obj)
+{
+	if (obj->mat.type == MET)
+	{
+		obj->mat.k_s = 0.9;
+		obj->mat.n_s = 200;
+	}
+	else if (obj->mat.type == PLA)
+	{
+		obj->mat.k_s = 0.5;
+		obj->mat.n_s = 40;
+	}
+	else if (obj->mat.type == MATTE)
+	{
+		obj->mat.k_s = 0.1;
+		obj->mat.n_s = 1;
 	}
 }
 

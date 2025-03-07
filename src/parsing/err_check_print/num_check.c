@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   num_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:42:11 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 15:26:31 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 16:09:15 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,22 +59,20 @@ int	check_para_2(char **tokens, char key)
 {
 	if (key == 's')
 	{
-		if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4] \
-			|| para_nbr(tokens) != 5)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) > 5)
 			return (p_err("Invalid number for Sphere object!"), -1);
 		return (0);
 	}
 	else if (key == 'p')
 	{
-		if (!tokens[1] || !tokens[2] || !tokens[3] || tokens[4] \
-			|| para_nbr != 5)
+		if (!tokens[1] || !tokens[2] || !tokens[3] || para_nbr(tokens) > 5)
 			return (p_err("Invalid number for Plane object!"), -1);
 		return (0);
 	}
 	else if (key == 'y')
 	{
 		if (!tokens[1] || !tokens[2] || !tokens[3] || !tokens[4] || !tokens[5] \
-			|| !tokens[6] || para_nbr(tokens) != 7)
+			|| para_nbr(tokens) > 7)
 			return (p_err("Invalid number for Cylinder object!"), -1);
 		return (0);
 	}

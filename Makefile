@@ -1,4 +1,5 @@
 #minilibx / mlx pending to include!!!!!
+#check that inclusions are proprely handled and make again if some header change, and also for the sources (if we change one source file, for example when changing the main)
 NAME = minirt
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
@@ -29,11 +30,13 @@ SOURCES =	gc_malloc_free.c\
 			parse_color.c\
 			parse_light.c\
 			parse_vector.c\
+			bonus_material.c\
 			parse.c\
 			shape_cylinder.c\
 			shape_plane.c\
 			shape_sphere.c\
 			tokens.c\
+			viewport.c\
 			ray_tracing.c\
 			intersect.c\
 			normal.c\
@@ -41,12 +44,13 @@ SOURCES =	gc_malloc_free.c\
 			drawing.c\
 			transform.c\
 			matrix_utils.c\
-			material.c\
 			hooks.c\
 			hooks_2.c\
 			main.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
+
+INC = inc
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
@@ -59,7 +63,7 @@ MLX = $(MLX_DIR)/libmlx.a
 
 all : $(NAME)
 
-$(NAME) : $(OBJ_DIR)  $(MLX) $(OBJECTS) $(LIBFT)
+$(NAME) : $(SOURCES) $(INC) $(OBJ_DIR) $(MLX) $(OBJECTS) $(LIBFT)
 	cc $(CFLAGS) $(OBJECTS) -L$(MLX_DIR) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -lm -o $(NAME)
 
 $(OBJ_DIR):

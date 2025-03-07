@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 15:30:30 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:47:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,13 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		return (1); // and print error wrong number of args
 	if (!parsing_scene(&env, av[1]))
-		return (1);
+		return (p_err("Invalid argument number!"), 1);
+	create_viewport(env.scene); 
 	init_env(&env);
 	print_all(env.scene);
 	ray_tracer(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
-	// set_hooks(env); //hooks (rotation, translation, etc)
+	set_hooks(&env); //hooks (rotation, translation, etc)
 	mlx_loop(env.mlx);
 	return (0);
 }

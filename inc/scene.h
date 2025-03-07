@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 15:08:24 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:18:52 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,5 @@ typedef struct s_scene
 // t_light		*light;
 
 void	create_viewport(t_scene *scene);
-void	get_material(t_obj	*obj); //maybe move to parsing?!
 
 #endif

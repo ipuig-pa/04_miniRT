@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 15:59:56 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:20:22 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_vector	parse_vector(char *token, char key);
 t_vector	err_vector(void);
 t_vector	norm_vector(t_vector dirct_vec);
 void		parse_material(t_obj *obj, char *token);
+void		get_material(t_obj	*obj);
 
 // main parser
 int			parsing_scene(t_env *env, const char *filename);
