@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 12:32:28 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:12:56 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,16 @@ int			check_para_2(char **tokens, char key);
 bool		valid_color_val(t_color clr);
 t_color		err_color(void);
 t_vector	err_point(void);
-t_vector	parse_point(char *token);
+t_vector	parse_vector(char *token, char key);
 t_vector	err_vector(void);
 t_vector	norm_vector(t_vector dirct_vec);
 
 // main parser
 int			parsing_scene(t_env *env, const char *filename);
 t_color		parse_color(char *token);
-void		parse_ambient(t_amblight amblight, char **tokens);
-void		parse_camera(t_camera camera, char **tokens);
-void		parse_light(t_light light, char **tokens);
+void		parse_ambient(t_amblight *amblight, char **tokens);
+void		parse_camera(t_camera *camera, char **tokens);
+void		parse_light(t_light *light, char **tokens);
 void		parse_cylinder(t_obj *obj, char **tokens);
 int			create_surface(t_obj *obj, char **tokens);
 void		create_topcir(t_obj *cyl, t_obj *obj);

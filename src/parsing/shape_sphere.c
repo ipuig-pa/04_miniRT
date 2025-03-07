@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere.c                                           :+:      :+:    :+:   */
+/*   shape_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:25:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 11:48:01 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 14:46:32 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	parse_sphere(t_obj *obj, char **tokens)
 		return (gc_clean());
 	obj->type = SPH;
 	obj->color = parse_color(tokens[3]);
-	obj->param.sph.c = parse_point(tokens[1]);
+	obj->param.sph.c = parse_vector(tokens[1], 'p');
 	obj->param.sph.r = ft_atofloat(tokens[2]) / 2.0f;
 	if (obj->param.sph.r < 0.0f)
 		return (p_err("Diameter cannot be negative!"), gc_clean());
+	obj->m = identity();
+	obj->mat.type = 0;
+	get_material(obj);
 }
 
 /**

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   plane.c                                            :+:      :+:    :+:   */
+/*   shape_plane.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:37:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/02/27 11:47:13 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/07 14:46:42 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ void	parse_plane(t_obj *obj, char **tokens)
 		return (gc_clean());
 	obj->type = PL;
 	obj->color = parse_color(tokens[3]);
-	obj->param.pl.p = parse_point(tokens[1]);
-	obj->param.pl.n = norm_vector(parse_point(tokens[2]));
+	obj->param.pl.p = parse_vector(tokens[1], 'p');
+	obj->param.pl.n = norm_vector(parse_vector(tokens[2], 'v'));
+	obj->m = identity();
+	obj->mat.type = 0;
+	get_material(obj);
 }

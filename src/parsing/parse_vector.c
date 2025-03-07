@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:21 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 11:38:08 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:43:12 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vector	err_vector(void)
 	return ((t_vector){0.0f, 0.0f, 1.0f, 0.0f});
 }
 
-t_vector	parse_point(char *token)
+t_vector	parse_vector(char *token, char key)
 {
 	t_vector	p;
 	char		**coord;
@@ -41,7 +41,10 @@ t_vector	parse_point(char *token)
 	p.x = ft_atofloat(coord[0]);
 	p.y = ft_atofloat(coord[1]);
 	p.z = ft_atofloat(coord[2]);
-	p.w = 1.0f;
+	if (key == 'p')
+		p.w = 1.0f;
+	else if (key == 'v')
+		p.w = 0.0f;
 	free_double_pointer(coord);
 	return (p);
 }

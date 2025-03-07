@@ -1,7 +1,7 @@
 #minilibx / mlx pending to include!!!!!
 NAME = minirt
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
 SRC_DIR = src
 OBJ_DIR = obj
