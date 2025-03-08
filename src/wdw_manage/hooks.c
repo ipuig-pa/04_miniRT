@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 13:17:08 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 14:45:48 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,11 @@ int	key_action(int key, t_env *env)
 		move_cam(env->scene, key);
 	else if (key == LEFT || key == RIGHT || key == DOWN || key == UP)
 		rotate_cam(env->scene, key);
+	else if (key == OBJ_B || key == OBJ_D || key == OBJ_F || key == OBJ_L \
+			|| key == OBJ_R || key == OBJ_UP)
+		move_obj(key, env->scene);
+	else if (key == KEY_PLUS || key == KEY_MINUS)
+		scale_obj(key, env->scene);
 	else
 		return (0);
 	loq_rerender(env);
@@ -66,8 +71,8 @@ int	mouse_scroll(int button, int x, int y, t_env *env)
 {
 	float	rad;
 
-	(void)xdelta;
-	(void)ydelta;
+	(void)x;
+	(void)y;
 	rad = to_rad(ZOOM);
 	if (button == SCROLL_UP)
 	{
