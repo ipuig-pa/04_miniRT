@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 10:52:36 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:24:20 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,33 @@
 //vector axis: the vectors of up, front and right of viewport
 //rotate(): create 4x4 matrix based on GIVEN rad and axis
 //change vp.up/right/front; vp.o UNCHANGED!
+
+void	move_cam(t_env *env, int key)
+{
+	if (key == W)
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, TRANSL));
+	else if (key == A)
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, -TRANSL));
+	else if (key == S)
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, -TRANSL));
+	else if (key == D)
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, TRANSL));
+}
+
+void	rotate_cam(t_env *env, int key)
+{
+	float	rad;
+
+	rad = ROT * (M_PI / 180.0f);
+	if (key == LEFT)
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
+	else if (key == RIGHT)
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
+	else if (key == DOWN)
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
+	else if (key == UP)
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+}
 
 void	cam_rotate(t_camera *cam, float r, t_vector a)
 {

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 11:01:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:24:11 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,16 @@ void	set_hooks(t_env *env)
  * Yaw (left/right) → Rotate around up axis.
  * Pitch (up/down) → Rotate around right axis
  */
-int	key_action(int keysym, t_env *env)
+int	key_action(int key, t_env *env)
 {
-	float	rad;
-
-	rad = ROT * (M_PI / 180.0f);
-	if (keysym == ESC)
+	if (key == ESC)
 		finish_env(env, 0, "Exit with keyboard ESC!\n");
-	else if (keysym == SPACE)
+	else if (key == SPACE)
 		save_picture();
-	else if (keysym == W)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, TRANSL));
-	else if (keysym == A)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, -TRANSL));
-	else if (keysym == S)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, -TRANSL));
-	else if (keysym == D)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, TRANSL));
-	else if (keysym == LEFT)
-		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
-	else if (keysym == RIGHT)
-		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
-	else if (keysym == DOWN)
-		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
-	else if (keysym == UP)
-		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+	else if (key == W || key == A || key == S || key == D)
+		move_cam(env, key);
+	else if (key == LEFT || key == RIGHT || key == DOWN || key == UP)
+		rotate_cam(env, key);
 	rerender(env);
 	return (0); // check where exactly do I have to retrun and where!?
 }
@@ -82,9 +67,11 @@ int	mouse_scroll(int button, int xdelta, int ydelta, t_env *env)
 			return (0);
 		env->scene->cam.fov += 3;
 	}
-	ray_tracer(env);
+	rerender(env); // think if there is a more efficient way different than rerender!?
 	return (0);
 }
+
+//MOUSE MOVE AND MOUSE CLICK + KEYS + / - and something else for rotation of objects!?!?
 
 // should lock cursor at centre or not??
 // move the mouse itself to rotate Cam(cursor regarded as the cam)

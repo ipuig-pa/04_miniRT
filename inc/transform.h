@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:37:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 10:58:02 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:22:50 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void		o_translate(struct s_obj *obj, t_vector t);
 void		o_scale(struct s_obj *obj, float sx, float sy, float sz);
 
 //cam transforms
+void		move_cam(t_env *env, int keysym);
+void		rotate_cam(t_env *env, int keysym);
 void		cam_translate(struct s_camera *cam, t_vector tv);
 void		cam_rotate(struct s_camera *cam, float r, t_vector a);
 
