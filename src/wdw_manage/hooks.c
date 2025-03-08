@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 14:55:00 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:04:04 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	key_action(int key, t_env *env)
 	else if (key == LEFT || key == RIGHT || key == DOWN || key == UP \
 			|| key == S_LEFT || key == S_RIGHT)
 		rotate_cam(env, key);
+	else if (key == OBJ_B || key == OBJ_D || key == OBJ_F || key == OBJ_L \
+			|| key == OBJ_R || key == OBJ_UP)
+		move_obj(key, env->scene);
+	else if (key == KEY_PLUS || key == KEY_MINUS)
+		scale_obj(key, env->scene);
 	return (0); // check where exactly do I have to retrun and where!?
 }
 

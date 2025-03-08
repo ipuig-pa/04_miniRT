@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 14:48:40 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:04:59 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,3 @@ int	mouse_move(int x, int y, t_env *env)
 	}
 	return (0);//else doing, just return
 }
-
-// int	key_scale(int keysym, t_env *env)
-// {
-// 	if (&env->scene->select_obj)
-// 	{
-		
-// 	}
-// }
