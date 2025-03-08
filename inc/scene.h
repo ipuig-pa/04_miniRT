@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 12:38:16 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 13:19:59 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ typedef struct s_scene
 	t_light		light;
 	t_viewport	vp;
 	t_obj		*obj;
-	t_obj		select_obj;
+	int			select_obj;
 	int			obj_num;
 }			t_scene;
 // t_amblight	*amblight; //erase the * for all of them except *obj???

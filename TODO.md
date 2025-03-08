@@ -81,10 +81,16 @@ HOOKS
 	- Cast a ray through that pixel in the viewport. Identify the object. Shade the object.
 	- apply rotation to the selected object
 	E?- mouse click to select the object
-- Add color changing with RGB!?!?
+	- Double click on object to duplicate?? Or create new white objects with hooks??
+- Add color changing of selected object with RGB!?!?
+- Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
+- 0 to reset to default scene!
+- how to change parameters w, h, of a cylinder separately???
 
 E - Put git clone minilibx
 E - hook to close with the CROSS, as with ESC
+E - if camera / light / etc is not parsed or some other errors, we have to exit the program!? -> is it done like that?
+
 
 - Norminette
 - Delete test files and minilibx

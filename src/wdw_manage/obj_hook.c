@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 13:12:22 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 14:48:40 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,15 @@ int	mouse_click(int button, int x, int y, t_env *env)
 
 	if (button == CLICK_SELECT)
 	{
-		hit.occur = false;
 		cast_ray(&ray, y, x, env->scene);//get ray from coord of obj
 		find_hit(&hit, ray, env->scene, -1);
 		if (hit.occur == true)
 		{
-			env->scene->select_obj = env->scene->obj[hit.obj_id];
+			if (env->scene->select_obj == hit.obj_id)
+				env->scene->select_obj = -1;
+			else
+				env->scene->select_obj = hit.obj_id;
+			loq_rerender(env, false);
 		}
 	}
 	return (0);
@@ -60,22 +63,23 @@ int	mouse_move(int x, int y, t_env *env)
 	float		dlt_x;
 	float		dlt_y;
 
-	dlt_x = x - prev_x;
-	dlt_y = y - prev_y;
-	prev_x = x;
-	prev_y = y;
-	if (&env->scene->select_obj)
+	if (env->scene->select_obj >= 0)
 	{
+		dlt_x = x - prev_x;
+		dlt_y = y - prev_y;
+		prev_x = x;
+		prev_y = y;
 		//to rotate select_obj();
 		//rerender();
+		loq_rerender(env, false);
 	}
 	return (0);//else doing, just return
 }
 
-int	key_scale(int keysym, t_env *env)
-{
-	if (&env->scene->select_obj)
-	{
+// int	key_scale(int keysym, t_env *env)
+// {
+// 	if (&env->scene->select_obj)
+// 	{
 		
-	}
-}
+// 	}
+// }

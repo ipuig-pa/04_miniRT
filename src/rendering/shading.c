@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 11:48:17 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:30:47 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	phong(t_hit *hit, t_ray *ray, t_scene *scene, float cos_theta)
 			spec = col_sc_prod(scene->light.color, scene->light.ratio * scene->obj[hit->obj_id].mat.k_s * powf(cos_theta2, scene->obj[hit->obj_id].mat.n_s));
 	}
 	ray->color = col_add(spec, col_add (diff, amb));
+	if (hit->obj_id == scene->select_obj)
+		ray->color = col_add(ray->color, col_sc_prod(WHITE, 0.2)); //highlight the selected object: use YELLOW instead?!?!
 	(void) cos_theta2; //for testing purpose. DELETE!s
 }
 

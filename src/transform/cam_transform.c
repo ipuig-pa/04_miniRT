@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 13:02:03 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:57:46 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,30 @@ void	move_cam(t_scene *scene, int key)
 		cam_translate(&scene->cam, scalar_mult(scene->vp.front, -TRANSL));
 }
 
-void	rotate_cam(t_scene *scene, int key)
+void	rotate_cam(t_env *env, int key)
 {
 	float	rad;
 
 	rad = to_rad(ROT);
 	if (key == LEFT)
-		cam_rotate(&scene->cam, rad, scene->vp.up);
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
 	else if (key == RIGHT)
-		cam_rotate(&scene->cam, -rad, scene->vp.up);
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
 	else if (key == DOWN)
-		cam_rotate(&scene->cam, -rad, scene->vp.right);
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
 	else if (key == UP)
-		cam_rotate(&scene->cam, rad, scene->vp.right);
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+	else if (key == S_LEFT)
+		vp_rotate(env, -rad, env->scene->vp.front);
+	else if (key == S_RIGHT)
+		vp_rotate(env, rad, env->scene->vp.front);
+}
+
+void	vp_rotate(t_env *env, float r, t_vector a)
+{
+	env->scene->vp.right = v_transform(env->scene->vp.right, rotate(r, a), 'v');
+	env->scene->vp.up = v_transform(env->scene->vp.up, rotate(r, a), 'v');
+	loq_rerender(env, false);
 }
 
 void	cam_rotate(t_camera *cam, float r, t_vector a)

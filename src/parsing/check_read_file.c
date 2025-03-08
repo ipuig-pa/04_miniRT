@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 12:05:48 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:12:04 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	count_lines(const char *content)
 
 	i = 0;
 	if (content == NULL)
-		return (p_err("Fail to read file or Empty file!"), ft_clean(),
+		return (p_err("Fail to read file or Empty file!"), gc_clean(),
 			-1);
 	while (*content)
 	{

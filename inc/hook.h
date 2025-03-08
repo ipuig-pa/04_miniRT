@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 13:14:55 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 14:49:44 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOK_H
 # define HOOK_H
+# include <stdbool.h>
 
 # define ESC 53
 # define SPACE 49
@@ -25,6 +26,8 @@
 # define RIGHT 124
 # define DOWN 125
 # define UP 126
+# define S_LEFT 43
+# define S_RIGHT 47
 # define CLICK_SELECT 1
 # define SCROLL_DOWN 4
 # define SCROLL_UP 5
@@ -35,6 +38,8 @@ int		mouse_scroll(int button, int x, int y, t_env *env);
 int		mouse_click(int button, int x, int y, t_env *env);
 int		mouse_move(int x, int y, t_env *env);
 int		key_action(int keysym, t_env *env);
-void	save_picture(void); // to implement!?!??
+void	loq_rerender(t_env *env, bool vp);
+void	hiq_rerender(t_env *env);
+
 
 #endif

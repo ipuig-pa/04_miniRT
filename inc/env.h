@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:13:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 12:09:57 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:53:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_data
 	int		endian;
 	// double	delta_x;
 	// double	delta_y;
-	// int		mouse_select; these 3 var is for mouse scorolling event
+	// int		mouse_select; these 3 var is for mouse scorolling event (CAN WE DELETE THEM FROM HERE????)
 }			t_data;
 
 typedef struct s_env
