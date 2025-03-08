@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 11:24:20 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:02:03 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,31 +17,35 @@
 //rotate(): create 4x4 matrix based on GIVEN rad and axis
 //change vp.up/right/front; vp.o UNCHANGED!
 
-void	move_cam(t_env *env, int key)
+void	move_cam(t_scene *scene, int key)
 {
 	if (key == W)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, TRANSL));
+		cam_translate(&scene->cam, scalar_mult(scene->vp.up, TRANSL));
 	else if (key == A)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, -TRANSL));
+		cam_translate(&scene->cam, scalar_mult(scene->vp.right, -TRANSL));
 	else if (key == S)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, -TRANSL));
+		cam_translate(&scene->cam, scalar_mult(scene->vp.up, -TRANSL));
 	else if (key == D)
-		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, TRANSL));
+		cam_translate(&scene->cam, scalar_mult(scene->vp.right, TRANSL));
+	else if (key == Q)
+		cam_translate(&scene->cam, scalar_mult(scene->vp.front, TRANSL));
+	else if (key == E)
+		cam_translate(&scene->cam, scalar_mult(scene->vp.front, -TRANSL));
 }
 
-void	rotate_cam(t_env *env, int key)
+void	rotate_cam(t_scene *scene, int key)
 {
 	float	rad;
 
-	rad = ROT * (M_PI / 180.0f);
+	rad = to_rad(ROT);
 	if (key == LEFT)
-		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
+		cam_rotate(&scene->cam, rad, scene->vp.up);
 	else if (key == RIGHT)
-		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
+		cam_rotate(&scene->cam, -rad, scene->vp.up);
 	else if (key == DOWN)
-		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
+		cam_rotate(&scene->cam, -rad, scene->vp.right);
 	else if (key == UP)
-		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+		cam_rotate(&scene->cam, rad, scene->vp.right);
 }
 
 void	cam_rotate(t_camera *cam, float r, t_vector a)

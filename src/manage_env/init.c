@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:26:09 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 14:33:06 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:10:07 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	init_env(t_env *env)
 					&env->img.line_length, &env->img.endian);
 	if (!env->img.addr)
 		finish_env(env, 1, "Environment can not be initalized");
+	env->res.res = 100;
 	//paint_background(env, BLACK);
 }
 
@@ -34,7 +35,7 @@ void	init_env(t_env *env)
 //Add "mlx_destroy_display(env->mlx);" before freeing in Linux environments
 void	finish_env(t_env *env, int return_val, char *str)
 {
-	printf("%s\n", str);//use perror or sterror???
+	p_err(str);
 	if (env)
 	{
 		if (env->img.img)

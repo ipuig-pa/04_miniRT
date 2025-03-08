@@ -6,40 +6,40 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 09:36:17 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:26:12 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //anything related with the tracing of the rays and render of the image
 #include "minirt.h"
 
-static void	do_some_trans(t_env *env) // just for testing purposes, delete from here
-{
-	t_vector	t_vect;
+// static void	do_some_trans(t_env *env) // just for testing purposes, delete from here
+// {
+// 	t_vector	t_vect;
 
-	t_vect = v_create(2.0, 0.0, 0.0, 0);
-	// o_rotate(&env->scene->obj[5], 0.7, env->scene->vp.up);
-	//o_scale(&env->scene->obj[5], 2, 2, 2);
-	// // env->scene->obj[0].m = m_multiply(m_multiply(translate(env->scene->obj[7].param.sph.c),scale(3, 3, 3)),translate(invert_v(env->scene->obj[7].param.sph.c)));
-	// // env->scene->obj[5].m = translate(t_vect);
-	// // env->scene->obj[6].m = translate(t_vect);
-	// // env->scene->obj[7].m = translate(t_vect);
-	// //env->scene->obj[5].m = rotate(-0.7, env->scene->vp.front);
-	// //env->scene->obj[5].m = rotate(-0.1, env->scene->vp.up);
-	// //env->scene->obj[6].m = rotate(-0.1, env->scene->vp.up);
-	// //env->scene->obj[7].m = rotate(-0.1, env->scene->vp.up);
-	// // env->scene->obj[5].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.b),rotate(-2, env->scene->vp.up)),translate(invert_v(env->scene->obj[5].param.cyl.b)));
-	// // env->scene->obj[6].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.b),rotate(-2, env->scene->vp.up)),translate(invert_v(env->scene->obj[5].param.cyl.b)));
-	// // env->scene->obj[7].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.b),rotate(-2, env->scene->vp.up)),translate(invert_v(env->scene->obj[5].param.cyl.b)));
-	// env->scene->obj[5].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.c),scale(2,2,2)),translate(invert_v(env->scene->obj[5].param.cyl.c)));
-	// // env->scene->obj[6].m = m_multiply(m_multiply(translate(env->scene->obj[6].param.cir.c),scale(2,2,2)),translate(v_add(invert_v(env->scene->obj[6].param.cir.c),scalar_mult(env->scene->obj[5].param.cyl.a, env->scene->obj[5].param.cyl.h))));
-	// // env->scene->obj[7].m = m_multiply(m_multiply(translate(env->scene->obj[7].param.cir.c),scale(2,2,2)),translate(v_add(invert_v(env->scene->obj[7].param.cir.c),scalar_mult(env->scene->obj[5].param.cyl.a, -env->scene->obj[5].param.cyl.h))));
-	// //env->scene->obj[4].m = rotate(0.7, env->scene->vp.up);
-	// //env->scene->obj[4].m = m_multiply(m_multiply(translate(env->scene->obj[4].param.pl.p),rotate(0.7, env->scene->vp.up)),translate(invert_v(env->scene->obj[4].param.pl.p)));
-	// //env->scene->obj[4].m = translate(t_vect);
-	(void) env;
-	(void) t_vect;
-}
+// 	t_vect = v_create(2.0, 0.0, 0.0, 0);
+// 	// o_rotate(&env->scene->obj[5], 0.7, env->scene->vp.up);
+// 	//o_scale(&env->scene->obj[5], 2, 2, 2);
+// 	// // env->scene->obj[0].m = m_multiply(m_multiply(translate(env->scene->obj[7].param.sph.c),scale(3, 3, 3)),translate(invert_v(env->scene->obj[7].param.sph.c)));
+// 	// // env->scene->obj[5].m = translate(t_vect);
+// 	// // env->scene->obj[6].m = translate(t_vect);
+// 	// // env->scene->obj[7].m = translate(t_vect);
+// 	// //env->scene->obj[5].m = rotate(-0.7, env->scene->vp.front);
+// 	// //env->scene->obj[5].m = rotate(-0.1, env->scene->vp.up);
+// 	// //env->scene->obj[6].m = rotate(-0.1, env->scene->vp.up);
+// 	// //env->scene->obj[7].m = rotate(-0.1, env->scene->vp.up);
+// 	// // env->scene->obj[5].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.b),rotate(-2, env->scene->vp.up)),translate(invert_v(env->scene->obj[5].param.cyl.b)));
+// 	// // env->scene->obj[6].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.b),rotate(-2, env->scene->vp.up)),translate(invert_v(env->scene->obj[5].param.cyl.b)));
+// 	// // env->scene->obj[7].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.b),rotate(-2, env->scene->vp.up)),translate(invert_v(env->scene->obj[5].param.cyl.b)));
+// 	// env->scene->obj[5].m = m_multiply(m_multiply(translate(env->scene->obj[5].param.cyl.c),scale(2,2,2)),translate(invert_v(env->scene->obj[5].param.cyl.c)));
+// 	// // env->scene->obj[6].m = m_multiply(m_multiply(translate(env->scene->obj[6].param.cir.c),scale(2,2,2)),translate(v_add(invert_v(env->scene->obj[6].param.cir.c),scalar_mult(env->scene->obj[5].param.cyl.a, env->scene->obj[5].param.cyl.h))));
+// 	// // env->scene->obj[7].m = m_multiply(m_multiply(translate(env->scene->obj[7].param.cir.c),scale(2,2,2)),translate(v_add(invert_v(env->scene->obj[7].param.cir.c),scalar_mult(env->scene->obj[5].param.cyl.a, -env->scene->obj[5].param.cyl.h))));
+// 	// //env->scene->obj[4].m = rotate(0.7, env->scene->vp.up);
+// 	// //env->scene->obj[4].m = m_multiply(m_multiply(translate(env->scene->obj[4].param.pl.p),rotate(0.7, env->scene->vp.up)),translate(invert_v(env->scene->obj[4].param.pl.p)));
+// 	// //env->scene->obj[4].m = translate(t_vect);
+// 	(void) env;
+// 	(void) t_vect;
+// }
 
 //choose if float or double, to have different function prototype in math library function
 
@@ -50,25 +50,24 @@ void	ray_tracer(t_env *env)
 	t_ray	ray;
 	t_hit	hit;
 
-	do_some_trans(env); // just for testing purposes, delete from here
+	// do_some_trans(env); // just for testing purposes, delete from here
+	handle_resolution(env);
 	i = 0;
 	while (i < WINDOW_HEIGHT)
 	{
 		j = 0;
 		while (j < WINDOW_WIDTH)
 		{
-			hit.occur = false;
 			cast_ray(&ray, i, j, env->scene);
-			find_hit(&hit, ray, env->scene, -1);
-			//how to distinguish if it hits the light
+			find_hit(&hit, ray, env->scene, -1); //how to distinguish if it hits the light?
 			if (hit.occur == true)
 			{
 				shading(&hit, &ray, env->scene);
 				my_pixel_put(env, j, i, convert_rgba(&ray.color)); //how to handle if it hits nothing, we have to put the background?
 			}
-			j++;
+			j += env->res.x_step;
 		}
-		i++;
+		i += env->res.y_step;
 	}
 }
 
@@ -91,3 +90,8 @@ void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 	// ray->end = false;
 }
 
+void	handle_resolution(t_env	*env)
+{
+	env->res.x_step = WINDOW_WIDTH / (WINDOW_WIDTH * env->res.res / 100);
+	env->res.y_step = WINDOW_HEIGHT / (WINDOW_HEIGHT * env->res.res / 100);
+}

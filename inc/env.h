@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:13:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 12:29:24 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:09:57 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # define ASPECT_RATIO //or use one depending on the other????
 
 typedef struct s_scene t_scene;
+
+typedef struct s_resol
+{
+	int	res;
+	int	x_step;
+	int	y_step;
+}			t_resol;
 
 typedef struct s_data
 {
@@ -33,11 +40,12 @@ typedef struct s_data
 
 typedef struct s_env
 {
-	char	*rt_scene_file;
+	char	*rt_scene_file; //is it used or we can erase it?!?!
 	void	*mlx;
 	void	*mlx_window;
 	t_data	img;
 	t_scene	*scene;
+	t_resol	res;
 }			t_env;
 
 void	init_env(t_env *env);

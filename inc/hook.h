@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 10:29:53 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:55:36 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # define A 0
 # define S 1
 # define D 2
+# define Q 12
+# define E 14
 # define LEFT 123
 # define RIGHT 124
 # define DOWN 125

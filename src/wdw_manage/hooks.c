@@ -6,15 +6,23 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 11:24:11 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:05:34 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static void	rerender(t_env *env)
+static void	hiq_rerender(t_env *env)
+{
+	env->res.res = 100;
+	ray_tracer(env);
+	mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
+}
+
+static void	loq_rerender(t_env *env)
 {
 	create_viewport(env->scene);
+	env->res.res = 10;
 	ray_tracer(env);
 	mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
 }
@@ -39,12 +47,15 @@ int	key_action(int key, t_env *env)
 	if (key == ESC)
 		finish_env(env, 0, "Exit with keyboard ESC!\n");
 	else if (key == SPACE)
-		save_picture();
-	else if (key == W || key == A || key == S || key == D)
-		move_cam(env, key);
+		return (hiq_rerender(env), 0);
+	else if (key == W || key == A || key == S || key == D \
+			|| key == Q || key == E)
+		move_cam(env->scene, key);
 	else if (key == LEFT || key == RIGHT || key == DOWN || key == UP)
-		rotate_cam(env, key);
-	rerender(env);
+		rotate_cam(env->scene, key);
+	else
+		return (0);
+	loq_rerender(env);
 	return (0); // check where exactly do I have to retrun and where!?
 }
 
@@ -53,21 +64,26 @@ int	key_action(int key, t_env *env)
 //if its edge case, return(0) and nothing will be implemented
 int	mouse_scroll(int button, int xdelta, int ydelta, t_env *env)
 {
+	float	rad;
+
 	(void)xdelta;
 	(void)ydelta;
+	rad = to_rad(ZOOM);
 	if (button == SCROLL_UP)
 	{
-		if (env->scene->cam.fov <= 0)
+		if ((env->scene->cam.fov - rad) <= 0)
 			return (0);
-		env->scene->cam.fov -= 3;
+		env->scene->cam.fov -= rad;
 	}
 	else if (button == SCROLL_DOWN)
 	{
-		if (env->scene->cam.fov >= M_PI)
+		if ((env->scene->cam.fov + rad) >= M_PI)
 			return (0);
-		env->scene->cam.fov += 3;
+		env->scene->cam.fov += rad;
 	}
-	rerender(env); // think if there is a more efficient way different than rerender!?
+	else
+		return (0);
+	loq_rerender(env);
 	return (0);
 }
 

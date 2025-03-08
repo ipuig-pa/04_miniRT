@@ -72,3 +72,20 @@ TOGETHER DECIDE:
 - Bonus:
 	- Include light color
 	- Take from the scene file if we are introducing a filter??
+
+HOOKS
+<!-- - Scroll mouse has some errors!?!? -->
+<!-- - Increase efficency (prerender with bad quality and when space press, rerender correctly) -->
+- Rotation of objects:
+	E?- Mouse click to select, 0 to release (shade in white the selected object!?!?)
+	- Cast a ray through that pixel in the viewport. Identify the object. Shade the object.
+	- apply rotation to the selected object
+	E?- mouse click to select the object
+- Add color changing with RGB!?!?
+
+E - Put git clone minilibx
+E - hook to close with the CROSS, as with ESC
+
+- Norminette
+- Delete test files and minilibx
+- Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program

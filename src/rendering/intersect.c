@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 10:09:50 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 11:48:41 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 	//t_ray	t_ray;
 
 	i = 0;
+	hit->occur = false;
 	//what about planes exactly coincident with the ray? (line contained in a plane)
 	while (i < scene->obj_num)//optimize somehow to not iterate through ALL the objects??
 	{

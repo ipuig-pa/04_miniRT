@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:37:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 11:22:50 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 13:01:21 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 
 # define TRANSL 1.0f
 # define ROT 15.0f
+# define ZOOM 15.0f
 
 //forward declarations
 struct	s_obj;
 struct	s_camera;
+struct	s_scene;
 
 typedef struct s_matrix4
 {
@@ -47,8 +49,8 @@ void		o_translate(struct s_obj *obj, t_vector t);
 void		o_scale(struct s_obj *obj, float sx, float sy, float sz);
 
 //cam transforms
-void		move_cam(t_env *env, int keysym);
-void		rotate_cam(t_env *env, int keysym);
+void		move_cam(struct s_scene *scene, int keysym);
+void		rotate_cam(struct s_scene *scene, int keysym);
 void		cam_translate(struct s_camera *cam, t_vector tv);
 void		cam_rotate(struct s_camera *cam, float r, t_vector a);
 
