@@ -1,40 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hooks_2.c                                          :+:      :+:    :+:   */
+/*   cam_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 10:44:16 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:52:36 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-
 //⬆️⬇️ => pitch; ⬅️➡️ => yaw(rotate along vp.up axis)
 //vector axis: the vectors of up, front and right of viewport
 //rotate(): create 4x4 matrix based on GIVEN rad and axis
 //change vp.up/right/front; vp.o UNCHANGED!
-void	rotate_cam(t_viewport *vp, float rad, t_vector axis)
-{
-	t_matrix4	rot_m;
 
-	rot_m = rotate(rad, axis);
-	vp->front = v_transform(vp->front, rot_m);
-	vp->right = v_transform(vp->right, rot_m);
-	vp->up = v_transform(vp->up, rot_m);
+void	cam_rotate(t_camera *cam, float r, t_vector a)
+{
+	t_vector	ref;
+
+	ref = cam->p;
+	cam->v = v_transform(cam->v, m_multiply(m_multiply(translate(ref),rotate(r,a)),translate(invert_v(ref))), 'v');
 }
 
 // float: the sensitivity/speed of move
 //change vp.o; vp-.up/right/front UNCHANGED!
-void	move_cam(t_viewport *vp, t_vector direct, float distance)
+void	cam_translate(t_camera *cam, t_vector tv)
 {
-	t_vector	mv;
-
-	mv = scalar_mult(direct, distance);
-	vp->o = v_add(vp->o, mv);
+	cam->p = v_transform(cam->p, translate(tv), 'p');
 }
 
 //TO IMPLEMENT!!!

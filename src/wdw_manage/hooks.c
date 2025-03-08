@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 13:50:35 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 11:01:22 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+static void	rerender(t_env *env)
+{
+	create_viewport(env->scene);
+	ray_tracer(env);
+	mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
+}
 
 // call AFTER ini_env()
 // mlx_hook format: mlx_hook(wdw, event, mask, function, param);
@@ -31,28 +38,28 @@ int	key_action(int keysym, t_env *env)
 {
 	float	rad;
 
-	rad = 15.0f * (M_PI / 180.0f);
+	rad = ROT * (M_PI / 180.0f);
 	if (keysym == ESC)
 		finish_env(env, 0, "Exit with keyboard ESC!\n");
 	else if (keysym == SPACE)
 		save_picture();
 	else if (keysym == W)
-		move_cam(&env->scene->vp, env->scene->vp.front, 0.2f);
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, TRANSL));
 	else if (keysym == A)
-		move_cam(&env->scene->vp, env->scene->vp.right, -0.2f);
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, -TRANSL));
 	else if (keysym == S)
-		move_cam(&env->scene->vp, env->scene->vp.front, -0.2f);
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.up, -TRANSL));
 	else if (keysym == D)
-		move_cam(&env->scene->vp, env->scene->vp.right, 0.2f);
+		cam_translate(&env->scene->cam, scalar_mult(env->scene->vp.right, TRANSL));
 	else if (keysym == LEFT)
-		rotate_cam(&env->scene->vp, -rad, env->scene->vp.up);
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
 	else if (keysym == RIGHT)
-		rotate_cam(&env->scene->vp, rad, env->scene->vp.up);
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
 	else if (keysym == DOWN)
-		rotate_cam(&env->scene->vp, -rad, env->scene->vp.right);
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
 	else if (keysym == UP)
-		rotate_cam(&env->scene->vp, rad, env->scene->vp.right);
-	ray_tracer(env);
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+	rerender(env);
 	return (0); // check where exactly do I have to retrun and where!?
 }
 

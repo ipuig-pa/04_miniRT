@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/06 13:19:58 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:50:55 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	normal_sph(t_hit *hit, t_sph *sph, t_scene *scene)
 	hit->normal = scalar_div(v_subt(hit->p, sph->c), sph->r);
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
 		hit->normal = unit_v(hit->normal); //make unit vector after transformatio!?!?
 	}
 }
@@ -28,7 +28,7 @@ static void	normal_pl(t_hit *hit, t_pl *pl, t_scene *scene)
 	hit->normal = pl->n; // if it is already unit vector, which should be for intersect costheta, no need to devide for modulus
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
 		hit->normal = unit_v(hit->normal);  //make unit vector after transformation??!?
 	}
 	if (dot_prod(v_subt(scene->cam.p, hit->real_p), hit->normal) < 0)
@@ -45,7 +45,7 @@ static void	normal_cyl(t_hit *hit, t_cyl *cyl, t_scene *scene)
 	hit->normal = unit_v(cross_prod(cyl->a, tan));
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
 		hit->normal = unit_v(hit->normal);  //make unit vector after transformation??!?
 	}
 }
@@ -55,7 +55,7 @@ static void	normal_cir(t_hit *hit, t_cir *cir, t_scene *scene)
 	hit->normal = cir->n;
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
-		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m);
+		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
 		hit->normal = unit_v(hit->normal);  //make unit vector after transformation??!?
 	}
 	if (dot_prod(v_subt(scene->cam.p, hit->real_p), hit->normal) < 0)

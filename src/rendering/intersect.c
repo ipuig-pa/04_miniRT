@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 15:55:56 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:09:50 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h) //allocate the hit i
 			{
 				// t_ray = r_transform(ray, m_invert(scene->obj[i].m));
 				// printf("i:		%i\nT_RAY POS	x:%f, y:%f, z:%f, w:%f\nT_RAY DIR	x:%f, y:%f, z:%f, w:%f\n\n", i, t_ray.o.x, t_ray.o.y, t_ray.o.z, t_ray.o.w, t_ray.d.x, t_ray.d.y, t_ray.d.z, t_ray.d.w);
-				calc_intersect(r_transform(ray, m_invert(scene->obj[i].m)), hit, scene, i);
+				calc_intersect(r_transform(ray, scene->obj[i].inv_m), hit, scene, i);
 			}
 			else
 				calc_intersect(ray, hit, scene, i); //pass transformed ray always if we change to obj space always???? (multiplied by the t_m of the object, if there was any transformation)

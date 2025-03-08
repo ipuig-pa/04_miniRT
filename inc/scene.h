@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 16:18:52 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:48:02 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,7 @@ typedef struct s_obj
 	t_color		color;
 	t_material	mat;
 	t_matrix4	m; //transformation matrix to apply to the ray when checking if intersection occur
+	t_matrix4	inv_m; //transformation matrix to apply to the ray when checking if intersection occur
 }			t_obj;
 
 typedef struct s_scene

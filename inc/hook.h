@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 13:50:46 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 10:29:53 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ void	set_hooks(t_env *env);
 int		mouse_scroll(int button, int xdelta, int ydelta, t_env *env);
 int		mouse_move(int xdelta, int ydelta, t_env *env);
 int		key_action(int keysym, t_env *env);
-void	rotate_cam(t_viewport *vp, float rad, t_vector axis);
-void	move_cam(t_viewport *vp, t_vector direct, float distance);
 void	save_picture(void); // to implement!?!??
 
 #endif

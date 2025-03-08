@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/06 15:08:13 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 10:22:14 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 
 	cos_theta = 0;
 	if (scene->obj[hit->obj_id].m.exist == true)
-		hit->real_p = p_transform(hit->p, scene->obj[hit->obj_id].m);
+		hit->real_p = v_transform(hit->p, scene->obj[hit->obj_id].m, 'p');
 	else
 		hit->real_p = hit->p;
 	ray->o = hit->real_p;
