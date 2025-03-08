@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 16:15:43 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 18:48:26 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,21 @@ void	o_rotate(t_obj *obj, float r, t_vector a)
 	else if (obj->type == PL)
 		ref = obj->param.pl.p;
 	else if (obj->type == CYL)
-	{
 		ref = obj->param.cyl.c;
-		obj[1].m = m_multiply(m_multiply(m_multiply(translate(ref),rotate(r,a)),translate(invert_v(ref))), obj->m);
-		obj[1].m.exist = true;
-		obj[2].m = m_multiply(m_multiply(m_multiply(translate(ref),rotate(r,a)),translate(invert_v(ref))), obj->m);
-		obj[2].m.exist = true;
-	}
 	else if (obj->type == CIR)
 		ref = obj->param.cir.c;
-	obj->m = m_multiply(m_multiply(m_multiply(translate(ref),rotate(r,a)),translate(invert_v(ref))), obj->m);
-	obj->inv_m = m_invert(obj->m);
+	obj->m = m_multiply(\
+				m_multiply(\
+					m_multiply(translate(ref), rotate(r, a)), \
+					translate(invert_v(ref))), \
+				obj->m);
 	obj->m.exist = true;
+	obj->inv_m = m_invert(obj->m);
+	if (obj->type == CYL)
+	{
+		obj[1].m = obj->m;
+		obj[2].m = obj->m;
+	}
 }
 
 void	o_scale(t_obj *obj, float sx, float sy, float sz)

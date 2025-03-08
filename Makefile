@@ -41,6 +41,7 @@ SOURCES =	gc_malloc_free.c\
 			intersect.c\
 			normal.c\
 			shading.c\
+			phong.c\
 			drawing.c\
 			transform.c\
 			obj_transform.c\

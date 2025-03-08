@@ -15,7 +15,7 @@ E -> initialize material properties!? -->
 <!-- E -> create port after parsing? -->
 -> resize circles according to cylinder height and width!?
 - Store all hits and not only the most proximal??? For reflection?
-- Store all pixel hits to handle more efficiently light changes
+<!-- - Store all pixel hits to handle more efficiently light changes -->
 - need to normalize vector after transformations?!?!! (try with different cases!)
 
 <!-- - Rotations and scaling will be done in relation to the center of the object or the given point for planes!? -->
@@ -93,9 +93,10 @@ E - Put git clone minilibx
 E - hook to close with the CROSS, as with ESC
 E - if camera / light / etc is not parsed or some other errors, we have to exit the program!? -> is it done like that?
 
-08/03/2025
-- Circles have one more param that is the cyl to which they are linked (use in parsing, hooks, shading, etc)
+09/03/2025
 - Rotation of objects with mouse
+- Solve problems with < > after having translate the camera -> when translating it creates the viewport again by the default orientation, not the one of the new viewport. Delete the possibility to rotate viewport alone? 
+- light hooks / transformations
 
 - Norminette
 - Delete test files and minilibx

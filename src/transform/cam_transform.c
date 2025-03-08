@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 16:12:38 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 19:01:32 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	vp_rotate(t_env *env, float r, t_vector a)
 	env->scene->vp.right = v_transform(env->scene->vp.right, rotate(r, a), 'v');
 	env->scene->vp.up = v_transform(env->scene->vp.up, rotate(r, a), 'v');
 	env->scene->vp.o = \
-		v_transform(env->scene->vp.o, \
+		v_transform(\
+			env->scene->vp.o, \
 			m_multiply(\
 				m_multiply(\
 					translate(ref), \
@@ -36,7 +37,8 @@ void	cam_rotate(t_env *env, t_camera *cam, float r, t_vector a)
 
 	ref = cam->p;
 	cam->v = \
-		v_transform(cam->v, \
+		v_transform(\
+			cam->v, \
 			m_multiply(\
 				m_multiply(\
 					translate(ref), \
