@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 11:24:11 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 12:34:32 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ int	key_action(int key, t_env *env)
 // scroll the wheel to zoom in(UP)/out(DOWN)
 // edge case(0 && PI) check; +-3 is randomly set
 //if its edge case, return(0) and nothing will be implemented
-int	mouse_scroll(int button, int xdelta, int ydelta, t_env *env)
+int	mouse_scroll(int button, int x, int y, t_env *env)
 {
-	(void)xdelta;
-	(void)ydelta;
+	(void)x;
+	(void)y;
 	if (button == SCROLL_UP)
 	{
 		if (env->scene->cam.fov <= 0)
@@ -68,23 +68,5 @@ int	mouse_scroll(int button, int xdelta, int ydelta, t_env *env)
 		env->scene->cam.fov += 3;
 	}
 	rerender(env); // think if there is a more efficient way different than rerender!?
-	return (0);
-}
-
-//MOUSE MOVE AND MOUSE CLICK + KEYS + / - and something else for rotation of objects!?!?
-
-// should lock cursor at centre or not??
-// move the mouse itself to rotate Cam(cursor regarded as the cam)
-int	mouse_move(int xdelta, int ydelta, t_env *env)
-{
-	static int	origin_x = (float)WINDOW_WIDTH / 2;
-	static int	origin_y = (float)WINDOW_HEIGHT / 2;
-
-	//TO IMPLEMENT WHAT IS NEEDED!!!
-	(void) origin_x;
-	(void) origin_y;
-	(void) xdelta;
-	(void) ydelta;
-	(void) env;
 	return (0);
 }
