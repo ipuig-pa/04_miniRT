@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_hook.c                                         :+:      :+:    :+:   */
+/*   obj_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 15:04:59 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:14:04 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,43 +35,40 @@
  * MOVE: to rot
  * KEYS: +/- tp scale
 */
-int	mouse_click(int button, int x, int y, t_env *env)
+void	scale_obj(t_env *env, int key)
 {
-	t_ray	ray;
-	t_hit	hit;
+	t_obj	*obj;
 
-	if (button == CLICK_SELECT)
+	if (env->scene->select_obj != -1)
 	{
-		cast_ray(&ray, y, x, env->scene);//get ray from coord of obj
-		find_hit(&hit, ray, env->scene, -1);
-		if (hit.occur == true)
-		{
-			if (env->scene->select_obj == hit.obj_id)
-				env->scene->select_obj = -1;
-			else
-				env->scene->select_obj = hit.obj_id;
-			loq_rerender(env, false);
-		}
-	}
-	return (0);
-}
-
-int	mouse_move(int x, int y, t_env *env)
-{
-	static int	prev_x = WINDOW_WIDTH / 2;
-	static int	prev_y = WINDOW_HEIGHT / 2;
-	float		dlt_x;
-	float		dlt_y;
-
-	if (env->scene->select_obj >= 0)
-	{
-		dlt_x = x - prev_x;
-		dlt_y = y - prev_y;
-		prev_x = x;
-		prev_y = y;
-		//to rotate select_obj();
-		//rerender();
+		obj = &env->scene->obj[env->scene->select_obj];
+		if (key == KEY_PLUS)
+			o_scale(obj, SCALE, SCALE, SCALE);
+		else if (key == KEY_MINUS)
+			o_scale(obj, 1.0 / SCALE, 1.0 / SCALE, 1.0 / SCALE);
 		loq_rerender(env, false);
 	}
-	return (0);//else doing, just return
+}
+
+void	move_obj(t_env *env, int key)
+{
+	t_obj	*obj;
+
+	if (env->scene->select_obj != -1)
+	{
+		obj = &env->scene->obj[env->scene->select_obj];
+		if (key == OBJ_F)
+			o_translate(obj, scalar_mult(env->scene->vp.front, -TRANSL));
+		else if (key == OBJ_B)
+			o_translate(obj, scalar_mult(env->scene->vp.front, TRANSL));
+		else if (key == OBJ_UP)
+			o_translate(obj, scalar_mult(env->scene->vp.up, TRANSL));
+		else if (key == OBJ_D)
+			o_translate(obj, scalar_mult(env->scene->vp.up, -TRANSL));
+		else if (key == OBJ_R)
+			o_translate(obj, scalar_mult(env->scene->vp.right, TRANSL));
+		else if (key == OBJ_L)
+			o_translate(obj, scalar_mult(env->scene->vp.right, -TRANSL));
+		loq_rerender(env, false);
+	}
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   obj_transforms.c                                   :+:      :+:    :+:   */
+/*   obj_transform.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 10:20:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:15:43 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ void	o_translate(t_obj *obj, t_vector t)
 	obj->m = m_multiply(translate(t), obj->m);
 	obj->inv_m = m_invert(obj->m);
 	obj->m.exist = true;
+	if (obj->type == CYL)
+	{
+		obj[1].m = obj->m;
+		obj[2].m = obj->m;
+	}
 }
 
 void	o_rotate(t_obj *obj, float r, t_vector a)

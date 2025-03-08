@@ -6,13 +6,15 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 15:02:31 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 16:00:07 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOK_H
 # define HOOK_H
 # include <stdbool.h>
+# include "env.h"
+# include "scene.h"
 
 # define ESC 53
 # define SPACE 49
@@ -37,18 +39,26 @@
 # define OBJ_B 92 //9 back
 # define OBJ_UP 91 //8 up
 # define OBJ_D 87 //5 down
-# define OBJ_L 86 //4 left
 # define OBJ_R 88 //6 right
+# define OBJ_L 86 //4 left
 
 void	set_hooks(t_env *env);
-int		mouse_scroll(int button, int x, int y, t_env *env);
-int		mouse_click(int button, int x, int y, t_env *env);
-int		mouse_move(int x, int y, t_env *env);
 int		key_action(int keysym, t_env *env);
-void	scale_obj(int keysym, t_scene *scene);
-void	move_obj(int keysym, t_scene *scene);
+int		mouse_button(int button, int x, int y, t_env *env);
+void	mouse_scroll(int button, t_env *env);
+void	mouse_click(int x, int y, t_env *env);
+int		mouse_move(int x, int y, t_env *env);
+
+//object hooks
+void	move_obj(t_env *env, int key);
+void	scale_obj(t_env *env, int key);
+
+//camera hooks
+void	move_cam(t_env *env, t_scene *scene, int key);
+void	rotate_cam(t_env *env, int keysym);
+
+//rerender
 void	loq_rerender(t_env *env, bool vp);
 void	hiq_rerender(t_env *env);
-
 
 #endif

@@ -7,7 +7,7 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 SRC_DIR = src
 OBJ_DIR = obj
 
-VPATH =	$(SRC_DIR):$(SRC_DIR)/gc:$(SRC_DIR)/linear_algebra:$(SRC_DIR)/manage_env:$(SRC_DIR)/parsing:$(SRC_DIR)/parsing/err_check_print:$(SRC_DIR)/rendering:$(SRC_DIR)/transform:$(SRC_DIR)/wdw_manage
+VPATH =	$(SRC_DIR):$(SRC_DIR)/gc:$(SRC_DIR)/math_utils:$(SRC_DIR)/manage_env:$(SRC_DIR)/parsing:$(SRC_DIR)/parsing/err_check_print:$(SRC_DIR)/rendering:$(SRC_DIR)/transform:$(SRC_DIR)/wdw_manage
 
 SOURCES =	gc_malloc_free.c\
 			gc_error.c\
@@ -19,8 +19,8 @@ SOURCES =	gc_malloc_free.c\
 			gc_strtrim.c\
 			gc_substr.c\
 			linalg_utils.c\
+			math_utils.c\
 			init.c\
-			clean_err.c\
 			num_check.c\
 			print_err.c\
 			check_read_file.c\
@@ -46,7 +46,12 @@ SOURCES =	gc_malloc_free.c\
 			obj_transform.c\
 			cam_transform.c\
 			matrix_utils.c\
-			hooks.c\
+			set_hooks.c\
+			mouse_hooks.c\
+			key_hooks.c\
+			obj_hooks.c\
+			cam_hooks.c\
+			rerender.c\
 			main.c
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)

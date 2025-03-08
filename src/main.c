@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 14:30:58 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:11:02 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 
 static void	print_instruct(void)
 {
-	printf("TO DO\n"); //WRITE INSTRUCTIONS ON HOOKS
+	printf("TO DO\n"); //WRITE INSTRUCTIONS ON HOOKS, AND ON RT STRCUTRE, INCLUDING MATERIAL HANDLING (also in a README file)
 }
 
 int	main(int ac, char **av)

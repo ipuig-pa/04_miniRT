@@ -62,6 +62,7 @@ MORE
 EDGE CASES:
 - light inside an object (illuminated from the inside?)
 - camera inside an object??
+- plane in the middle of the light!!!! Has some "pixelations", as some is hitting the plane and some the light!?!? -> IMPORTANT TO SOLVE!!!
 
 TOGETHER DECIDE:
 - norm_vector and u_vector are the same!?!? unify!?!
@@ -77,20 +78,24 @@ HOOKS
 <!-- - Scroll mouse has some errors!?!? -->
 <!-- - Increase efficency (prerender with bad quality and when space press, rerender correctly) -->
 - Rotation of objects:
-	E?- Mouse click to select, 0 to release (shade in white the selected object!?!?)
-	- Cast a ray through that pixel in the viewport. Identify the object. Shade the object.
+	<!-- E?- Mouse click to select or to release (shade in white the selected object!?!?)
+	- Cast a ray through that pixel in the viewport. Identify the object. Shade the object. -->
 	- apply rotation to the selected object
-	E?- mouse click to select the object
-	- Double click on object to duplicate?? Or create new white objects with hooks??
+	<!-- E?- mouse click to select the object -->
+- Double click on object to duplicate?? Or create new white objects with hooks??
 - Add color changing of selected object with RGB!?!?
 - Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
-- 0 to reset to default scene!
-- how to change parameters w, h, of a cylinder separately???
+E- 0 to reset to default scene! (parse again and restart)
+- how to change parameters w, h, of a cylinder separately??? -> use / and * (/ for height, * for width, and also + i - set to increase or decrease a part from what they were doing)
+- Light movement!!!! (press L to change from camera to light, for example!?? set a flag!?)
 
 E - Put git clone minilibx
 E - hook to close with the CROSS, as with ESC
 E - if camera / light / etc is not parsed or some other errors, we have to exit the program!? -> is it done like that?
 
+08/03/2025
+- Circles have one more param that is the cyl to which they are linked (use in parsing, hooks, shading, etc)
+- Rotation of objects with mouse
 
 - Norminette
 - Delete test files and minilibx
