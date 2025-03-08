@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 13:05:35 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/08 13:12:22 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,12 @@ int	mouse_move(int x, int y, t_env *env)
 		//rerender();
 	}
 	return (0);//else doing, just return
+}
+
+int	key_scale(int keysym, t_env *env)
+{
+	if (&env->scene->select_obj)
+	{
+		
+	}
 }
