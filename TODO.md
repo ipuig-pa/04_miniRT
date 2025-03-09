@@ -112,7 +112,8 @@ E - if camera / light / etc is not parsed or some other errors, we have to exit 
 - put the array of keys for windows / linux commented out
 - Check transformations work -> scroll in the proper direction!??!?
 - + and - work the same as mouse scrolling ?? (or when nothing is selected, leave one for zoom and one for amblight ratio?!?!?)
-- Change light color when it is selected!!! in shading (put it more yellow, or white if it is already yellow!?!?)
+- Change light color when it is selected!!!(see light_selection, change relative and not absolute)
+- Cyl rotation not working properly
 - Light overlaping problem solve
 - Camera swaping problem solve!
 - Be able to include new objects, colors, etc.

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 11:26:09 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:53:22 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_light
 	t_vector	p;
 	float		ratio;
 	t_color		color;
+	t_color		store_col;
 }			t_light;
 
 typedef struct s_sph

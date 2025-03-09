@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 13:23:03 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:55:41 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	parsing_scene(t_env *env, const char *filename)
 		i++;
 	free_double_pointer(lines);
 	env->scene->select_obj = -1;
+	env->scene->select_light = false;
 	return (1);
 }
 
