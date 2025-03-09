@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:08:15 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 15:56:33 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:35:41 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,73 @@
 //vector axis: the vectors of up, front and right of viewport
 //rotate(): create 4x4 matrix based on GIVEN rad and axis
 //change vp.up/right/front; vp.o UNCHANGED!
-void	move_cam(t_env *env, t_scene *scene, int key)
+void	move_cam(int key, t_env *env)
 {
+	t_camera	*cam;
+
+	cam = &env->scene->cam;
 	if (key == W)
-		cam_translate(env, &scene->cam, scalar_mult(scene->vp.up, TRANSL));
+		cam_translate(cam, scalar_mult(env->scene->vp.up, TRANSL));
 	else if (key == A)
-		cam_translate(env, &scene->cam, scalar_mult(scene->vp.right, -TRANSL));
+		cam_translate(cam, scalar_mult(env->scene->vp.right, -TRANSL));
 	else if (key == S)
-		cam_translate(env, &scene->cam, scalar_mult(scene->vp.up, -TRANSL));
+		cam_translate(cam, scalar_mult(env->scene->vp.up, -TRANSL));
 	else if (key == D)
-		cam_translate(env, &scene->cam, scalar_mult(scene->vp.right, TRANSL));
+		cam_translate(cam, scalar_mult(env->scene->vp.right, TRANSL));
 	else if (key == Q)
-		cam_translate(env, &scene->cam, scalar_mult(scene->vp.front, TRANSL));
+		cam_translate(cam, scalar_mult(env->scene->vp.front, TRANSL));
 	else if (key == E)
-		cam_translate(env, &scene->cam, scalar_mult(scene->vp.front, -TRANSL));
+		cam_translate(cam, scalar_mult(env->scene->vp.front, -TRANSL));
+	loq_rerender(env, true);
 }
 
-void	rotate_cam(t_env *env, int key)
+void	rotate_cam(int key, t_env *env)
+{
+	float	rad;
+	bool	vp_recalc;
+
+	rad = to_rad(ROT);
+	vp_recalc = true;
+	if (key == LEFT)
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
+	else if (key == RIGHT)
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
+	else if (key == DOWN)
+		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
+	else if (key == UP)
+		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+	else if (key == S_LEFT)
+	{
+		vp_rotate(env->scene, -rad, env->scene->vp.front);
+		vp_recalc = false;
+	}
+	else if (key == S_RIGHT)
+	{
+		vp_rotate(env->scene, rad, env->scene->vp.front);
+		vp_recalc = false;
+	}
+	loq_rerender(env, vp_recalc);
+}
+
+// scroll the wheel to zoom in(UP)/out(DOWN)
+// edge case(0 && PI) check; +-3 is randomly set
+//if its edge case, return(0) and nothing will be implemented
+void	zoom(int key, t_env *env)
 {
 	float	rad;
 
-	rad = to_rad(ROT);
-	if (key == LEFT)
-		cam_rotate(env, &env->scene->cam, rad, env->scene->vp.up);
-	else if (key == RIGHT)
-		cam_rotate(env, &env->scene->cam, -rad, env->scene->vp.up);
-	else if (key == DOWN)
-		cam_rotate(env, &env->scene->cam, -rad, env->scene->vp.right);
-	else if (key == UP)
-		cam_rotate(env, &env->scene->cam, rad, env->scene->vp.right);
-	else if (key == S_LEFT)
-		vp_rotate(env, -rad, env->scene->vp.front);
-	else if (key == S_RIGHT)
-		vp_rotate(env, rad, env->scene->vp.front);
+	rad = to_rad(ZOOM);
+	if (key == SCROLL_UP || key == KEY_MINUS)
+	{
+		if ((env->scene->cam.fov - rad) <= 0)
+			return ;
+		env->scene->cam.fov -= rad;
+	}
+	else if (key == SCROLL_DOWN || key == KEY_PLUS)
+	{
+		if ((env->scene->cam.fov + rad) >= M_PI)
+			return ;
+		env->scene->cam.fov += rad;
+	}
+	loq_rerender(env, true);
 }

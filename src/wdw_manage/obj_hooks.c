@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 16:14:04 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 12:34:41 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,98 @@
  * MOVE: to rot
  * KEYS: +/- tp scale
 */
-void	scale_obj(t_env *env, int key)
+
+void	select_obj(int x, int y, t_env *env)
+{
+	t_ray	ray;
+	t_hit	hit;
+
+	cast_ray(&ray, y, x, env->scene);
+	find_hit(&hit, ray, env->scene, -1);
+	if (hit.occur == true)
+	{
+		if (env->scene->obj[hit.obj_id].type == CIR)
+		{
+			while (env->scene->obj[hit.obj_id].type != CYL)
+				hit.obj_id--;
+		}
+		if (env->scene->select_obj == hit.obj_id)
+			env->scene->select_obj = -1;
+		else
+		{
+			env->scene->select_obj = hit.obj_id;
+			env->scene->select_light = false;
+		}
+		loq_rerender(env, false);
+	}
+	else
+		env->scene->select_obj = -1;
+}
+
+void	scale_obj(int key, t_env *env)
 {
 	t_obj	*obj;
 
 	if (env->scene->select_obj != -1)
 	{
 		obj = &env->scene->obj[env->scene->select_obj];
-		if (key == KEY_PLUS)
+		if (key == KEY_PLUS || key == SCROLL_UP)
 			o_scale(obj, SCALE, SCALE, SCALE);
-		else if (key == KEY_MINUS)
+		else if (key == KEY_MINUS || key == SCROLL_DOWN)
 			o_scale(obj, 1.0 / SCALE, 1.0 / SCALE, 1.0 / SCALE);
 		loq_rerender(env, false);
 	}
 }
 
+void	move_obj(int key, t_env *env)
+{
+	t_obj	*obj;
+
+	if (env->scene->select_obj != -1)
+	{
+		obj = &env->scene->obj[env->scene->select_obj];
+		if (key == W)
+			o_translate(obj, scalar_mult(env->scene->vp.up, TRANSL));
+		else if (key == A)
+			o_translate(obj, scalar_mult(env->scene->vp.right, TRANSL));
+		else if (key == S)
+			o_translate(obj, scalar_mult(env->scene->vp.up, -TRANSL));
+		else if (key == D)
+			o_translate(obj, scalar_mult(env->scene->vp.right, -TRANSL));
+		else if (key == Q)
+			o_translate(obj, scalar_mult(env->scene->vp.front, -TRANSL));
+		else if (key == E)
+			o_translate(obj, scalar_mult(env->scene->vp.front, TRANSL));
+		loq_rerender(env, false);
+	}
+}
+
+void	rotate_obj(int key, t_env *env)
+{
+	t_obj	*obj;
+	float	rad;
+
+	if (env->scene->select_obj != -1)
+	{
+		obj = &env->scene->obj[env->scene->select_obj];
+		rad = to_rad(ROT);
+		if (key == LEFT)
+			o_rotate(obj, rad, env->scene->vp.up);
+		else if (key == RIGHT)
+			o_rotate(obj, -rad, env->scene->vp.up);
+		else if (key == DOWN)
+			o_rotate(obj, -rad, env->scene->vp.right);
+		else if (key == UP)
+			o_rotate(obj, rad, env->scene->vp.right);	
+		else if (key == S_LEFT)
+			o_rotate(obj, -rad, env->scene->vp.front);
+		else if (key == S_RIGHT)
+			o_rotate(obj, rad, env->scene->vp.front);
+		loq_rerender(env, false);
+	}
+}
+
+/*
 void	move_obj(t_env *env, int key)
 {
 	t_obj	*obj;
@@ -71,4 +148,29 @@ void	move_obj(t_env *env, int key)
 			o_translate(obj, scalar_mult(env->scene->vp.right, -TRANSL));
 		loq_rerender(env, false);
 	}
-}
+}*/
+
+/*
+void	rotate_obj(t_obj *obj, float dx, float dy, t_viewport vp)
+{
+	float	rad;
+	float	tan;
+	float	tan30;
+	float	tan60;
+
+	tan60 = sqrtf(3.0);
+	tan30 = 1.0 / tan60;
+	tan = fabs(dy) / fabs(dx);
+	rad = to_rad(ROT);
+	if (dx < 0 || (dy > 0 && !(tan < tan60)))
+	{
+		if (dy > 0 || tan < tan30)
+			rad = -rad;
+	}
+	if (tan < tan30)
+		o_rotate(obj, ROT, vp.up);
+	else if (tan < tan60)
+		o_rotate(obj, ROT, vp.front);
+	else
+		o_rotate(obj, ROT, vp.right);
+}*/

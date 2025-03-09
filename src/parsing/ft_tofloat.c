@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tofloat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:52:40 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 15:39:59 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/09 09:25:45 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ float	ft_atofloat(char *s)
 	long	i;
 	float	frac;
 	int		sign;
-	float	power;
 
 	sign = 1;
-	power = 1;
 	i = 0;
 	frac = 0.0f;
 	while ((*s >= 9 && *s <= 13) || *s == ' ')

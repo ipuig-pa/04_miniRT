@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:19:05 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/07 09:26:43 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 09:25:08 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <math.h>// for math functions (requires -lm when compiling)
 # include <fcntl.h>// for open flags like O_RDONLY, O_WRONLY, etc.
 # include <stdbool.h>//to use bool variables
-# include "../minilibx_macos/mlx.h" //minilibx
+// # include "../minilibx_macos/mlx.h" //minilibx macos
+# include "../minilibx-linux/mlx.h" //minilibx linux
 
 #endif

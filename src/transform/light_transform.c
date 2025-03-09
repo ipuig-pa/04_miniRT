@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rerender.c                                         :+:      :+:    :+:   */
+/*   light_transform.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 13:35:27 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 11:51:01 by ipuig-pa         ###   ########.fr       */
+/*   Created: 2025/03/09 11:30:41 by ipuig-pa          #+#    #+#             */
+/*   Updated: 2025/03/09 12:31:18 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	hiq_rerender(t_env *env)
+void	light_translate(t_light *light, t_vector tv)
 {
-	env->scene->select_obj = -1;
-	env->scene->select_light = false;
-	env->res.res = 100;
-	ray_tracer(env);
-	mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
+	light->p = v_transform(light->p, translate(tv), 'p');
 }
 
-void	loq_rerender(t_env *env, bool vp)
+//increase or decrease light ratio
+void	light_scale(t_light *light, float factor)
 {
-	if (vp)
-		create_viewport(env->scene);
-	env->res.res = 10;
-	ray_tracer(env);
-	mlx_put_image_to_window(env->mlx, env->mlx_window, env->img.img, 0, 0);
+	light->ratio = light->ratio * factor;
+	if (light->ratio < 0)
+		light->ratio = 0; 
+	if (light->ratio > 1)
+		light->ratio = 1; 
 }

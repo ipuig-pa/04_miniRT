@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 13:19:59 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 11:26:09 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "linalg.h"
 # include "color.h"
 # include "transform.h"
+# include <stdbool.h>
 
 //colors maybe also as an structure of 3 int: R, G, B??
 
@@ -124,9 +125,10 @@ typedef struct s_scene
 	t_camera	cam;
 	t_light		light;
 	t_viewport	vp;
+	int			obj_num;
 	t_obj		*obj;
 	int			select_obj;
-	int			obj_num;
+	bool		select_light;
 }			t_scene;
 // t_amblight	*amblight; //erase the * for all of them except *obj???
 // t_camera	*cam;

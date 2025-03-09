@@ -46,12 +46,13 @@ SOURCES =	gc_malloc_free.c\
 			transform.c\
 			obj_transform.c\
 			cam_transform.c\
+			light_transform.c\
 			matrix_utils.c\
 			set_hooks.c\
-			mouse_hooks.c\
-			key_hooks.c\
+			elem_hooks.c\
 			obj_hooks.c\
 			cam_hooks.c\
+			light_hooks.c\
 			rerender.c\
 			main.c
 
@@ -62,10 +63,10 @@ INC = inc
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-#MLX_FLAGS = -lmlx -lXext -lX11
-MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-#MLX_DIR = minilibx-linux 
-MLX_DIR = minilibx_macos
+MLX_FLAGS = -lmlx -lXext -lX11
+#MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+MLX_DIR = minilibx-linux 
+#MLX_DIR = minilibx_macos
 MLX = $(MLX_DIR)/libmlx.a
 
 all : $(NAME)

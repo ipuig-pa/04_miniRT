@@ -87,7 +87,9 @@ HOOKS
 - Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
 E- 0 to reset to default scene! (parse again and restart)
 - how to change parameters w, h, of a cylinder separately??? -> use / and * (/ for height, * for width, and also + i - set to increase or decrease a part from what they were doing)
+- Use the same for camera rotation and object rotation, just depending if object is selected.
 - Light movement!!!! (press L to change from camera to light, for example!?? set a flag!?)
+- Change light color when it is selected!!!
 
 E - Put git clone minilibx
 E - hook to close with the CROSS, as with ESC
@@ -101,3 +103,16 @@ E - if camera / light / etc is not parsed or some other errors, we have to exit 
 - Norminette
 - Delete test files and minilibx
 - Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
+
+
+10/03/2025
+//- Select /deselect light
+//- (deselect light before rerendering hq)
+//- light "scale"
+- put the array of keys for windows / linux commented out
+- Check transformations work -> scroll in the proper direction!??!?
+- + and - work the same as mouse scrolling ?? (or when nothing is selected, leave one for zoom and one for amblight ratio?!?!?)
+- Change light color when it is selected!!! in shading (put it more yellow, or white if it is already yellow!?!?)
+- Light overlaping problem solve
+- Camera swaping problem solve!
+- Be able to include new objects, colors, etc.
