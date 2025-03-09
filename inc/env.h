@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:13:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 14:53:08 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:54:36 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_data
 
 typedef struct s_env
 {
-	char	*rt_scene_file; //is it used or we can erase it?!?!
+	char	*rt_scene_file; //gc_dup(), and used in '0' revert hook
 	void	*mlx;
 	void	*mlx_window;
 	t_data	img;

@@ -1,5 +1,3 @@
-#minilibx / mlx pending to include!!!!!
-#check that inclusions are proprely handled and make again if some header change, and also for the sources (if we change one source file, for example when changing the main)
 NAME = minirt
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
@@ -7,7 +5,15 @@ CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 SRC_DIR = src
 OBJ_DIR = obj
 
-VPATH =	$(SRC_DIR):$(SRC_DIR)/gc:$(SRC_DIR)/math_utils:$(SRC_DIR)/manage_env:$(SRC_DIR)/parsing:$(SRC_DIR)/parsing/err_check_print:$(SRC_DIR)/rendering:$(SRC_DIR)/transform:$(SRC_DIR)/wdw_manage
+VPATH =	$(SRC_DIR):\
+		$(SRC_DIR)/gc:\
+		$(SRC_DIR)/math_utils:\
+		$(SRC_DIR)/manage_env:\
+		$(SRC_DIR)/parsing:\
+		$(SRC_DIR)/parsing/err_check_print:\
+		$(SRC_DIR)/rendering:\
+		$(SRC_DIR)/transform:\
+		$(SRC_DIR)/wdw_manage
 
 SOURCES =	gc_malloc_free.c\
 			gc_error.c\
@@ -63,15 +69,16 @@ INC = inc
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_FLAGS = -lmlx -lXext -lX11
-#MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
-MLX_DIR = minilibx-linux 
-#MLX_DIR = minilibx_macos
+#MLX_FLAGS = -lmlx -lXext -lX11
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
+#MLX_DIR = minilibx-linux
+MLX_DIR = minilibx_macos
 MLX = $(MLX_DIR)/libmlx.a
 
 all : $(NAME)
 
 $(NAME) : $(SOURCES) $(INC) $(OBJ_DIR) $(MLX) $(OBJECTS) $(LIBFT)
+#cc $(CFLAGS) $(OBJECTS) -L$(MLX) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -lm -o $(NAME)
 	cc $(CFLAGS) $(OBJECTS) -L$(MLX_DIR) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -lm -o $(NAME)
 
 $(OBJ_DIR):
@@ -83,13 +90,15 @@ $(OBJ_DIR)/%.o: %.c
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
-$(MLX) :
+$(MLX):
+	@git clone https://github.com/ncoden/minilibx_macos.git $(MLX_DIR)
 	make -C $(MLX_DIR)
 
 clean : 
 	rm -rf $(OBJ_DIR)
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
+	rm -rf $(MLX_DIR)
+#make clean -C $(MLX_DIR)
 
 fclean : clean
 	rm -f $(NAME)
@@ -97,4 +106,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all clean fclean re mlx

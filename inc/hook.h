@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/09 13:08:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 19:48:46 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define SCROLL_UP 5
 # define KEY_PLUS 69
 # define KEY_MINUS 78
+# define KEY_REVERT 82 //0
 
 /*# define OBJ_F 89 //7 forward
 # define OBJ_B 92 //9 back
@@ -91,10 +92,13 @@
 # define SCROLL_UP 5      // Mouse scroll (typically unchanged)
 # define KEY_PLUS 43      // + key
 # define KEY_MINUS 45     // - key */
+//# define KEY_REVERT
 
+void	print_prompt(void);
 void	set_hooks(t_env *env);
 int		key_action(int keysym, t_env *env);
 int		mouse_button(int button, int x, int y, t_env *env);
+int		close_window(t_env *env);
 
 //element hooks
 void	move_elem(int key, t_env *env);
@@ -120,5 +124,6 @@ void	scale_light(int key, t_env *env);
 //rerender
 void	loq_rerender(t_env *env, bool vp);
 void	hiq_rerender(t_env *env);
+void	revert_scene(t_env *env);
 
 #endif

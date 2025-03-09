@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 12:55:41 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/09 18:53:58 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	parsing_scene(t_env *env, const char *filename)
 	if (!lines)
 		return (p_err("Errors in spliting file!"), 0);
 	env->scene = gc_malloc(sizeof(t_scene));
+	env->rt_scene_file = gc_strdup(filename);
 	if (!env->scene)
 	{
 		p_err("Memory allocation for t_scene failed!");
