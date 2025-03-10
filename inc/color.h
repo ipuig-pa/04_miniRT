@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:47:07 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/05 19:19:27 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:29:29 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define COLOR_H
 
 # include "env.h"
+# include <stdbool.h>
 
 # define BLACK ((t_color){{0, 0, 0, 0}})
 # define WHITE ((t_color){{1, 1, 1, 0}})
@@ -42,5 +43,7 @@ t_color	col_prod(t_color c1, t_color c2);
 t_color	col_sc_prod(t_color c, float s);
 t_color	col_add(t_color c1, t_color c2);
 t_color	set_color(float r, float g, float b, float a);
+bool	is_white(t_color col);
+t_color	complementary(t_color col);
 
 #endif

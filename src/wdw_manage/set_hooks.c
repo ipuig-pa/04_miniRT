@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 19:48:41 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/10 12:56:11 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void	set_hooks(t_env *env)
 {
 	mlx_hook(env->mlx_window, 2, 1L << 0, key_action, env);
 	mlx_hook(env->mlx_window, 4, 1L << 2, mouse_button, env);
-	mlx_hook(env->mlx, 17, 0, close_window, env);
+	mlx_hook(env->mlx_window, 17, 0, close_window, env);
 	// mlx_hook(env->mlx_window, 6, 1L << 6, mouse_move, env);
 }
 
 int	close_window(t_env *env)
 {
-	finish_env(env, 0, "Exit with mouse click!\n");
+	finish_env(env, 0, "Exit with mouse click!");
 	return (0);
 }
 
@@ -37,7 +37,7 @@ int	close_window(t_env *env)
 int	key_action(int key, t_env *env)
 {
 	if (key == ESC)
-		finish_env(env, 0, "Exit with keyboard ESC!\n");
+		finish_env(env, 0, "Exit with keyboard ESC!");
 	else if (key == SPACE)
 		hiq_rerender(env);
 	else if (key == L)

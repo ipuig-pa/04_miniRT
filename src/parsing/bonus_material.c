@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:52:27 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 16:14:06 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:57:58 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parse_material(t_obj *obj, char *token)
 
 	if (!token)
 	{
-		p_err("Lack of identifier for material, default Matte called!\n");
+		p_err("Lack of identifier for material, default Matte called!");
 		obj->mat.type = MATTE;
 		return ;
 	}
@@ -36,7 +36,7 @@ void	parse_material(t_obj *obj, char *token)
 	}
 	else
 	{
-		p_err("Invalid identifier for material, default Matte called!\n");
+		p_err("Invalid identifier for material, default Matte called!");
 		obj->mat.type = MATTE;
 	}
 }

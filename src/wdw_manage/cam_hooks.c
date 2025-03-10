@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:08:15 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 12:35:41 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:07:14 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,13 @@ void	zoom(int key, t_env *env)
 	float	rad;
 
 	rad = to_rad(ZOOM);
-	if (key == SCROLL_UP || key == KEY_MINUS)
+	if (key == SCROLL_UP || key == KEY_PLUS)
 	{
 		if ((env->scene->cam.fov - rad) <= 0)
 			return ;
 		env->scene->cam.fov -= rad;
 	}
-	else if (key == SCROLL_DOWN || key == KEY_PLUS)
+	else if (key == SCROLL_DOWN || key == KEY_MINUS)
 	{
 		if ((env->scene->cam.fov + rad) >= M_PI)
 			return ;

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 11:23:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 12:56:25 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 14:59:44 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	select_light(t_env *env)
 		env->scene->select_light = true;
 		env->scene->select_obj = -1;
 		env->scene->light.store_col = env->scene->light.color;
-		env->scene->light.color = BLUE; //change relative to the current color, and not absolute change
+		if (!is_white(env->scene->light.color))
+			env->scene->light.color = complementary(env->scene->light.color);
+		else
+			env->scene->light.color = set_color(0, 0, 1, 0);
 	}
 	loq_rerender(env, false);
 }

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 18:48:26 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 13:40:21 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	o_rotate(t_obj *obj, float r, t_vector a)
 		ref = obj->param.cyl.c;
 	else if (obj->type == CIR)
 		ref = obj->param.cir.c;
+	ref = v_transform(ref, obj->m, 'v');
 	obj->m = m_multiply(\
 				m_multiply(\
 					m_multiply(translate(ref), rotate(r, a)), \
@@ -65,6 +66,7 @@ void	o_scale(t_obj *obj, float sx, float sy, float sz)
 	else if (obj->type == CYL)
 	{
 		ref = obj->param.cyl.c;
+		ref = v_transform(ref, obj->m, 'v');
 		s = v_create(sx, sy, sz, 1);
 		h = scalar_mult(obj->param.cyl.a, obj->param.cyl.h / 2);
 		obj[1].m = m_multiply(m_multiply(m_multiply(\
@@ -82,6 +84,7 @@ void	o_scale(t_obj *obj, float sx, float sy, float sz)
 	}
 	else if (obj->type == CIR)
 		ref = obj->param.cir.c;
+	ref = v_transform(ref, obj->m, 'v');
 	obj->m = m_multiply(m_multiply(m_multiply(translate(ref),scale(sx, sy, sz)),translate(invert_v(ref))), obj->m);
 	obj->inv_m = m_invert(obj->m);
 	obj->m.exist = true;

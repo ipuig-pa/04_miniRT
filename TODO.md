@@ -106,14 +106,16 @@ E - if camera / light / etc is not parsed or some other errors, we have to exit 
 
 
 10/03/2025
-//- Select /deselect light
-//- (deselect light before rerendering hq)
-//- light "scale"
-- put the array of keys for windows / linux commented out
-- Check transformations work -> scroll in the proper direction!??!?
+<!-- - Select /deselect light
+- (deselect light before rerendering hq)
+- light "scale"
+- put the array of keys for windows / linux commented out -->
+<!-- - Check transformations work -> scroll in the proper direction!??!? -->
 - + and - work the same as mouse scrolling ?? (or when nothing is selected, leave one for zoom and one for amblight ratio?!?!?)
-- Change light color when it is selected!!!(see light_selection, change relative and not absolute)
-- Cyl rotation not working properly
+- Be able to include new objects, colors, etc.
+<!-- - Change light color when it is selected!!!(see light_selection, change relative and not absolute) -->
+- Obj rotation not working properly when they have been moved -> transform reference !! (ALSO WITH CAM!??!!?)
 - Light overlaping problem solve
 - Camera swaping problem solve!
-- Be able to include new objects, colors, etc.
+- clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render
+

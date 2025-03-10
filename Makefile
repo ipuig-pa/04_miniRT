@@ -1,3 +1,4 @@
+#check that inclusions are proprely handled and make again if some header change, and also for the sources (if we change one source file, for example when changing the main)
 NAME = minirt
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
@@ -10,7 +11,7 @@ VPATH =	$(SRC_DIR):\
 		$(SRC_DIR)/math_utils:\
 		$(SRC_DIR)/manage_env:\
 		$(SRC_DIR)/parsing:\
-		$(SRC_DIR)/parsing/err_check_print:\
+		$(SRC_DIR)/parsing/check_print:\
 		$(SRC_DIR)/rendering:\
 		$(SRC_DIR)/transform:\
 		$(SRC_DIR)/wdw_manage
@@ -49,6 +50,8 @@ SOURCES =	gc_malloc_free.c\
 			shading.c\
 			phong.c\
 			drawing.c\
+			color.c\
+			color2.c\
 			transform.c\
 			obj_transform.c\
 			cam_transform.c\
@@ -66,6 +69,17 @@ OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
 INC = inc
 
+HEADERS =	$(INC)/minirt.h\
+			$(INC)/color.h\
+			$(INC)/env.h\
+			$(INC)/gc.h\
+			$(INC)/hook.h\
+			$(INC)/linalg.h\
+			$(INC)/parser.h\
+			$(INC)/ray.h\
+			$(INC)/scene.h\
+			$(INC)/transform.h
+
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
@@ -77,28 +91,27 @@ MLX = $(MLX_DIR)/libmlx.a
 
 all : $(NAME)
 
-$(NAME) : $(SOURCES) $(INC) $(OBJ_DIR) $(MLX) $(OBJECTS) $(LIBFT)
-#cc $(CFLAGS) $(OBJECTS) -L$(MLX) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -lm -o $(NAME)
+$(NAME) : $(SOURCES) $(HEADERS) $(OBJ_DIR) $(MLX) $(OBJECTS) $(LIBFT)
 	cc $(CFLAGS) $(OBJECTS) -L$(MLX_DIR) -L$(LIBFT_DIR) $(MLX_FLAGS) -lft -lm -o $(NAME)
 
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: %.c $(HEADERS)
 	cc $(CFLAGS) -I$(LIBFT_DIR) -Iinc -c $< -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(MLX):
-	@git clone https://github.com/ncoden/minilibx_macos.git $(MLX_DIR)
+# @git clone https://github.com/ncoden/minilibx_macos.git $(MLX_DIR)
 	make -C $(MLX_DIR)
 
 clean : 
 	rm -rf $(OBJ_DIR)
 	make clean -C $(LIBFT_DIR)
-	rm -rf $(MLX_DIR)
-#make clean -C $(MLX_DIR)
+	make clean -C $(MLX_DIR)
+#rm -rf $(MLX_DIR)
 
 fclean : clean
 	rm -f $(NAME)
