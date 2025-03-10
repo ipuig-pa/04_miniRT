@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 12:56:11 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:36:37 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	mouse_button(int button, int x, int y, t_env *env)
 {
 	if (button == SCROLL_UP || button == SCROLL_DOWN)
 		scale_elem(button, env);
-	else if (button == CLICK_SELECT)
+	else if (button == CLICK_SELECT && y >= 0)
 		select_obj(x, y, env);
 	return (0);
 }

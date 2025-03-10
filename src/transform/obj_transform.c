@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 13:40:21 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:49:05 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	o_translate(t_obj *obj, t_vector t)
 {
 	obj->m = m_multiply(translate(t), obj->m);
 	obj->inv_m = m_invert(obj->m);
-	obj->m.exist = true;
+	// obj->m.exist = true;
 	if (obj->type == CYL)
 	{
 		obj[1].m = obj->m;
@@ -43,12 +43,13 @@ void	o_rotate(t_obj *obj, float r, t_vector a)
 					m_multiply(translate(ref), rotate(r, a)), \
 					translate(invert_v(ref))), \
 				obj->m);
-	obj->m.exist = true;
 	obj->inv_m = m_invert(obj->m);
 	if (obj->type == CYL)
 	{
 		obj[1].m = obj->m;
+		obj[1].inv_m = obj->inv_m;
 		obj[2].m = obj->m;
+		obj[2].inv_m = obj->inv_m;
 	}
 }
 
@@ -75,17 +76,19 @@ void	o_scale(t_obj *obj, float sx, float sy, float sz)
 					translate(invert_v(obj[1].param.cir.c))), \
 					obj->m);
 		obj[1].m.exist = true;
+		obj[1].inv_m = m_invert(obj[1].m);
 		obj[2].m = m_multiply(m_multiply(m_multiply(\
 			translate(v_add(obj->param.cyl.c, element_mult(h, s))), \
 			scale(sx, sy, sz)), \
 			translate(invert_v(obj[2].param.cir.c))), \
 			obj->m);
 		obj[2].m.exist = true;
+		obj[2].inv_m = m_invert(obj[2].m);
 	}
 	else if (obj->type == CIR)
 		ref = obj->param.cir.c;
 	ref = v_transform(ref, obj->m, 'v');
 	obj->m = m_multiply(m_multiply(m_multiply(translate(ref),scale(sx, sy, sz)),translate(invert_v(ref))), obj->m);
 	obj->inv_m = m_invert(obj->m);
-	obj->m.exist = true;
+	// obj->m.exist = true;
 }

@@ -6,7 +6,7 @@ IRENE (rendering):
 <!-- - try rotations, transl (create port in the main for the moment, to use the axis there for the rotations of planes, etc) -->
 <!-- -> understand the proper meaning of axis rotation!!! (with respect to the base, ...? movement broadness??) (pivot point: proximal or distal) -> //to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
 -> resize!!! -->
--> light movement!?!?
+<!-- -> light movement!?!? -->
 <!-- -> cylinder somehow attach the objects circles if there is a rotation /transl / etc? ->PROBLEMS IN SCALE, because we have to translate to circle center to origin but then not back to original position of the center, but moved having in mind the crescent ratio of the cylinder (or think how can we keep track of them) -->
 <!-- E -> be careful that circles are contigupus cyl and the first is subtracting axis * h/2 and the second is adding axis * h/2 to the center of the cyl -->
 <!-- -> for rotations and scaling, combine always with translation to origin and back!!! -->
@@ -19,7 +19,7 @@ E -> initialize material properties!? -->
 - need to normalize vector after transformations?!?!! (try with different cases!)
 
 <!-- - Rotations and scaling will be done in relation to the center of the object or the given point for planes!? -->
-- thickness of planes?!?! when are exactly in the camera center?!
+<!-- - thickness of planes?!?! when are exactly in the camera center?! -->
 
 <!-- !!!!- Normal of planes and circles: do not use both indistintly, because if light is behind they will get illuminated?!?!??! Just the one towards the camera?? or how to chose the one to use? In fact the one towards the camera does not work with rotations/transl -->
 
@@ -77,28 +77,29 @@ TOGETHER DECIDE:
 HOOKS
 <!-- - Scroll mouse has some errors!?!? -->
 <!-- - Increase efficency (prerender with bad quality and when space press, rerender correctly) -->
-- Rotation of objects:
-	<!-- E?- Mouse click to select or to release (shade in white the selected object!?!?)
-	- Cast a ray through that pixel in the viewport. Identify the object. Shade the object. -->
+<!-- - Rotation of objects:
+	E?- Mouse click to select or to release (shade in white the selected object!?!?)
+	- Cast a ray through that pixel in the viewport. Identify the object. Shade the object.
 	- apply rotation to the selected object
-	<!-- E?- mouse click to select the object -->
-- Double click on object to duplicate?? Or create new white objects with hooks??
-- Add color changing of selected object with RGB!?!?
+	- E?- mouse click to select the object -->
+<!-- - Double click on object to duplicate?? Or create new white objects with hooks?? --> NOT DONE YET
+<!-- - Add color changing of selected object with RGB!?!? -->
 - Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
 E- 0 to reset to default scene! (parse again and restart)
 - how to change parameters w, h, of a cylinder separately??? -> use / and * (/ for height, * for width, and also + i - set to increase or decrease a part from what they were doing)
-- Use the same for camera rotation and object rotation, just depending if object is selected.
+<!-- - Use the same for camera rotation and object rotation, just depending if object is selected.
 - Light movement!!!! (press L to change from camera to light, for example!?? set a flag!?)
-- Change light color when it is selected!!!
+- Change light color when it is selected!!! -->
 
 E - Put git clone minilibx
-E - hook to close with the CROSS, as with ESC
+<!-- E - hook to close with the CROSS, as with ESC -->
+Hooks to minimize / resize / ...?
 E - if camera / light / etc is not parsed or some other errors, we have to exit the program!? -> is it done like that?
 
 09/03/2025
-- Rotation of objects with mouse
+<!-- - Rotation of objects with mouse --> NOT DONE WITH THE MOUSE
 - Solve problems with < > after having translate the camera -> when translating it creates the viewport again by the default orientation, not the one of the new viewport. Delete the possibility to rotate viewport alone? 
-- light hooks / transformations
+<!-- - light hooks / transformations -->
 
 - Norminette
 - Delete test files and minilibx
@@ -114,8 +115,11 @@ E - if camera / light / etc is not parsed or some other errors, we have to exit 
 - + and - work the same as mouse scrolling ?? (or when nothing is selected, leave one for zoom and one for amblight ratio?!?!?)
 - Be able to include new objects, colors, etc.
 <!-- - Change light color when it is selected!!!(see light_selection, change relative and not absolute) -->
-- Obj rotation not working properly when they have been moved -> transform reference !! (ALSO WITH CAM!??!!?)
-- Light overlaping problem solve
-- Camera swaping problem solve!
-- clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render
+<!-- - Obj rotation not working properly when they have been moved -> transform reference !! -->
 
+1 - Camera swaping problem solve! -> 
+<!-- 2 - Uncapped cyl after transofrmations!?!?? -->
+<!-- 3 - clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render -->
+4 - Light overlaping problem solve
+Hook 0 is working? Memory leaks?!?
+Memory leaks?!?

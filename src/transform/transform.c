@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 10:51:12 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 15:22:02 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_matrix4	translate(t_vector t)
 	m.m[3][1] = 0;
 	m.m[3][2] = 0;
 	m.m[3][3] = 1;
+	m.exist = true;
 	return (m);
 }
 
@@ -83,6 +84,7 @@ t_matrix4	rotate(float r, t_vector a) //rotate r rad (angle) about an axis defin
 	m.m[3][1] = 0;
 	m.m[3][2] = 0;
 	m.m[3][3] = 1;
+	m.exist = true;
 	// if (obj->m.exist == false)
 	// 	obj.m = m;
 	// else
@@ -111,5 +113,6 @@ t_matrix4	scale(float sx, float sy, float sz)
 	m.m[3][1] = 0;
 	m.m[3][2] = 0;
 	m.m[3][3] = 1;
+	m.exist = true;
 	return (m);
 }
