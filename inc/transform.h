@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:37:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 12:29:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:20:48 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ struct	s_scene;
 struct	s_obj;
 struct	s_camera;
 struct	s_light;
+struct	s_viewport;
 
 typedef struct s_matrix4
 {
@@ -53,9 +54,10 @@ void		o_translate(struct s_obj *obj, t_vector t);
 void		o_scale(struct s_obj *obj, float sx, float sy, float sz);
 
 //cam transforms
-void		cam_translate(struct s_camera *cam, t_vector tv);
-void		cam_rotate(struct s_camera *cam, float r, t_vector a);
+void		cam_translate(t_scene *scene, struct s_camera *cam, t_vector tv);
+void		cam_rotate(t_scene *scene, struct s_camera *cam, float r, t_vector a);
 void		vp_rotate(t_scene *scene, float r, t_vector a);
+// void		viewport_transform(struct s_viewport *vp, t_matrix4 m);
 
 //light transforms
 void		light_translate(struct s_light *light, t_vector tv);

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:08:15 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 12:07:14 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:23:49 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@ void	move_cam(int key, t_env *env)
 
 	cam = &env->scene->cam;
 	if (key == W)
-		cam_translate(cam, scalar_mult(env->scene->vp.up, TRANSL));
+		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.up, TRANSL));
 	else if (key == A)
-		cam_translate(cam, scalar_mult(env->scene->vp.right, -TRANSL));
+		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.right, -TRANSL));
 	else if (key == S)
-		cam_translate(cam, scalar_mult(env->scene->vp.up, -TRANSL));
+		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.up, -TRANSL));
 	else if (key == D)
-		cam_translate(cam, scalar_mult(env->scene->vp.right, TRANSL));
+		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.right, TRANSL));
 	else if (key == Q)
-		cam_translate(cam, scalar_mult(env->scene->vp.front, TRANSL));
+		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.front, TRANSL));
 	else if (key == E)
-		cam_translate(cam, scalar_mult(env->scene->vp.front, -TRANSL));
-	loq_rerender(env, true);
+		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.front, -TRANSL));
+	loq_rerender(env, false);
+	// loq_rerender(env, true);
 }
 
 void	rotate_cam(int key, t_env *env)
@@ -42,15 +43,15 @@ void	rotate_cam(int key, t_env *env)
 	bool	vp_recalc;
 
 	rad = to_rad(ROT);
-	vp_recalc = true;
+	vp_recalc = false; //delete all unneeded
 	if (key == LEFT)
-		cam_rotate(&env->scene->cam, rad, env->scene->vp.up);
+		cam_rotate(env->scene, &env->scene->cam, rad, env->scene->vp.up);
 	else if (key == RIGHT)
-		cam_rotate(&env->scene->cam, -rad, env->scene->vp.up);
+		cam_rotate(env->scene, &env->scene->cam, -rad, env->scene->vp.up);
 	else if (key == DOWN)
-		cam_rotate(&env->scene->cam, -rad, env->scene->vp.right);
+		cam_rotate(env->scene, &env->scene->cam, -rad, env->scene->vp.right);
 	else if (key == UP)
-		cam_rotate(&env->scene->cam, rad, env->scene->vp.right);
+		cam_rotate(env->scene, &env->scene->cam, rad, env->scene->vp.right);
 	else if (key == S_LEFT)
 	{
 		vp_rotate(env->scene, -rad, env->scene->vp.front);

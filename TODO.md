@@ -95,6 +95,7 @@ E - Put git clone minilibx
 <!-- E - hook to close with the CROSS, as with ESC -->
 Hooks to minimize / resize / ...?
 E - if camera / light / etc is not parsed or some other errors, we have to exit the program!? -> is it done like that?
+E - create something like clean_scene that gc_free non needed things, but not everything, when 0 is pressed!!! (and solve all the problems in memory)
 
 09/03/2025
 <!-- - Rotation of objects with mouse --> NOT DONE WITH THE MOUSE
@@ -117,9 +118,11 @@ E - if camera / light / etc is not parsed or some other errors, we have to exit 
 <!-- - Change light color when it is selected!!!(see light_selection, change relative and not absolute) -->
 <!-- - Obj rotation not working properly when they have been moved -> transform reference !! -->
 
-1 - Camera swaping problem solve! -> 
+1 - Camera swaping problem solve! -> consider reorthogonize function!?!
+->CHECK IF loq true is needed!
 <!-- 2 - Uncapped cyl after transofrmations!?!?? -->
 <!-- 3 - clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render -->
 4 - Light overlaping problem solve
+2 - change simple transformation with vector additions and not matrix if no needed
 Hook 0 is working? Memory leaks?!?
 Memory leaks?!?

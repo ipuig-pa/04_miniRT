@@ -6,11 +6,38 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/09 12:29:57 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:18:13 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+// float: the sensitivity/speed of move
+//change vp.o; vp-.up/right/front UNCHANGED!
+void	cam_translate(t_scene *scene, t_camera *cam, t_vector tv)
+{
+	cam->p = v_add(cam->p, tv);
+	scene->vp.o = v_add(scene->vp.o, tv);
+	//printf("CAM TR	o: %f, %f, %f, %f; r: %f, %f, %f, %f; u: %f, %f, %f, %f; f: %f, %f, %f, %f\n", scene->vp.o.x, scene->vp.o.y, scene->vp.o.z, scene->vp.o.w, scene->vp.right.x, scene->vp.right.y, scene->vp.right.z, scene->vp.right.w, scene->vp.up.x, scene->vp.up.y, scene->vp.up.z, scene->vp.up.w, scene->vp.front.x, scene->vp.front.y, scene->vp.front.z, scene->vp.front.w);
+}
+
+void	cam_rotate(t_scene *scene, t_camera *cam, float r, t_vector a)
+{
+	t_vector	ref;
+	t_matrix4	rot;
+	t_vector	cam_to_vp;
+
+	ref = cam->p;
+	rot = rotate(r, a);
+	cam->v = v_transform(cam->v, rot, 'v');
+	scene->vp.right = unit_v(v_transform(scene->vp.right, rot, 'v'));
+	scene->vp.up = unit_v(v_transform(scene->vp.up, rot, 'v'));
+	scene->vp.front = unit_v(v_transform(scene->vp.front, rot, 'v'));
+	cam_to_vp = v_subt(scene->vp.o, cam->p);
+	cam_to_vp = v_transform(cam_to_vp, rot, 'v');
+	scene->vp.o = v_add(cam->p, cam_to_vp);
+	//printf("CAM ROT	o: %f, %f, %f, %f; r: %f, %f, %f, %f; u: %f, %f, %f, %f; f: %f, %f, %f, %f\n", scene->vp.o.x, scene->vp.o.y, scene->vp.o.z, scene->vp.o.w, scene->vp.right.x, scene->vp.right.y, scene->vp.right.z, scene->vp.right.w, scene->vp.up.x, scene->vp.up.y, scene->vp.up.z, scene->vp.up.w, scene->vp.front.x, scene->vp.front.y, scene->vp.front.z, scene->vp.front.w);
+}
 
 void	vp_rotate(t_scene *scene, float r, t_vector a)
 {
@@ -27,28 +54,31 @@ void	vp_rotate(t_scene *scene, float r, t_vector a)
 					translate(ref), \
 					rotate(r, a)), \
 				translate(invert_v(ref))), \
-			'v');
+			'p');
+	//printf("VP ROT	o: %f, %f, %f, %f; r: %f, %f, %f, %f; u: %f, %f, %f, %f; f: %f, %f, %f, %f\n", scene->vp.o.x, scene->vp.o.y, scene->vp.o.z, scene->vp.o.w, scene->vp.right.x, scene->vp.right.y, scene->vp.right.z, scene->vp.right.w, scene->vp.up.x, scene->vp.up.y, scene->vp.up.z, scene->vp.up.w, scene->vp.front.x, scene->vp.front.y, scene->vp.front.z, scene->vp.front.w);
 }
 
-void	cam_rotate(t_camera *cam, float r, t_vector a)
-{
-	t_vector	ref;
+// void	viewport_transform(t_viewport *vp, t_matrix4 m)
+// {
+// 	vp->front = v_transform(vp->front, m, 'v');
+// 	vp->right = v_transform(vp->right, m, 'v');
+// 	// vp->up = v_transform(vp->up, m, 'v');
+// }
 
-	ref = cam->p;
-	cam->v = \
-		v_transform(\
-			cam->v, \
-			m_multiply(\
-				m_multiply(\
-					translate(ref), \
-					rotate(r, a)), \
-				translate(invert_v(ref))), \
-			'v');
-}
 
-// float: the sensitivity/speed of move
-//change vp.o; vp-.up/right/front UNCHANGED!
-void	cam_translate(t_camera *cam, t_vector tv)
-{
-	cam->p = v_transform(cam->p, translate(tv), 'p');
-}
+
+// void	cam_rotate(t_camera *cam, float r, t_vector a)
+// {
+// 	t_vector	ref;
+
+// 	ref = cam->p;
+// 	cam->v = \
+// 		v_transform(\
+// 			cam->v, \
+// 			m_multiply(\
+// 				m_multiply(\
+// 					translate(ref), \
+// 					rotate(r, a)), \
+// 				translate(invert_v(ref))), \
+// 			'v');
+// }
