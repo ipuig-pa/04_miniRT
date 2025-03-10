@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 16:20:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 19:06:37 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // error and validation check
 void		p_err(char *s);
-void		ft_clean(void);
+void		clean_scene(t_env *env);
 int			valid_file(const char *filename);
 bool		parse_valid_tk(t_scene *scene, char *line);
 

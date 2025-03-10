@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rerender.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:35:27 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 17:04:21 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/10 19:54:04 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	revert_scene(t_env *env)
 		return ;
 	}
 	write(1, "Re-parsing and low quality re-rendering called!\n", 49);
-	//gc_clean(); // not sure if this cause memory problems! -> we are trying to access rt_scene_file after freeing it!!!??!??
-	//create something like clean_scene that gc_free non needed things, but not everything!!!
+	clean_scene(env);
 	if (!parsing_scene(env, env->rt_scene_file))
 	{
 		p_err("Fail to Re-load rt file!");

@@ -30,6 +30,7 @@ SOURCES =	gc_malloc_free.c\
 			init.c\
 			num_check.c\
 			print_err.c\
+			clean_scene.c\
 			check_read_file.c\
 			ft_tofloat.c\
 			parse_ambient.c\
