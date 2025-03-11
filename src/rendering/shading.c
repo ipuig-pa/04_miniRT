@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 18:11:16 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 13:28:45 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	hit->light_dist = v_modulus(ray->d);
 	ray->d = scalar_div(ray->d, hit->light_dist); //make unitary
 	find_hit(&sh_hit, *ray, scene, hit->obj_id);
-	if (sh_hit.occur == false || sh_hit.dist > hit->light_dist)//there is no other object intersecting the path from hit object to light
+	if (sh_hit.occur == false || sh_hit.dist > (hit->light_dist + 0.01))//there is no other object intersecting the path from hit object to light
 	{
 		find_normal(hit, scene);
 		cos = dot_prod(ray->d, hit->normal);
