@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 18:53:58 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/11 13:48:10 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	parsing_scene(t_env *env, const char *filename)
 	char	*content;
 	char	**lines;
 	int		i;
+	int		j;
 
 	i = 0;
 	content = read_file(filename);
@@ -43,8 +44,14 @@ int	parsing_scene(t_env *env, const char *filename)
 		p_err("Memory allocation for Objects failed!");
 		return (gc_clean(), 0);
 	}
-	while (lines[i] && parse_valid_tk(env->scene, lines[i]))
+	j = 0;
+	while (lines[i])
+	{
+		j = parse_valid_tk(env->scene, lines[i], j);
+		if (j == -1)
+			return (0); //do whatever needed
 		i++;
+	}
 	free_double_pointer(lines);
 	env->scene->select_obj = -1;
 	env->scene->select_light = false;
@@ -53,10 +60,9 @@ int	parsing_scene(t_env *env, const char *filename)
 
 // verify token: A, C, L, pl, cy, sp
 // space as delim, write prompt to indicate valid input format later??
-bool	parse_valid_tk(t_scene *scene, char *line)
+int	parse_valid_tk(t_scene *scene, char *line, int i)
 {
 	char		**tokens;
-	static int	i = 0;
 
 	tokens = split_tokens(line, ' ');
 	if (!tokens || !tokens[0])
@@ -77,8 +83,8 @@ bool	parse_valid_tk(t_scene *scene, char *line)
 		i += 2;
 	}
 	else
-		return (p_err("Invalid identifier passed!"), false);
-	return (free_double_pointer(tokens), true);
+		return (p_err("Invalid identifier passed!"), -1);
+	return (free_double_pointer(tokens), i);
 }
 
 // void	parsing_scene(t_scene *scene, const char *filename)

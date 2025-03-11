@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/10 19:06:37 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/11 13:44:49 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 void		p_err(char *s);
 void		clean_scene(t_env *env);
 int			valid_file(const char *filename);
-bool		parse_valid_tk(t_scene *scene, char *line);
+int			parse_valid_tk(t_scene *scene, char *line, int i);
 
 // read file and create token
 int			count_token(char *line);
