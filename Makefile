@@ -55,6 +55,7 @@ SOURCES =	gc_malloc_free.c\
 			color2.c\
 			transform.c\
 			obj_transform.c\
+			cyl_transform.c\
 			cam_transform.c\
 			light_transform.c\
 			matrix_utils.c\
