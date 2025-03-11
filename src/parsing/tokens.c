@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:30:54 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 10:24:20 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:03:02 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ char	*get_token(char *line, char delim)
 		tk_len++;
 	token = gc_malloc(sizeof(char) * (tk_len + 1));
 	if (!token)
+	{
+		p_err("Error:\nMalloc fail in read file.\n");
 		return (NULL);
+	}
 	ft_strlcpy(token, line, tk_len + 1);
 	return (token);
 }
@@ -66,7 +69,8 @@ char	**split_tokens(char *line, char delim)
 	j = 0;
 	tokens = gc_malloc(sizeof(char *) * (count_token(line) + 1));
 	if (!tokens)
-		return (p_err("Fail in creating token array!"), gc_clean(), NULL);
+		// return (p_err("Error:\nFail in creating token array!"), gc_clean(), NULL);
+		return (p_err("Error:\nFail in creating token array!"), NULL);
 	while (j < count_token(line))
 	{
 		while (line[i] && line[i] == delim)
@@ -75,7 +79,8 @@ char	**split_tokens(char *line, char delim)
 		{
 			tokens[j] = get_token(line + i, delim);
 			if (!tokens[j])
-				return (free_double_pointer(tokens), NULL);
+				// return (free_double_pointer(tokens), NULL);
+				return (p_err("Error:\nMalloc fail in get token.\n"), NULL);
 			i = i + ft_strlen(tokens[j]);
 			j++;
 		}

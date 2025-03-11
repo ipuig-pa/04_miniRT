@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 13:44:49 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:17:04 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // error and validation check
 void		p_err(char *s);
 void		clean_scene(t_env *env);
+void		exit_on_parse(void);
 int			valid_file(const char *filename);
 int			parse_valid_tk(t_scene *scene, char *line, int i);
 
@@ -41,20 +42,20 @@ t_vector	parse_vector(char *token, char key);
 t_vector	err_vector(void);
 t_vector	norm_vector(t_vector dirct_vec);
 void		parse_material(t_obj *obj, char *token);
-void		get_material(t_obj	*obj);
+void		get_material(t_obj *obj);
 
 // main parser
 int			parsing_scene(t_env *env, const char *filename);
 t_color		parse_color(char *token);
-void		parse_ambient(t_amblight *amblight, char **tokens);
-void		parse_camera(t_camera *camera, char **tokens);
-void		parse_light(t_light *light, char **tokens);
-void		parse_cylinder(t_obj *obj, char **tokens);
+int			parse_ambient(t_amblight *amblight, char **tokens, int i);
+int			parse_camera(t_camera *camera, char **tokens, int i);
+int			parse_light(t_light *light, char **tokens, int i);
+int			parse_cylinder(t_obj *obj, char **tokens, int i);
 int			create_surface(t_obj *obj, char **tokens);
 void		create_topcir(t_obj *cyl, t_obj *obj);
 void		create_basecir(t_obj *cyl, t_obj *obj);
-void		parse_sphere(t_obj *obj, char **tokens);
-void		parse_plane(t_obj *obj, char **tokens);
+int			parse_sphere(t_obj *obj, char **tokens, int i);
+int			parse_plane(t_obj *obj, char **tokens, int i);
 
-//void		parsing_scene(t_scene *scene, const char *filename);
+// void		parsing_scene(t_scene *scene, const char *filename);
 #endif

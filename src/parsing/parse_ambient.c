@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_ambient.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/23 11:22:25 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 15:56:44 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:58:56 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,16 @@
 // todo: ft_clean needed
 // tokens[1] => ratio(float); tk[2] => rgba
 // A 0.2 255,255,255
-void	parse_ambient(t_amblight *amblight, char **tokens)
+int	parse_ambient(t_amblight *amblight, char **tokens, int i)
 {
 	if (check_para_num(tokens, 'a') == -1)
-		return (gc_clean());
+		return (-1);
+		// return (gc_clean());
 	amblight->ratio = ft_atofloat(tokens[1]);
 	if (amblight->ratio < 0.0f || amblight->ratio > 1.0f)
-		return (p_err("Invalid ambient light value: must be within 0.0-1.0!"),
-			gc_clean());
+		return (p_err("Error:\nInvalid ambient light value: must be within 0.0-1.0!"), -1);
 	amblight->color = parse_color(tokens[2]);
+	return (i);
 }
 
 // if (tokens[1] == NULL || tokens[2] == NULL)
