@@ -1,0 +1,15 @@
+# More complex scene with multiple objects in different positions
+
+A 0.2 255,255,255  # Ambient light
+
+C 0,0,0 0,0,-1 70   # Camera
+
+L 10,10,0 0.7 255,255,255 # Light
+
+sp 0,0,-50 10 255,0,0  # Red sphere
+
+pl 0,-15,0 0,1,0 0,0,255 # Blue plane
+
+cy -10,0,-50 5 10 0,255,0 # Green cylinder
+
+sp 20,10,-70 7 255,255,0 # Yellow sphere (further away)

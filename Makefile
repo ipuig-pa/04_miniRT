@@ -1,4 +1,3 @@
-#check that inclusions are proprely handled and make again if some header change, and also for the sources (if we change one source file, for example when changing the main)
 NAME = minirt
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
@@ -105,14 +104,14 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(MLX):
-# @git clone https://github.com/ncoden/minilibx_macos.git $(MLX_DIR)
+	@git clone https://github.com/U-Mina/minilibx_openGL.git $(MLX_DIR)
 	make -C $(MLX_DIR)
 
 clean : 
 	rm -rf $(OBJ_DIR)
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(MLX_DIR)
-#rm -rf $(MLX_DIR)
+#make clean -C $(MLX_DIR)
+	rm -rf $(MLX_DIR)
 
 fclean : clean
 	rm -f $(NAME)
