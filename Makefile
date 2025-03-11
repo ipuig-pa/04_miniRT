@@ -46,6 +46,7 @@ SOURCES =	gc_malloc_free.c\
 			viewport.c\
 			ray_tracing.c\
 			intersect.c\
+			inside.c\
 			normal.c\
 			shading.c\
 			phong.c\

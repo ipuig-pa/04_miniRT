@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 09:48:24 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 12:53:22 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:41:04 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ typedef struct s_scene
 	t_obj		*obj;
 	int			select_obj;
 	bool		select_light;
+	bool		enclosed_light;
 }			t_scene;
 // t_amblight	*amblight; //erase the * for all of them except *obj???
 // t_camera	*cam;

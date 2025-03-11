@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 16:15:01 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 19:08:06 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 {
 	t_hit		sh_hit;
 	float		cos;
-	t_vector	sh_light;
 
 	cos = 0;
 	if (scene->obj[hit->obj_id].m.exist == true)
@@ -44,15 +43,21 @@ void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 	ray->d = v_subt(scene->light.p, ray->o);
 	hit->light_dist = v_modulus(ray->d);
 	ray->d = scalar_div(ray->d, hit->light_dist); //make unitary
-	find_hit(&sh_hit, *ray, scene, hit->obj_id);
-	// if (sh_hit.occur == true )
-	// {
-	// 	sh_light = unit_v(v_subt(sh_hit.p, scene->light.p));
-	// 	if (dot_prod(sh_light, ray->d) > 0.99)
-	// 		sh_hit.occur = false;
-	// }
-	if (sh_hit.occur == false || sh_hit.dist > hit->light_dist + 0.1)//there is no other object intersecting the path from hit object to light
-		cos = dot_prod(ray->d, hit->normal);
+	if (!scene->enclosed_light)
+	{
+		find_hit(&sh_hit, *ray, scene, hit->obj_id);
+		if (sh_hit.occur == false || sh_hit.dist > hit->light_dist + 0.1)//there is no other object intersecting the path from hit object to light
+			cos = dot_prod(ray->d, hit->normal);
+	}
 	phong(hit, ray, scene, cos);
 	check_selected(hit->obj_id, scene->select_obj, ray, scene);
 }
+
+
+
+	// if (sh_hit.occur == true && sh_hit.dist <= hit->light_dist + 0.1)
+	// {
+	// 	find_normal(&sh_hit, scene);
+	// 	if (dot_prod(sh_hit.normal, ray->d) < 0.1)
+	// 		sh_hit.occur = false;
+	// }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 12:41:55 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/11 19:06:54 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ static void	print_prompt2(void)
 	printf("\033[34m←: rotate LEFT\t\t→: rotate RIGHT\033[0m\n");
 	printf("\033[34m>: rotate FORWARD\t<: rotate BACKARD\033[0m\n");
 	printf("\033[1;31m\nScroll the wheel:\033[0m\n");
-	printf("\033[3;32mIf some object has been selected:\n\033[0m");
+	printf("\033[3;32mIf any object has been selected:\n\033[0m");
 	printf("\033[34mScale the object.\n\033[0m");
 	printf("\033[3;32mElse if the Light is selected:\n\033[0m");
 	printf("\033[34mChange the diffuse light ratio.\n\033[0m");
 	printf("\033[3;32mIf nothing is selected:\033[0m\n");
 	printf("\033[34mZoom In and Out Camera\033[0m\n");
 	printf("\033[1;31m\n+ AND -:\033[0m\n");
-	printf("\033[3;32mIf some object has been selected:\n\033[0m");
+	printf("\033[3;32mIf any object has been selected:\n\033[0m");
 	printf("\033[34mScale the object.\n\033[0m");
 	printf("\033[3;32mElse if the Light is selected:\n\033[0m");
 	printf("\033[34mChange the diffuse light ratio.\n\033[0m");
@@ -102,16 +102,16 @@ int	main(int ac, char **av)
 	t_env	env;
 
 	if (ac != 2)
-		return (p_err("Invalid number of arguments! A single rt file should be provided"), 1);
+		return (p_err("Error\nInvalid number of arguments! A single rt file should be provided"), 1);
 	if (!parsing_scene(&env, av[1]))
 		return (1);
 	create_viewport(env.scene);
 	init_env(&env);
-	// print_all(env.scene);
+	print_prompt();
+	env.res.res = 10; //DELETE!! JUST TO GO FASTER IN DEBUGING
 	ray_tracer(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
-	set_hooks(&env); //hooks (rotation, translation, etc)
-	print_prompt();
+	set_hooks(&env);
 	mlx_loop(env.mlx);
 	return (0);
 }

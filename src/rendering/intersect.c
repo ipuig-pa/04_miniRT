@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 11:48:41 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 16:44:48 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,3 +157,21 @@ void	update_hit(float t, t_hit *hit, t_ray ray, int i)
 		hit->occur = true;
 	}
 }
+
+// void	update_hit(float t, t_hit *hit, t_ray ray, int i)
+// {
+// 	t_vector	o_hit;
+// 	t_vector	hit_p;
+
+// 	hit_p = v_add(ray.o, scalar_mult(ray.d, t));
+// 	o_hit = unit_v(v_subt(hit_p, ray.o));
+// 	if (dot_prod(o_hit, ray.d) < 0.99 && (hit->occur == false || hit->dist > t))
+// 	{
+// 		hit->p = hit_p;
+// 		// hit->p = v_add(ray.o, scalar_mult(ray.d, t));
+// 		hit->obj_id = i;
+// 		// hit->dist = t * v_modulus(ray.d);
+// 		hit->dist = t;
+// 		hit->occur = true;
+// 	}
+// }
