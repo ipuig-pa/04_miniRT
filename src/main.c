@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 20:40:44 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/11 10:31:25 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@
 // 	}
 // }
 
+//MISSING: 
+//+ and - have the same effect of scrolling to scale objects / change light ratio (think about env light ratio?!?)
+//when nothing is selected scroll is camera zoom and + and - is cahnge env ratio light
+//space to rerender in hight quality (sentence for performance reasor, while manipulating it will loose quality)
+//Put it alineated without tabs? Just the title?
+//
 static void	print_prompt2(void)
 {
 	printf("\t\t\t\t\033[1;35mScroll the wheel:\033[0m\n");
@@ -88,7 +94,7 @@ int	main(int ac, char **av)
 	ray_tracer(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
 	set_hooks(&env); //hooks (rotation, translation, etc)
-	print_instruct();
+	print_prompt();
 	mlx_loop(env.mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/10 11:19:49 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:20:18 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,6 @@
 // # define KEY_MINUS 45     // - key 
 //# define KEY_REVERT
 
-void	print_prompt(void);
 void	set_hooks(t_env *env);
 int		key_action(int keysym, t_env *env);
 int		mouse_button(int button, int x, int y, t_env *env);
