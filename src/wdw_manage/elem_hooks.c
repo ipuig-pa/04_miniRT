@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 12:04:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 10:27:54 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:54:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	scale_elem(int key, t_env *env)
 		scale_obj(key, env);
 	else if (env->scene->select_light == true)
 		scale_light(key, env);
-	else
+	else if (key == SCROLL_DOWN || key == SCROLL_UP)
 		zoom(key, env);
+	else if (key == KEY_PLUS || key == KEY_MINUS)
+		scale_amblight(key, env);
 }

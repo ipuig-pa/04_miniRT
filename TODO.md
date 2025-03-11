@@ -120,16 +120,20 @@ E - create something like clean_scene that gc_free non needed things, but not ev
 
 11/03/2025
 IRENE
-1 - Camera swaping problem solve! -> consider reorthogonize function!?!
-->CHECK IF loq true is needed!
+<!-- 1 - Camera swaping problem solve! -> consider reorthogonize function!?! -->
+<!-- ->CHECK IF loq true is needed! -->
 <!-- 2 - Uncapped cyl after transofrmations!?!?? -->
 <!-- 3 - clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render -->
+<!-- - some problem with Cyl when moving -->
+- Cyl resize with different w and h independently
+- problem with spehere with testfile.rt
 4 - Light overlaping problem solve
-- some problem with Cyl when movint
+<!-- - + and - add env light ratio -->
 2 - change simple transformation with vector additions and not matrix if no needed
 Hook 0 is working? Memory leaks?!?
 Memory leaks?!?
 - Check what happens when 0 is pressed (memory!?!?)
+- Can the performance be increased if we assume sph with r = 1 and cyl =1 etc....? and have matrices from the start? -> other calculation optimizations (Claude!?)
 
 11/03/2025
 ERYA

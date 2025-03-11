@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:08:15 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 16:23:49 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:46:36 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,13 @@ void	move_cam(int key, t_env *env)
 	else if (key == E)
 		cam_translate(env->scene, cam, scalar_mult(env->scene->vp.front, -TRANSL));
 	loq_rerender(env, false);
-	// loq_rerender(env, true);
 }
 
 void	rotate_cam(int key, t_env *env)
 {
 	float	rad;
-	bool	vp_recalc;
 
 	rad = to_rad(ROT);
-	vp_recalc = false; //delete all unneeded
 	if (key == LEFT)
 		cam_rotate(env->scene, &env->scene->cam, rad, env->scene->vp.up);
 	else if (key == RIGHT)
@@ -53,16 +50,10 @@ void	rotate_cam(int key, t_env *env)
 	else if (key == UP)
 		cam_rotate(env->scene, &env->scene->cam, rad, env->scene->vp.right);
 	else if (key == S_LEFT)
-	{
 		vp_rotate(env->scene, -rad, env->scene->vp.front);
-		vp_recalc = false;
-	}
 	else if (key == S_RIGHT)
-	{
 		vp_rotate(env->scene, rad, env->scene->vp.front);
-		vp_recalc = false;
-	}
-	loq_rerender(env, vp_recalc);
+	loq_rerender(env, false);
 }
 
 // scroll the wheel to zoom in(UP)/out(DOWN)
@@ -73,13 +64,15 @@ void	zoom(int key, t_env *env)
 	float	rad;
 
 	rad = to_rad(ZOOM);
-	if (key == SCROLL_UP || key == KEY_PLUS)
+	//if (key == SCROLL_UP || key == KEY_PLUS)
+	if (key == SCROLL_UP)
 	{
 		if ((env->scene->cam.fov - rad) <= 0)
 			return ;
 		env->scene->cam.fov -= rad;
 	}
-	else if (key == SCROLL_DOWN || key == KEY_MINUS)
+	//else if (key == SCROLL_DOWN || key == KEY_MINUS)
+	else if (key == SCROLL_DOWN)
 	{
 		if ((env->scene->cam.fov + rad) >= M_PI)
 			return ;

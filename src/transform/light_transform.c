@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 11:30:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 12:31:18 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:49:57 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ void	light_translate(t_light *light, t_vector tv)
 }
 
 //increase or decrease light ratio
-void	light_scale(t_light *light, float factor)
+void	light_scale(float *ratio, float factor)
 {
-	light->ratio = light->ratio * factor;
-	if (light->ratio < 0)
-		light->ratio = 0; 
-	if (light->ratio > 1)
-		light->ratio = 1; 
+	*ratio = *ratio * factor;
+	if (*ratio < 0)
+		*ratio = 0;
+	if (*ratio > 1)
+		*ratio = 1;
 }

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 15:49:05 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:07:19 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 void	o_translate(t_obj *obj, t_vector t)
 {
-	obj->m = m_multiply(translate(t), obj->m);
+	t_matrix4	t_m;
+
+	t_m = translate(t);
+	obj->m = m_multiply(t_m, obj->m);
 	obj->inv_m = m_invert(obj->m);
-	// obj->m.exist = true;
 	if (obj->type == CYL)
-	{
-		obj[1].m = obj->m;
-		obj[2].m = obj->m;
-	}
+		transform_caps(obj, t_m);
 }
 
 void	o_rotate(t_obj *obj, float r, t_vector a)
 {
 	t_vector	ref;
+	t_matrix4	rot_m;
 
 	ref = v_create(0, 0, 0, 0);
 	if (obj->type == SPH)
@@ -38,26 +38,21 @@ void	o_rotate(t_obj *obj, float r, t_vector a)
 	else if (obj->type == CIR)
 		ref = obj->param.cir.c;
 	ref = v_transform(ref, obj->m, 'v');
-	obj->m = m_multiply(\
+	rot_m = m_multiply(\
 				m_multiply(\
-					m_multiply(translate(ref), rotate(r, a)), \
-					translate(invert_v(ref))), \
-				obj->m);
+					translate(ref), rotate(r, a)), \
+				translate(invert_v(ref)));
+	obj->m = m_multiply(rot_m, obj->m);
 	obj->inv_m = m_invert(obj->m);
 	if (obj->type == CYL)
-	{
-		obj[1].m = obj->m;
-		obj[1].inv_m = obj->inv_m;
-		obj[2].m = obj->m;
-		obj[2].inv_m = obj->inv_m;
-	}
+		transform_caps(obj, rot_m);
 }
 
 void	o_scale(t_obj *obj, float sx, float sy, float sz)
 {
 	t_vector	ref;
 	t_vector	s;
-	t_vector	h;
+	t_matrix4	sc_m;
 
 	ref = v_create(0, 0, 0, 0);
 	if (obj->type == SPH)
@@ -65,30 +60,61 @@ void	o_scale(t_obj *obj, float sx, float sy, float sz)
 	else if (obj->type == PL)
 		ref = obj->param.pl.p;
 	else if (obj->type == CYL)
-	{
 		ref = obj->param.cyl.c;
-		ref = v_transform(ref, obj->m, 'v');
-		s = v_create(sx, sy, sz, 1);
-		h = scalar_mult(obj->param.cyl.a, obj->param.cyl.h / 2);
-		obj[1].m = m_multiply(m_multiply(m_multiply(\
-					translate(v_subt(obj->param.cyl.c, element_mult(h, s))), \
-					scale(sx, sy, sz)), \
-					translate(invert_v(obj[1].param.cir.c))), \
-					obj->m);
-		obj[1].m.exist = true;
-		obj[1].inv_m = m_invert(obj[1].m);
-		obj[2].m = m_multiply(m_multiply(m_multiply(\
-			translate(v_add(obj->param.cyl.c, element_mult(h, s))), \
-			scale(sx, sy, sz)), \
-			translate(invert_v(obj[2].param.cir.c))), \
-			obj->m);
-		obj[2].m.exist = true;
-		obj[2].inv_m = m_invert(obj[2].m);
-	}
 	else if (obj->type == CIR)
 		ref = obj->param.cir.c;
 	ref = v_transform(ref, obj->m, 'v');
-	obj->m = m_multiply(m_multiply(m_multiply(translate(ref),scale(sx, sy, sz)),translate(invert_v(ref))), obj->m);
+	sc_m = m_multiply(\
+			m_multiply(\
+				translate(ref), scale(sx, sy, sz)), \
+			translate(invert_v(ref)));
+	obj->m = m_multiply(sc_m, obj->m);
 	obj->inv_m = m_invert(obj->m);
-	// obj->m.exist = true;
+	if (obj->type == CYL)
+	{
+		s = v_create(sx, sy, sz, 1);
+		scale_caps(obj, s);
+	}
+}
+
+void	transform_caps(t_obj *obj, t_matrix4 m)
+{
+	int	i;
+
+	i = 1;
+	while (i <= 2)
+	{
+		obj[i].m = m_multiply(m, obj[i].m);
+		obj[i].inv_m = m_invert(obj[i].m);
+		i++;
+	}
+}
+
+void	scale_caps(t_obj *obj, t_vector s)
+{
+	t_vector	ref;
+	t_vector	ref_back;
+	int			i;
+
+	i = 1;
+	while (i <= 2)
+	{
+		ref = obj[i].param.cir.c;
+		ref = v_transform(ref, obj[i].m, 'v');
+		if (i == 1)
+			ref_back = obj->param.cyl.b;
+		else
+			ref_back = v_add(obj->param.cyl.b, \
+							scalar_mult(obj->param.cyl.a, obj->param.cyl.h));
+		ref_back = v_transform(ref_back, obj->m, 'v');
+		obj[i].m = m_multiply(\
+					m_multiply(\
+						m_multiply(\
+							translate(ref_back), \
+							scale(s.x, s.y, s.z)), \
+						translate(invert_v(ref))), \
+					obj[i].m);
+		obj[i].inv_m = m_invert(obj[i].m);
+		i++;
+	}
 }

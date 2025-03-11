@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 10:20:18 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:47:53 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	zoom(int key, t_env *env);
 void	select_light(t_env *env);
 void	move_light(int key, t_env *env);
 void	scale_light(int key, t_env *env);
+void	scale_amblight(int key, t_env *env);
 
 //rerender
 void	loq_rerender(t_env *env, bool vp);

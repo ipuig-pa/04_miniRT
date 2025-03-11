@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/10 14:58:49 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:09:06 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	rotate_obj(int key, t_env *env)
 		else if (key == DOWN)
 			o_rotate(obj, -rad, env->scene->vp.right);
 		else if (key == UP)
-			o_rotate(obj, rad, env->scene->vp.right);	
+			o_rotate(obj, rad, env->scene->vp.right);
 		else if (key == S_LEFT)
 			o_rotate(obj, -rad, env->scene->vp.front);
 		else if (key == S_RIGHT)
