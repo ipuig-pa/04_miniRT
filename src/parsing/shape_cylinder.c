@@ -3,28 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   shape_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 16:14:15 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:16:40 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // obj[0]=> curved part, obj[1][2]=> 2 circles
-void	parse_cylinder(t_obj *obj, char **tokens)
+int	parse_cylinder(t_obj *obj, char **tokens, int i)
 {
 	if (check_para_num(tokens, 'y') == -1)
-	{
-		gc_clean();
-		return ;
-	}
-	if (create_surface(&obj[0], tokens))
+		return (-1);
+	if (create_surface(&obj[0], tokens) != -1)
 	{
 		create_basecir(&obj[0], &obj[1]);
 		create_topcir(&obj[0], &obj[2]);
 	}
+	else
+		return (p_err("Error:\nFail to create cylinder!"), -1);
+	return (i + 3);
 }
 
 /**
@@ -59,9 +59,9 @@ int	create_surface(t_obj *obj, char **tokens)
 	obj->param.cyl.h = ft_atofloat(tokens[4]);
 	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
 	{
-		p_err("Diameter and Height must be positive numbers!");
-		gc_clean();
-		return (0);
+		p_err("Error:\nDiameter and Height must be positive numbers!");
+		// gc_clean();
+		return (-1);
 	}
 	obj->param.cyl.c = parse_vector(tokens[1], 'p');
 	obj->param.cyl.b = v_subt(obj->param.cyl.c, \

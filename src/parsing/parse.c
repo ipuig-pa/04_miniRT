@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 13:48:10 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:18:14 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,31 @@ int	parsing_scene(t_env *env, const char *filename)
 	i = 0;
 	content = read_file(filename);
 	if (!content)
-		return (p_err("Errors in reading file!"), 0);
+		return (p_err("Error:\nFail to read file!"), exit_on_parse(), 0);
 	lines = gc_split(content, '\n');
 	gc_free(content);
 	if (!lines)
-		return (p_err("Errors in spliting file!"), 0);
+		return (p_err("Error:\nFail to split file!"), exit_on_parse(), 0);
 	env->scene = gc_malloc(sizeof(t_scene));
 	env->rt_scene_file = gc_strdup(filename);
 	if (!env->scene)
 	{
-		p_err("Memory allocation for t_scene failed!");
-		return (gc_clean(), 0);
+		p_err("Error:\nMemory allocation for t_scene failed!");
+		return (exit_on_parse(), 0);
 	}
 	env->scene->obj_num = count_objs(lines);
 	env->scene->obj = gc_malloc(sizeof(t_obj) * (env->scene->obj_num + 1));
 	if (!env->scene->obj)
 	{
-		p_err("Memory allocation for Objects failed!");
-		return (gc_clean(), 0);
+		p_err("Error:\nMemory allocation for Objects failed!");
+		return (exit_on_parse(), 0);
 	}
 	j = 0;
 	while (lines[i])
 	{
 		j = parse_valid_tk(env->scene, lines[i], j);
 		if (j == -1)
-			return (0); //do whatever needed
+			return (exit_on_parse(), 0); //do whatever needed
 		i++;
 	}
 	free_double_pointer(lines);
@@ -66,24 +66,21 @@ int	parse_valid_tk(t_scene *scene, char *line, int i)
 
 	tokens = split_tokens(line, ' ');
 	if (!tokens || !tokens[0])
-		return (p_err("Empty input or Malloc failed!"), false);
+		return (p_err("Error:\n Invalid input or Malloc failed!"), -1);
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
-		parse_ambient(&scene->amblight, tokens);
+		return (parse_ambient(&scene->amblight, tokens, i));
 	else if (ft_strncmp(tokens[0], "C", 2) == 0)
-		parse_camera(&scene->cam, tokens);
+		return(parse_camera(&scene->cam, tokens, i));
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
-		parse_light(&scene->light, tokens);
+		return(parse_light(&scene->light, tokens, i));
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-		parse_plane(&scene->obj[i++], tokens);
+		return (parse_plane(&scene->obj[i], tokens, i));
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-		parse_sphere(&scene->obj[i++], tokens);
+		return (parse_sphere(&scene->obj[i], tokens, i));
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-	{
-		parse_cylinder(&scene->obj[i++], tokens);
-		i += 2;
-	}
+		return(parse_cylinder(&scene->obj[i], tokens, i));
 	else
-		return (p_err("Invalid identifier passed!"), -1);
+		return (p_err("Error:\nInvalid identifier passed!"), -1);
 	return (free_double_pointer(tokens), i);
 }
 

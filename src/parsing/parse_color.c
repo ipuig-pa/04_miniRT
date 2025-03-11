@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/07 11:09:32 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:33:24 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//tomatch the ret type, add a helper ft to ret err_color()
-//to indicate that errors in parse_color()
+// tomatch the ret type, add a helper ft to ret err_color()
+// to indicate that errors in parse_color()
 t_color	err_color(void)
 {
 	return (set_color(0, 0, 0, 0));
@@ -39,13 +39,12 @@ t_color	parse_color(char *token)
 
 	clr = gc_split(token, ',');
 	if (para_nbr(clr) != 3 && para_nbr(clr) != 4)
-		p_err("Invalid parameter number for color or malloc failed!");
-	if (!clr || !clr[0] || !clr[1] || !clr[2] || (para_nbr(clr) == 4 && !clr[3]))
-	{
-		p_err("Malloc failed!");
-		free_double_pointer(clr);
-		return (err_color());
-	}
+		return (p_err("Error:\nInvalid parameter number for color or \
+			malloc failed!"), err_color());
+	if (!clr)
+		return (p_err("Error:\nMalloc failed!"), err_color());
+	if (!clr[0] || !clr[1] || !clr[2] || (para_nbr(clr) == 4 && !clr[3]))
+		return (free_double_pointer(clr), err_color());
 	color.s_comp.a = 0.0f;
 	if (para_nbr(clr) == 4)
 		color.s_comp.a = ft_atofloat(clr[3]) / 255.0f;
@@ -55,7 +54,7 @@ t_color	parse_color(char *token)
 	free_double_pointer(clr);
 	if (!valid_color_val(color))
 	{
-		p_err("Invalid color value!");
+		p_err("Error:\nInvalid color value!");
 		return (err_color());
 	}
 	return (color);

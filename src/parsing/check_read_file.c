@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_read_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/08 14:12:04 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 14:13:43 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ int	valid_file(const char *filename)
 	dot_pos = ft_strrchr(filename, '.');
 	if (!dot_pos || ft_strncmp(dot_pos, ".rt", 4) != 0)
 	{
-		p_err("Invalid filename! Must be .rt extension.");
+		p_err("Error:\nInvalid filename! Must be .rt extension.");
 		return (-1);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		p_err("Cannot open file!");
+		p_err("Error:\nCannot open file!");
 		close(fd);
 		return (-1);
 	}
@@ -51,7 +51,7 @@ char	*read_file(const char *filename)
 
 	fd = valid_file(filename);
 	if (fd < 0)
-		return (p_err("Errors in file validation or opening file!"), NULL);
+		return (p_err("Error:\n Cannot open file!"), NULL);
 	content = gc_strdup("");
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -78,8 +78,9 @@ int	count_lines(const char *content)
 
 	i = 0;
 	if (content == NULL)
-		return (p_err("Fail to read file or Empty file!"), gc_clean(),
-			-1);
+		// return (p_err("Fail to read file or Empty file!"), gc_clean(),
+		// 	-1);
+		return (p_err("Error:\nFail to read file or Empty file!"), -1);
 	while (*content)
 	{
 		if (*content == '\n')

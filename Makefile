@@ -39,6 +39,7 @@ SOURCES =	gc_malloc_free.c\
 			parse_vector.c\
 			bonus_material.c\
 			parse.c\
+			exit_on_parsing.c\
 			shape_cylinder.c\
 			shape_plane.c\
 			shape_sphere.c\
@@ -55,7 +56,6 @@ SOURCES =	gc_malloc_free.c\
 			color2.c\
 			transform.c\
 			obj_transform.c\
-			cyl_transform.c\
 			cam_transform.c\
 			light_transform.c\
 			matrix_utils.c\
@@ -66,6 +66,7 @@ SOURCES =	gc_malloc_free.c\
 			light_hooks.c\
 			rerender.c\
 			main.c
+#cyl_transform.c\
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
