@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:26:09 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:51:45 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:08:15 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,17 @@ void	init_env(t_env *env)
 {
 	env->mlx = mlx_init();
 	if (!env->mlx)
-		finish_env(env, 1, "Environment can not be initalized");
+		finish_env(env, 1, "Error:\nEnvironment can not be initalized");
 	env->mlx_window = mlx_new_window(env->mlx, WDW_WIDTH, WDW_HEIGHT, "Scene");
 	if (!env->mlx_window)
-		finish_env(env, 1, "Environment can not be initalized");
+		finish_env(env, 1, "Error:\nEnvironment can not be initalized");
 	env->img.img = mlx_new_image(env->mlx, WDW_WIDTH, WDW_HEIGHT);
 	if (!env->img.img)
-		finish_env(env, 1, "Environment can not be initalized");
+		finish_env(env, 1, "Error:\nEnvironment can not be initalized");
 	env->img.addr = mlx_get_data_addr(env->img.img, &env->img.bits_per_pixel, \
 					&env->img.line_length, &env->img.endian);
 	if (!env->img.addr)
-		finish_env(env, 1, "Environment can not be initalized");
+		finish_env(env, 1, "Error:\nEnvironment can not be initalized");
 	env->res.res = 100;
 }
 

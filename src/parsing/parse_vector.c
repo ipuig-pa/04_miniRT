@@ -6,15 +6,12 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:21 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 10:26:20 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 20:56:33 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// Q: do we need both t_pont and t_vector?
-
-// falls into default pos of cam
 t_vector	err_vector(void)
 {
 	t_vector	err_vector;
@@ -26,15 +23,6 @@ t_vector	err_vector(void)
 	return (err_vector);
 }
 
-// falls into default direction
-// t_vector	err_vector(void)
-// {
-// 	t_vector	err_vector;
-
-// 	err_vector.x = 
-// 	return (err_vector);
-// }
-
 t_vector	parse_vector(char *token, char key)
 {
 	t_vector	p;
@@ -45,7 +33,8 @@ t_vector	parse_vector(char *token, char key)
 		return (p_err("Error:\nMalloc failed! Exit"), err_vector());
 	if (!coord[0] || !coord[1] || !coord[2])
 		return (free_double_pointer(coord), \
-		p_err("Error:\nInvalid vector! Exit"), err_vector());
+		p_err("Error:\nInvalid vector! Must be \
+			the format of (x, y, z). Exit"), err_vector());
 	p.x = ft_atofloat(coord[0]);
 	p.y = ft_atofloat(coord[1]);
 	p.z = ft_atofloat(coord[2]);
@@ -78,15 +67,11 @@ t_vector	norm_vector(t_vector dirct_vec)
 	return (v);
 }
 
-/**
-para for: POSITION of Cam, normed vector
-//element of type vector4, used both for vectors and points
-typedef struct s_vector // w = 0 for vector and w = 1 for point
+int	check_norm_range(t_vector v)
 {
-	float	x;
-	float	y;
-	float	z;
-	float	w;
-}			t_vector;
- */
-// float	v_modulus(const t_vector *v)(from linear.h)
+	if ((v.x > 1.0f || v.x < -1.0f) || \
+		(v.y > 1.0f || v.y < -1.0f) || \
+		(v.z > 1.0f || v.z < -1.0f))
+		return (-1);
+	return (1);
+}

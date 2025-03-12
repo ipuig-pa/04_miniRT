@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   intersect.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 16:55:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:42:54 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:28:57 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//calculates intersect point between ray and sphere
-//gives the lowest (if the 2 possible solutions)
+// calculates intersect point between ray and sphere
+// gives the lowest (if the 2 possible solutions)
 static float	intersect_sph(t_ray ray, t_sph *sph)
 {
 	float		root;
@@ -63,12 +63,15 @@ static float	intersect_cyl(t_ray ray, t_cyl *cyl)
 	{
 		v2 = v_subt(cyl->b, ray.o);
 		dxa = cross_prod(ray.d, cyl->a);
-		root = (dot_prod(dxa, dxa)) * powf(cyl->r, 2) - powf(dot_prod(v2, dxa), 2);
-		d = (dot_prod(dxa, cross_prod(v2, cyl->a)) - sqrtf(root)) / dot_prod(dxa, dxa);
+		root = (dot_prod(dxa, dxa)) * powf(cyl->r, 2) - powf(dot_prod(v2, dxa),
+				2);
+		d = (dot_prod(dxa, cross_prod(v2, cyl->a)) - sqrtf(root))
+			/ dot_prod(dxa, dxa);
 		t = dot_prod(cyl->a, v_subt(scalar_mult(ray.d, d), v2));
 		if (d < 0 || t > cyl->h || t < 0)
 		{
-			d = (dot_prod(dxa, cross_prod(v2, cyl->a)) + sqrtf(root)) / dot_prod(dxa, dxa);
+			d = (dot_prod(dxa, cross_prod(v2, cyl->a)) + sqrtf(root))
+				/ dot_prod(dxa, dxa);
 			t = dot_prod(cyl->a, v_subt(scalar_mult(ray.d, d), v2));
 		}
 		if (t >= 0 && t <= cyl->h)

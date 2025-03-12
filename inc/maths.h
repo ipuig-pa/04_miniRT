@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   maths.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 12:53:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:58:30 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:07:07 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdbool.h>
 
-//element of type vector4, used both for vectors and points
-typedef struct s_vector // w = 0 for vector and w = 1 for point
+// w = 0 for vector and w = 1 for point
+typedef struct s_vector
 {
 	float	x;
 	float	y;
@@ -35,7 +35,7 @@ typedef struct s_matrix3
 	float	m[3][3];
 }			t_matrix3;
 
-//linear algebra
+// linear algebra
 t_vector	v_create(float x, float y, float z, float w);
 t_vector	v_add(t_vector v1, t_vector v2);
 t_vector	v_subt(t_vector v2, t_vector v1);
@@ -49,7 +49,7 @@ float		v_modulus(t_vector v);
 t_vector	unit_v(t_vector v);
 t_vector	v_reflect(t_vector in, t_vector n);
 
-//matrices
+// matrices
 t_matrix4	identity(void);
 t_matrix4	m_multiply(t_matrix4 m1, t_matrix4 m2);
 t_matrix4	sm_divide(t_matrix4 m, float s);
@@ -60,7 +60,7 @@ float		det4(t_matrix4 m);
 float		det3(t_matrix3 m);
 t_matrix4	m_invert(t_matrix4 m);
 
-//others
+// others
 float		to_rad(float deg);
 
 #endif

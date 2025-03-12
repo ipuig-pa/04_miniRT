@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 14:10:28 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 15:20:59 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 20:39:32 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	exit_on_parse(void)
 {
-	//p_err("Error:\nErrors in parsing, exit program!");
 	gc_clean();
 	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:35:27 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 19:54:04 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 21:23:32 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ void	revert_scene(t_env *env)
 {
 	if (!env->rt_scene_file)
 	{
-		p_err("Cannot find rt file, nothing to revert!");
+		p_err("Error:\nCannot find rt file, nothing to revert! Exit!");
 		return ;
 	}
 	write(1, "Re-parsing and low quality re-rendering called!\n", 49);
 	clean_scene(env);
 	if (!parsing_scene(env, env->rt_scene_file))
 	{
-		p_err("Fail to Re-load rt file!");
+		p_err("Error:\nFail to Re-load rt file! Exit!");
 		return ;
 	}
 	loq_rerender(env, true);

@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:30:54 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 10:47:42 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 21:05:44 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	count_token(char *line)
 	return (count);
 }
 
-//get ONE word(token) from *line(single line)
+// get ONE word(token) from *line(single line)
 char	*get_token(char *line, char delim)
 {
 	int		tk_len;
@@ -53,12 +53,6 @@ char	*get_token(char *line, char delim)
 	return (token);
 }
 
-//create array of token, and will pass to valid_token_checker()
-/** expected outcome:
- * input = "  sp  11,11,11    5   255,211,221"
- * ret following:
- * tokens[0]=sp; tks[1]=11,11,11; tks[2]=5; tks[3]=255..; tks[4]=null
-*/
 char	**split_tokens(char *line, char delim)
 {
 	int		i;
@@ -69,17 +63,15 @@ char	**split_tokens(char *line, char delim)
 	j = 0;
 	tokens = gc_malloc(sizeof(char *) * (count_token(line) + 1));
 	if (!tokens)
-		// return (p_err("Error:\nFail in creating token array!"), gc_clean(), NULL);
 		return (p_err("Error:\nFail in creating token array! Exit!"), NULL);
 	while (j < count_token(line))
 	{
 		while (line[i] && line[i] == delim)
-			i++;// space check again
+			i++;
 		if (line[i])
 		{
 			tokens[j] = get_token(line + i, delim);
 			if (!tokens[j])
-				// return (free_double_pointer(tokens), NULL);
 				return (p_err("Error:\nMalloc fail in get token. Exit!"), NULL);
 			i = i + ft_strlen(tokens[j]);
 			j++;
@@ -89,13 +81,29 @@ char	**split_tokens(char *line, char delim)
 	return (tokens);
 }
 
-/**
- * typedef struct s_scene
+int	check_dup(char **lines)
 {
-	t_amblight	*amblight;
-	t_camera	*cam;
-	t_light		*light;
-	t_obj		*obj;
-	int			obj_num;
-}			t_scene;
- */
+	int	i;
+	int	cap_a;
+	int	cap_c;
+	int	cap_l;
+
+	i = 0;
+	cap_a = 0;
+	cap_c = 0;
+	cap_l = 0;
+	while (lines[i])
+	{
+		if (ft_strncmp(lines[i], "A ", 2) == 0)
+			cap_a++;
+		else if (ft_strncmp(lines[i], "L ", 2) == 0)
+			cap_l++;
+		else if (ft_strncmp(lines[i], "C ", 2) == 0)
+			cap_c++;
+		i++;
+	}
+	if (cap_a > 1 || cap_c > 1 || cap_l > 1)
+		return (p_err("Error:\nMore than one Camera/Light/Ambient \
+			parameter passed! Exit"), exit_on_parse(), 0);
+	return (1);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:50:52 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:21:06 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ void	ray_tracer(t_env *env)
 	}
 }
 
-//init the ray parameters
-//give real world coordinates of its origin (camera)
-//uses a vp at dist 1 from camera, size acc. to FOV
-//calculate the vector acc. to camera position and pixel in vp
-//init to filter color (white by def) as the base color of the ray
-//return the point of origin
 void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 {
 	t_vector	vp_px;
@@ -62,9 +56,6 @@ void	cast_ray(t_ray *ray, int i, int j, t_scene *scene)
 	ray->color = set_color(1, 1, 1, 0);
 }
 
-//return the point of the first intersect of the ray
-//recalculates ray direction (p and v) according to material properties
-//h identifies the object to be excluded from the shadow checking
 void	find_hit(t_hit	*hit, t_ray ray, t_scene *scene, int h)
 {
 	int		i;

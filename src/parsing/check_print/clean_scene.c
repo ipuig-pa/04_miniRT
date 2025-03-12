@@ -6,17 +6,17 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:04:39 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 11:38:28 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 20:49:13 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-//set obj == null to avid dangling ptr, for safety reason
 void	clean_scene(t_env *env)
 {
 	if (!env->scene)
-		return ((void)p_err("Error:\nNo proper scene data found!"), gc_clean());
+		return ((void)p_err("Error:\nNo proper scene \
+			data found to rerender!"), gc_clean());
 	if (env->scene->obj)
 	{
 		gc_free(env->scene->obj);

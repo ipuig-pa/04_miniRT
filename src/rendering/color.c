@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 13:20:35 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:44:59 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:27:51 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,3 @@ t_color	col_add(t_color c1, t_color c2)
 	clamp_col(&res_col);
 	return (res_col);
 }
-

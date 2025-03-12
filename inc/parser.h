@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 18:12:35 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:07:23 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int			count_token(char *line);
 int			count_objs(char **lines);
 int			count_lines(const char *content);
 char		*read_file(const char *filename);
+int			check_dup(char **lines);
 char		*get_token(char *content, char delim);
 char		**split_tokens(char *content, char delim);
 
@@ -42,6 +43,7 @@ bool		is_err_color(t_color clr);
 t_vector	parse_vector(char *token, char key);
 t_vector	err_vector(void);
 t_vector	norm_vector(t_vector dirct_vec);
+int			check_norm_range(t_vector v);
 void		parse_material(t_obj *obj, char *token);
 void		get_material(t_obj *obj);
 
@@ -60,5 +62,4 @@ void		create_basecir(t_obj *cyl, t_obj *obj);
 int			parse_sphere(t_obj *obj, char **tokens, int i);
 int			parse_plane(t_obj *obj, char **tokens, int i);
 
-// void		parsing_scene(t_scene *scene, const char *filename);
 #endif

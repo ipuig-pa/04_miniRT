@@ -6,16 +6,12 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 10:47:21 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 20:51:01 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/** FUNC:
- * to read *.rt and error check
- * retval: fd of file.rt
- */
 int	valid_file(const char *filename)
 {
 	int			fd;
@@ -36,11 +32,6 @@ int	valid_file(const char *filename)
 	}
 	return (fd);
 }
-
-// empty in main parsing already, but can also write smth here for safety
-bool	empty_check(int fd);
-
-// Q: do we have to change all-related ft_func in get_next_line() into gc_func()?
 
 char	*read_file(const char *filename)
 {
@@ -70,7 +61,6 @@ char	*read_file(const char *filename)
 	}
 	return (close(fd), content);
 }
-// not using gc here, cuz no gc in GNL
 
 int	count_lines(const char *content)
 {
@@ -78,8 +68,6 @@ int	count_lines(const char *content)
 
 	i = 0;
 	if (content == NULL)
-		// return (p_err("Fail to read file or Empty file!"), gc_clean(),
-		// 	-1);
 		return (p_err("Error:\nFail to read file or Empty file! Exit!"), -1);
 	while (*content)
 	{

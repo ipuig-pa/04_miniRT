@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:38:00 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:21:28 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,6 @@ static void	check_selected(int hit, int sel, t_ray *ray, const t_scene *scene)
 						col_sc_prod(set_color(1, 1, 1, 0), 0.2));
 }
 
-//cast a ray from the light source to the hit point
-//finds if it hits some object
-//determine if the hit is before or after the light source
-//change the ray color according (in light or shadow)
 void	shading(t_hit *hit, t_ray *ray, t_scene *scene)
 {
 	t_hit		sh_hit;

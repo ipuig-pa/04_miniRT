@@ -6,14 +6,12 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 10:36:55 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 20:55:23 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// tomatch the ret type, add a helper ft to ret err_color()
-// to indicate that errors in parse_color()
 t_color	err_color(void)
 {
 	t_color	err_color;
@@ -43,9 +41,6 @@ bool	valid_color_val(t_color clr)
 	return (false);
 }
 
-// parse color with t_color struct
-// UPDATE: convert to [0.0f-1.0f]
-// convert_rgba(t_color *color) (in drawing.c) is called later
 t_color	parse_color(char *token)
 {
 	t_color	color;
@@ -68,7 +63,7 @@ t_color	parse_color(char *token)
 	free_double_pointer(clr);
 	if (!valid_color_val(color))
 	{
-		p_err("Error:\nInvalid color value! Exit!");
+		p_err("Error:\nInvalid color value! Must be within [0-255]! Exit!");
 		return (err_color());
 	}
 	return (color);

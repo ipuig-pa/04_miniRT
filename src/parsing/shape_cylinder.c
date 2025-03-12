@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 10:38:42 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 20:31:35 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,28 +27,7 @@ int	parse_cylinder(t_obj *obj, char **tokens, int i)
 	return (i + 3);
 }
 
-/**
- * typedef struct s_cyl
-{
-	t_point		b; 
-	t_vector	a;
-	float		r;
-	float		h; //cylinder height
-}				t_cyl;
- * cy (b: 50,0,20) (a: 0,1,0) (d: 14.2) (h: 21.42) 10,0,255; para = 6
- */
-
-//returns a point (w == 1)
-// static t_vector	pt_sub_vc(t_vector p, t_vector v)
-// {
-// 	t_vector	base;
-
-// 	base.x = p.x - v.x;
-// 	base.y = p.y - v.y;
-// 	base.z = p.z - v.z;
-// 	base.w = p.w - v.w;
-// 	return (base);
-// }
+//cy (b: 50,0,20) (a: 0,1,0) (d: 14.2) (h: 21.42) 10,0,255; para = 6
 
 int	create_surface(t_obj *obj, char **tokens)
 {
@@ -62,6 +41,9 @@ int	create_surface(t_obj *obj, char **tokens)
 	obj->param.cyl.a = norm_vector(parse_vector(tokens[2], 'v'));
 	if (obj->param.cyl.a.w == -1.0f)
 		return (-1);
+	if (check_norm_range(obj->param.cyl.a) == -1)
+		return (p_err("Error:\nCylinder orientation vector \
+			out of range! Should be within [-1,1]. Exit!"), -1);
 	obj->param.cyl.r = ft_atofloat(tokens[3]) / 2.0f;
 	obj->param.cyl.h = ft_atofloat(tokens[4]);
 	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
@@ -74,20 +56,6 @@ int	create_surface(t_obj *obj, char **tokens)
 	obj->m = identity();
 	return (1);
 }
-
-/**
-typedef struct s_cir
-{
-	t_point		c; //coordinates of the center of the circle
-	t_vector	n; //normal vector (unit vector???)
-	float		r; //circle radius
-}				t_cir;
- */
-
-// passed_pt is a POINT, w==1
-
-
-//the first is subtracting axis * h/2 and the second is adding axis * h/2 to the center of the cyl
 
 void	create_basecir(t_obj *cyl, t_obj *obj)
 {

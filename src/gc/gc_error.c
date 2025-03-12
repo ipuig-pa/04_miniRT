@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   gc_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 11:12:59 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/02/20 16:56:13 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 21:26:43 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,3 @@ void	gc_malloc_error(void)
 		perror ("minishell: heap allocation fail\n");
 	}
 }
-
