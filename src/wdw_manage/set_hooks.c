@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 15:36:37 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 12:14:38 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int	key_action(int key, t_env *env)
 		hiq_rerender(env);
 	else if (key == L)
 		select_light(env);
+	else if (key == WIDTH || key == HEIGHT)
+		select_param(key, env);
 	else if (key == W || key == A || key == S || key == D || key == Q
 		|| key == E)
 		move_elem(key, env);

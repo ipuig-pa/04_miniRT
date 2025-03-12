@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:40:28 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 13:03:57 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/11 17:42:42 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	ray_tracer(t_env *env)
 	t_ray	ray;
 	t_hit	hit;
 
+	check_enclosed_light(env->scene);
 	handle_resolution(env);
 	i = 0;
 	while (i < WINDOW_HEIGHT)

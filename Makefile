@@ -56,17 +56,18 @@ SOURCES =	gc_malloc_free.c\
 			color2.c\
 			transform.c\
 			obj_transform.c\
+			cyl_transform.c\
 			cam_transform.c\
 			light_transform.c\
 			matrix_utils.c\
 			set_hooks.c\
 			elem_hooks.c\
 			obj_hooks.c\
+			cyl_hooks.c\
 			cam_hooks.c\
 			light_hooks.c\
 			rerender.c\
 			main.c
-#cyl_transform.c\
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 

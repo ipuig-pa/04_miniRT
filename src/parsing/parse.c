@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 11:35:10 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 12:16:46 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,23 @@
 int	parsing_scene(t_env *env, const char *filename)
 {
 	char	**lines;
-	
+
 	if (!read_and_split(filename, &lines))
-	return (0);
+		return (0);
 	if (!init_parse_scene(env, filename, lines))
-	return (0);
+		return (0);
 	free_double_pointer(lines);
 	env->scene->select_obj = -1;
 	env->scene->select_light = false;
+	env->scene->select_width = false;
+	env->scene->select_height = false;
 	return (1);
 }
 
 int	read_and_split(const char *filename, char ***lines)
 {
 	char	*content;
-	
+
 	content = read_file(filename);
 	if (content == NULL)
 	return (exit_on_parse(), 0);
@@ -52,7 +54,7 @@ int	init_parse_scene(t_env *env, const char *filename, char **lines)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	j = 0;
 	env->scene = gc_malloc(sizeof(t_scene));
@@ -80,24 +82,24 @@ int	init_parse_scene(t_env *env, const char *filename, char **lines)
 int	parse_valid_tk(t_scene *scene, char *line, int i)
 {
 	char		**tokens;
-	
+
 	tokens = split_tokens(line, ' ');
 	if (!tokens || !tokens[0])
-	return (p_err("Error:\n Invalid input or Malloc failed! Exit!"), -1);
+		return (p_err("Error:\n Invalid input or Malloc failed! Exit!"), -1);
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
-	return (parse_ambient(&scene->amblight, tokens, i));
+		return (parse_ambient(&scene->amblight, tokens, i));
 	else if (ft_strncmp(tokens[0], "C", 2) == 0)
-	return(parse_camera(&scene->cam, tokens, i));
+		return(parse_camera(&scene->cam, tokens, i));
 	else if (ft_strncmp(tokens[0], "L", 2) == 0)
-	return(parse_light(&scene->light, tokens, i));
+		return(parse_light(&scene->light, tokens, i));
 	else if (ft_strncmp(tokens[0], "pl", 3) == 0)
-	return (parse_plane(&scene->obj[i], tokens, i));
+		return (parse_plane(&scene->obj[i], tokens, i));
 	else if (ft_strncmp(tokens[0], "sp", 3) == 0)
-	return (parse_sphere(&scene->obj[i], tokens, i));
+		return (parse_sphere(&scene->obj[i], tokens, i));
 	else if (ft_strncmp(tokens[0], "cy", 3) == 0)
-	return(parse_cylinder(&scene->obj[i], tokens, i));
+		return(parse_cylinder(&scene->obj[i], tokens, i));
 	else
-	return (p_err("Error:\nInvalid identifier passed! Exit!"), -1);
+		return (p_err("Error:\nInvalid identifier passed! Exit!"), -1);
 	return (free_double_pointer(tokens), i);
 }
 

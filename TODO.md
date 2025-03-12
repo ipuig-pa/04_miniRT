@@ -125,7 +125,7 @@ IRENE
 <!-- 2 - Uncapped cyl after transofrmations!?!?? -->
 <!-- 3 - clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render -->
 <!-- - some problem with Cyl when moving -->
-- Cyl resize with different w and h independently
+- Cyl resize with different w and h independently: hooks
 <!-- - problem with spehere with testfile.rt -->
 <!-- 4 - Light overlaping problem solve -> when shadow ray is very tangent to the direction of light (check in find hit somehow different treatment for shadow rays!?!?) -->
 <!-- - + and - add env light ratio -->
@@ -137,10 +137,12 @@ Memory leaks?!?
 - Can the performance be increased if we assume sph with r = 1 and cyl =1 etc....? and have matrices from the start? -> other calculation optimizations (Claude!?)
 
 12/03/2025
-- check inside light correclty do
-- cyl resize w and h independently
-- improve performance
-- general checking!
+<!-- - check inside light correclty do -->
+- cyl resize w and h independently: hooks -> add to prompt! (E)
+1- highlight width or heigt
+2- scale sphere also width ang height?!?
+3- improve performance: scale of sphere directly changing radius, change scale obj to use only for direct for cyl
+- general checking! (input errors, mouse clicks sometimes not working?)
 
 11/03/2025
 ERYA

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 15:08:15 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 10:46:36 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:06:27 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ void	rotate_cam(int key, t_env *env)
 	else if (key == UP)
 		cam_rotate(env->scene, &env->scene->cam, rad, env->scene->vp.right);
 	else if (key == S_LEFT)
-		vp_rotate(env->scene, -rad, env->scene->vp.front);
-	else if (key == S_RIGHT)
 		vp_rotate(env->scene, rad, env->scene->vp.front);
+	else if (key == S_RIGHT)
+		vp_rotate(env->scene, -rad, env->scene->vp.front);
 	loq_rerender(env, false);
 }
 
