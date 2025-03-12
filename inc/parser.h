@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 10:39:38 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 11:35:55 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void		get_material(t_obj *obj);
 
 // main parser
 int			parsing_scene(t_env *env, const char *filename);
+int			read_and_split(const char *filename, char ***lines);
+int			init_parse_scene(t_env *env, const char *filename, char **lines);
 t_color		parse_color(char *token);
 int			parse_ambient(t_amblight *amblight, char **tokens, int i);
 int			parse_camera(t_camera *camera, char **tokens, int i);
