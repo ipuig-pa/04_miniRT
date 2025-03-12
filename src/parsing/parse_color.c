@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 14:33:24 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 10:36:55 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,21 @@
 // to indicate that errors in parse_color()
 t_color	err_color(void)
 {
-	return (set_color(0, 0, 0, 0));
+	t_color	err_color;
+
+	err_color.s_comp.r = -1.0f;
+	err_color.s_comp.g = -1.0f;
+	err_color.s_comp.b = -1.0f;
+	err_color.s_comp.a = -1.0f;
+	return (err_color);
+}
+
+bool	is_err_color(t_color clr)
+{
+	return (clr.s_comp.a == -1.0f && \
+		clr.s_comp.a == -1.0f && \
+		clr.s_comp.a == -1.0f && \
+		clr.s_comp.a == -1.0f);
 }
 
 /*check valid range of value*/
@@ -40,9 +54,9 @@ t_color	parse_color(char *token)
 	clr = gc_split(token, ',');
 	if (para_nbr(clr) != 3 && para_nbr(clr) != 4)
 		return (p_err("Error:\nInvalid parameter number for color or \
-			malloc failed!"), err_color());
+			malloc failed! Exit!"), err_color());
 	if (!clr)
-		return (p_err("Error:\nMalloc failed!"), err_color());
+		return (p_err("Error:\nMalloc failed! Exit!"), err_color());
 	if (!clr[0] || !clr[1] || !clr[2] || (para_nbr(clr) == 4 && !clr[3]))
 		return (free_double_pointer(clr), err_color());
 	color.s_comp.a = 0.0f;
@@ -54,7 +68,7 @@ t_color	parse_color(char *token)
 	free_double_pointer(clr);
 	if (!valid_color_val(color))
 	{
-		p_err("Error:\nInvalid color value!");
+		p_err("Error:\nInvalid color value! Exit!");
 		return (err_color());
 	}
 	return (color);

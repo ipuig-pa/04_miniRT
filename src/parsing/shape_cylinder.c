@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 15:16:40 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 10:38:42 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	parse_cylinder(t_obj *obj, char **tokens, int i)
 		create_topcir(&obj[0], &obj[2]);
 	}
 	else
-		return (p_err("Error:\nFail to create cylinder!"), -1);
+		return (p_err("Error:\nFail to create cylinder! Exit!"), -1);
 	return (i + 3);
 }
 
@@ -54,16 +54,19 @@ int	create_surface(t_obj *obj, char **tokens)
 {
 	obj->type = CYL;
 	obj->color = parse_color(tokens[5]);
+	if (is_err_color(obj->color))
+		return (-1);
+	obj->param.cyl.c = parse_vector(tokens[1], 'p');
+	if (obj->param.cyl.c.w == -1.0f)
+		return (-1);
 	obj->param.cyl.a = norm_vector(parse_vector(tokens[2], 'v'));
+	if (obj->param.cyl.a.w == -1.0f)
+		return (-1);
 	obj->param.cyl.r = ft_atofloat(tokens[3]) / 2.0f;
 	obj->param.cyl.h = ft_atofloat(tokens[4]);
 	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
-	{
-		p_err("Error:\nDiameter and Height must be positive numbers!");
-		// gc_clean();
-		return (-1);
-	}
-	obj->param.cyl.c = parse_vector(tokens[1], 'p');
+		return (p_err("Error:\nDiameter and Height must be \
+			positive numbers! Exit!"), -1);
 	obj->param.cyl.b = v_subt(obj->param.cyl.c, \
 						scalar_mult(obj->param.cyl.a, obj->param.cyl.h / 2));
 	parse_material(obj, tokens[6]);

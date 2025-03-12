@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:36:10 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 15:17:04 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 10:39:38 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int			check_para_num(char **tokens, char key);
 int			check_para_2(char **tokens, char key);
 bool		valid_color_val(t_color clr);
 t_color		err_color(void);
-t_vector	err_point(void);
+bool		is_err_color(t_color clr);
+// t_vector	err_point(void);
 t_vector	parse_vector(char *token, char key);
 t_vector	err_vector(void);
 t_vector	norm_vector(t_vector dirct_vec);

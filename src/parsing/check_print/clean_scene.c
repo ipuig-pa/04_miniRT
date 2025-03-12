@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:04:39 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/10 19:52:40 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 11:38:28 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	clean_scene(t_env *env)
 {
 	if (!env->scene)
-		return ((void)p_err("No proper scene data found!\n"), gc_clean());
+		return ((void)p_err("Error:\nNo proper scene data found!"), gc_clean());
 	if (env->scene->obj)
 	{
 		gc_free(env->scene->obj);

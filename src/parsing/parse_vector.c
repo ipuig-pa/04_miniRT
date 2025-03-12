@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:21 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 14:37:25 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 10:26:20 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,25 @@
 // Q: do we need both t_pont and t_vector?
 
 // falls into default pos of cam
-t_vector	err_point(void)
+t_vector	err_vector(void)
 {
-	return ((t_vector){0.0f, 0.0f, 0.0f, 1.0f});
+	t_vector	err_vector;
+
+	err_vector.x = -INFINITY;
+	err_vector.y = -INFINITY;
+	err_vector.z = -INFINITY;
+	err_vector.w = -1.0f;
+	return (err_vector);
 }
 
 // falls into default direction
-t_vector	err_vector(void)
-{
-	return ((t_vector){0.0f, 0.0f, 1.0f, 0.0f});
-}
+// t_vector	err_vector(void)
+// {
+// 	t_vector	err_vector;
+
+// 	err_vector.x = 
+// 	return (err_vector);
+// }
 
 t_vector	parse_vector(char *token, char key)
 {
@@ -33,10 +42,10 @@ t_vector	parse_vector(char *token, char key)
 
 	coord = gc_split(token, ',');
 	if (!coord)
-		return (p_err("Error:\nInvalid format of vector! Default \
-			position called!"), err_point());
+		return (p_err("Error:\nMalloc failed! Exit"), err_vector());
 	if (!coord[0] || !coord[1] || !coord[2])
-		return (free_double_pointer(coord), err_point());
+		return (free_double_pointer(coord), \
+		p_err("Error:\nInvalid vector! Exit"), err_vector());
 	p.x = ft_atofloat(coord[0]);
 	p.y = ft_atofloat(coord[1]);
 	p.z = ft_atofloat(coord[2]);
@@ -60,7 +69,7 @@ t_vector	norm_vector(t_vector dirct_vec)
 	vec_len = v_modulus(v);
 	if (vec_len == 0)
 	{
-		p_err("Invalid Camera direction! Default orientation called!");
+		p_err("Error:\nInvalid vector orientation! Exit!");
 		return (err_vector());
 	}
 	v.x = v.x / vec_len;
