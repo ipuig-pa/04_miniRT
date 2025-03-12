@@ -25,8 +25,12 @@ SOURCES =	gc_malloc_free.c\
 			gc_strtrim.c\
 			gc_substr.c\
 			linalg_utils.c\
+			linalg_utils2.c\
+			linalg_utils3.c\
+			matrix_utils.c\
+			matrix_utils2.c\
 			math_utils.c\
-			init.c\
+			env.c\
 			num_check.c\
 			print_err.c\
 			clean_scene.c\
@@ -56,17 +60,17 @@ SOURCES =	gc_malloc_free.c\
 			color2.c\
 			transform.c\
 			obj_transform.c\
+			cyl_transform.c\
 			cam_transform.c\
 			light_transform.c\
-			matrix_utils.c\
 			set_hooks.c\
 			elem_hooks.c\
 			obj_hooks.c\
+			cyl_hooks.c\
 			cam_hooks.c\
 			light_hooks.c\
 			rerender.c\
 			main.c
-#cyl_transform.c\
 
 OBJECTS = $(SOURCES:%.c=$(OBJ_DIR)/%.o)
 
@@ -77,7 +81,7 @@ HEADERS =	$(INC)/minirt.h\
 			$(INC)/env.h\
 			$(INC)/gc.h\
 			$(INC)/hook.h\
-			$(INC)/linalg.h\
+			$(INC)/maths.h\
 			$(INC)/parser.h\
 			$(INC)/ray.h\
 			$(INC)/scene.h\

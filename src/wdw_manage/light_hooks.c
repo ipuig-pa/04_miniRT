@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 11:23:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 11:01:17 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:27:35 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,8 @@ void	scale_amblight(int key, t_env *env)
 	t_amblight	*light;
 
 	light = &env->scene->amblight;
-	//if (key == KEY_PLUS || key == SCROLL_UP)
 	if (key == KEY_PLUS)
 		light_scale(&light->ratio, ILLUM);
-	//else if (key == KEY_MINUS || key == SCROLL_DOWN)
 	else if (key == KEY_MINUS)
 		light_scale(&light->ratio, 1.0 / ILLUM);
 	loq_rerender(env, false);

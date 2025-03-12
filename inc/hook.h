@@ -6,12 +6,13 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/11 10:47:53 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:12:02 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOK_H
 # define HOOK_H
+
 # include <stdbool.h>
 # include "env.h"
 # include "scene.h"
@@ -37,15 +38,9 @@
 # define SCROLL_UP 5
 # define KEY_PLUS 69
 # define KEY_MINUS 78
-# define KEY_REVERT 82 //0
-
-// # define OBJ_F 89 //7 forward
-// # define OBJ_B 92 //9 back
-// # define OBJ_UP 91 //8 up
-// # define OBJ_D 87 //5 down
-// # define OBJ_R 88 //6 right
-// # define OBJ_L 86 //4 left
-
+# define WIDTH 67 // * in numeric keyboard
+# define HEIGHT 75 // / in numeric keyboard
+# define KEY_REVERT 82 //0 in numeric keyboard
 
 // //WINDOWS
 // # define ESC 27
@@ -68,7 +63,6 @@
 // # define SCROLL_UP 5
 // # define KEY_PLUS 107
 // # define KEY_MINUS 109
-
 
 // //LINUX
 // # define ESC 65307        // Escape key
@@ -105,9 +99,11 @@ void	scale_elem(int key, t_env *env);
 
 //object hooks
 void	select_obj(int x, int y, t_env *env);
+void	select_param(int key, t_env *env);
 void	scale_obj(int key, t_env *env);
 void	move_obj(int key, t_env *env);
 void	rotate_obj(int key, t_env *env);
+void	scale_cyl(int key, t_env *env);
 
 //camera hooks
 void	move_cam(int key, t_env *env);

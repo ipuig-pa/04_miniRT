@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   env.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:13:40 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/09 18:54:36 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 18:51:27 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_H
 # define ENV_H
 
-# define WINDOW_HEIGHT 1080
-# define WINDOW_WIDTH 1920
-# define ASPECT_RATIO //or use one depending on the other????
+# define WDW_HEIGHT 1080
+# define WDW_WIDTH 1920
 
-typedef struct s_scene t_scene;
+//forward declaration
+struct	s_scene;
 
 typedef struct s_resol
 {
@@ -33,19 +33,16 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	// double	delta_x;
-	// double	delta_y;
-	// int		mouse_select; these 3 var is for mouse scorolling event (CAN WE DELETE THEM FROM HERE????)
 }			t_data;
 
 typedef struct s_env
 {
-	char	*rt_scene_file; //gc_dup(), and used in '0' revert hook
-	void	*mlx;
-	void	*mlx_window;
-	t_data	img;
-	t_scene	*scene;
-	t_resol	res;
+	char			*rt_scene_file;
+	void			*mlx;
+	void			*mlx_window;
+	t_data			img;
+	struct s_scene	*scene;
+	t_resol			res;
 }			t_env;
 
 void	init_env(t_env *env);

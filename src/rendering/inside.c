@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:33 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 19:08:50 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:43:21 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static float	inside_cyl(t_vector p, t_cyl *cyl)
 	return (false);
 }
 
-static bool	check_inside(t_vector light, t_scene *scene, int i) //or put this chunk of code inside the find_hit function
+static bool	check_inside(t_vector light, t_scene *scene, int i)
 {
 	float	t;
 
@@ -59,10 +59,11 @@ void	check_enclosed_light(t_scene *scene)
 
 	i = 0;
 	scene->enclosed_light = false;
-	while (i < scene->obj_num)//optimize somehow to not iterate through ALL the objects??
+	while (i < scene->obj_num)
 	{
 		if (scene->obj[i].m.exist == true)
-			inside = check_inside(v_transform(scene->light.p, scene->obj[i].inv_m, 'p'), scene, i);
+			inside = check_inside(v_transform(scene->light.p, \
+						scene->obj[i].inv_m, 'p'), scene, i);
 		else
 			inside = check_inside(scene->light.p, scene, i);
 		if (inside)

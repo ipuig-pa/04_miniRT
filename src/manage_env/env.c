@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:26:09 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 12:10:07 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:51:45 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	init_env(t_env *env)
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		finish_env(env, 1, "Environment can not be initalized");
-	env->mlx_window = mlx_new_window(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Scene");//change title to the filename
+	env->mlx_window = mlx_new_window(env->mlx, WDW_WIDTH, WDW_HEIGHT, "Scene");
 	if (!env->mlx_window)
 		finish_env(env, 1, "Environment can not be initalized");
-	env->img.img = mlx_new_image(env->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	env->img.img = mlx_new_image(env->mlx, WDW_WIDTH, WDW_HEIGHT);
 	if (!env->img.img)
 		finish_env(env, 1, "Environment can not be initalized");
 	env->img.addr = mlx_get_data_addr(env->img.img, &env->img.bits_per_pixel, \
@@ -28,11 +28,8 @@ void	init_env(t_env *env)
 	if (!env->img.addr)
 		finish_env(env, 1, "Environment can not be initalized");
 	env->res.res = 100;
-	//paint_background(env, BLACK);
 }
 
-//Check that everything is what is meant to be
-//Add "mlx_destroy_display(env->mlx);" before freeing in Linux environments
 void	finish_env(t_env *env, int return_val, char *str)
 {
 	p_err(str);

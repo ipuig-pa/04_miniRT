@@ -6,7 +6,11 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/12 12:24:29 by ewu              ###   ########.fr       */
+=======
+/*   Updated: 2025/03/12 18:27:01 by ipuig-pa         ###   ########.fr       */
+>>>>>>> f9627b3d37caab1d10d0f626cc5fb370f63c772b
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +47,24 @@
 //space to rerender in hight quality (sentence for performance reasor, while manipulating it will loose quality)
 //Put it alineated without tabs? Just the title?
 //
+static void	print_prompt3(void)
+{
+	printf("\033[3;32mIf cylinder Width or Height are selected:\n\033[0m");
+	printf("\033[34mScale just Width / Heigh of the cylinder.\n\033[0m");
+	printf("\033[3;32mIf the Light is selected:\n\033[0m");
+	printf("\033[34mChange the diffuse light ratio.\n\033[0m");
+	printf("\033[3;32mIf nothing is selected:\n\033[0m");
+	printf("\033[34mChange the environment light ratio.\n\033[0m");
+	printf("\033[1;31m\nPress '0' in Numeric Pad:\033[0m\n");
+	printf("\033[34mErase all changes made,\033[0m");
+	printf("\033[34m and revert to original parsed scene.\033[0m\n");
+	printf("\033[1;31m\nPress 'ESC' or Click 'X':\033[0m\n");
+	printf("\033[34mExit this program!\033[0m\n");
+}
+
 static void	print_prompt2(void)
 {
+<<<<<<< HEAD
 	printf(L_BLUE"↑: rotate UP\t\t↓: rotate DOWN\033[0m\n");
 	printf(L_BLUE"←: rotate LEFT\t\t→: rotate RIGHT\033[0m\n");
 	printf(L_BLUE">: rotate FORWARD\t<: rotate BACKARD\033[0m\n");
@@ -67,10 +87,38 @@ static void	print_prompt2(void)
 	printf(L_BLUE" and revert to original scene.\033[0m\n");
 	printf(B_RED"\nPress 'ESC' or Click 'X':\033[0m\n");
 	printf(L_BLUE"Exit this program!\033[0m\n");
+=======
+	printf("\033[3;32mfollowing rotation will be applied to object.\033[0m\n");
+	printf("\033[3;32mElse, rotation will be applied to Camera\033[0m\n");
+	printf("\033[34mRotations:\033[0m\n");
+	printf("\033[34m↑: tilt UP\t\t↓: tilt DOWN\033[0m\n");
+	printf("\033[34m←: turn LEFT\t\t→: turn RIGHT\033[0m\n");
+	printf("\033[34m<: roll LEFT\t\t>: roll RIGHT\033[0m\n");
+	printf("\033[1;31m\nPress '*' in Numeric Pad\033[0m");
+	printf("\033[1;31m, on a selected cylinder:\033[0m\n");
+	printf("\033[34mSelect the width\033[0m\n");
+	printf("\033[1;31m\nPress '/' in Numeric Pad\033[0m");
+	printf("\033[1;31m, on a selected cylinder:\033[0m\n");
+	printf("\033[34mSelect the height\033[0m\n");
+	printf("\033[1;31m\nScroll the wheel:\033[0m\n");
+	printf("\033[3;32mIf any object has been selected:\n\033[0m");
+	printf("\033[34mScale the object.\n\033[0m");
+	printf("\033[3;32mIf cylinder Width or Height are selected:\n\033[0m");
+	printf("\033[34mScale just Width / Heigh of the cylinder.\n\033[0m");
+	printf("\033[3;32mIf the Light is selected:\n\033[0m");
+	printf("\033[34mChange the diffuse light ratio.\n\033[0m");
+	printf("\033[3;32mIf nothing is selected:\033[0m\n");
+	printf("\033[34mZoom In and Out Camera\033[0m\n");
+	printf("\033[1;31m\n'+' and '-' in Numeric Pad:\033[0m\n");
+	printf("\033[3;32mIf any object has been selected:\n\033[0m");
+	printf("\033[34mScale the object.\n\033[0m");
+	print_prompt3();
+>>>>>>> f9627b3d37caab1d10d0f626cc5fb370f63c772b
 }
 
 static void	print_prompt(void)
 {
+<<<<<<< HEAD
 	printf(PURPLE"\t\t\t🌀Instruction for Keyboard and ");
 	printf("Mouse Activties🌀\n"RE);
 	printf(ITALIC"NOTE:\nEverytime any change is made, \033[0m\n");
@@ -94,6 +142,32 @@ static void	print_prompt(void)
 	printf(ITALIC"If any object has been selected, \033[0m");
 	printf(ITALIC"following rotation will be applied to object.\033[0m\n");
 	printf(ITALIC"Else, rotation will be applied to Camera\033[0m\n");
+=======
+	printf("\t\t\t\033[1;35m🌀Instruction for Keyboard and \033[0m");
+	printf("\033[1;35mMouse Activties🌀\033[0m\n");
+	printf("\033[3;32mNOTE:\nWait until high quality image\033[0m");
+	printf("\033[3;32m of the scene is rendered.\033[0m\n");
+	printf("\033[3;32mEverytime any change is made,\n\033[0m");
+	printf("\033[3;32mthe scene will be rendered with low quality\033[0m");
+	printf("\033[3;32m for the reason of performance.\n\033[0m\n");
+	printf("\033[1;31mPress 'SPACE':\033[0m\n");
+	printf("\033[34mRender current scene with high quality.\n\n\033[0m");
+	printf("\033[1;31mLeft Mouse Click on Objects:\033[0m\n");
+	printf("\033[34mSelect the Object clicked\033[0m\n");
+	printf("\033[1;31m\nPress 'L':\033[0m\n");
+	printf("\033[34mSelect Light\033[0m\n");
+	printf("\033[1;31m\n'W'-'A'-'S'-'D'-'Q'-'E':\033[0m\n");
+	printf("\033[3;32mIf any object/light has been selected, \033[0m");
+	printf("\033[3;32mfollowing movement will be applied to object\033[0m");
+	printf("\033[3;32m/light.\033[0m\n");
+	printf("\033[3;32mElse, movement will be applied to Camera\033[0m\n");
+	printf("\033[34mTranslations:\033[0m\n");
+	printf("\033[34mW: move UP\t\tS: move DOWN\033[0m\n");
+	printf("\033[34mA: move LEFT\t\tD: move RIGHT\033[0m\n");
+	printf("\033[34mQ: move FORWARD\t\tE: move BACKARD\033[0m\n");
+	printf("\033[1;31m\n↑ ↓ → ← '<' '>':\033[0m\n");
+	printf("\033[3;32mIf any object has been selected, \033[0m");
+>>>>>>> f9627b3d37caab1d10d0f626cc5fb370f63c772b
 	print_prompt2();
 }
 
@@ -102,8 +176,16 @@ int	main(int ac, char **av)
 	t_env	env;
 
 	if (ac != 2)
+<<<<<<< HEAD
 		return (p_err("Error\nInvalid number of arguments! \
 			A single rt file should be provided"), 1);
+=======
+	{
+		p_err("Error\nInvalid number of arguments! \
+			A single rt file should be provided");
+		return (1);
+	}
+>>>>>>> f9627b3d37caab1d10d0f626cc5fb370f63c772b
 	if (!parsing_scene(&env, av[1]))
 		return (1);
 	create_viewport(env.scene);
