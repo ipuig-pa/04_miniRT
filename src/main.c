@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 21:26:22 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/12 22:07:59 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,74 +14,74 @@
 
 static void	print_prompt3(void)
 {
-	printf(ITALIC "If cylinder Width or Height are selected:\n\033[0m");
-	printf(L_BLUE "Scale just Width / Heigh of the cylinder.\n\033[0m");
-	printf(ITALIC "If the Light is selected:\n\033[0m");
-	printf(L_BLUE "Change the diffuse light ratio.\n\033[0m");
-	printf(ITALIC "If nothing is selected:\n\033[0m");
-	printf(L_BLUE "Change the environment light ratio.\n\033[0m");
-	printf(B_RED "\nPress '0' in Numeric Pad:\033[0m\n");
-	printf(L_BLUE "Erase all changes made,\033[0m");
-	printf(L_BLUE " and revert to original parsed scene.\033[0m\n");
-	printf(B_RED "\nPress 'ESC' or Click 'X':\033[0m\n");
-	printf(L_BLUE "Exit this program!\033[0m\n");
+	printf(ITALIC "If cylinder Width or Height are selected:\n"RE);
+	printf(L_BLUE "Scale just Width / Heigh of the cylinder.\n"RE);
+	printf(ITALIC "If the Light is selected:\n"RE);
+	printf(L_BLUE "Change the diffuse light ratio.\n"RE);
+	printf(ITALIC "If nothing is selected:\n"RE);
+	printf(L_BLUE "Change the environment light ratio.\n"RE);
+	printf(B_RED "\nPress '0' in Numeric Pad:\n"RE);
+	printf(L_BLUE "Erase all changes made,");
+	printf(L_BLUE " and revert to original parsed scene.\n"RE);
+	printf(B_RED "\nPress 'ESC' or Click 'X':\n"RE);
+	printf(L_BLUE "Exit this program!\n"RE);
 }
 
 static void	print_prompt2(void)
 {
-	printf(ITALIC "following rotation will be applied to object.\033[0m\n");
-	printf(ITALIC "Else, rotation will be applied to Camera\033[0m\n");
-	printf(L_BLUE "Rotations:\033[0m\n");
-	printf(L_BLUE "↑: tilt UP\t\t↓: tilt DOWN\033[0m\n");
-	printf(L_BLUE "←: turn LEFT\t\t→: turn RIGHT\033[0m\n");
-	printf(L_BLUE "<: roll LEFT\t\t>: roll RIGHT\033[0m\n");
-	printf(B_RED "\nPress '*' in Numeric Pad\033[0m");
-	printf(B_RED ", on a selected cylinder:\033[0m\n");
-	printf(L_BLUE "Select the width\033[0m\n");
-	printf(B_RED "\nPress '/' in Numeric Pad\033[0m");
-	printf(B_RED ", on a selected cylinder:\033[0m\n");
-	printf(L_BLUE "Select the height\033[0m\n");
-	printf(B_RED "\nScroll the wheel:\033[0m\n");
-	printf(ITALIC "If any object has been selected:\n\033[0m");
-	printf(L_BLUE "Scale the object.\n\033[0m");
-	printf(ITALIC "If cylinder Width or Height are selected:\n\033[0m");
-	printf(L_BLUE "Scale just Width / Heigh of the cylinder.\n\033[0m");
-	printf(ITALIC "If the Light is selected:\n\033[0m");
-	printf(L_BLUE "Change the diffuse light ratio.\n\033[0m");
-	printf(ITALIC "If nothing is selected:\033[0m\n");
-	printf(L_BLUE "Zoom In and Out Camera\033[0m\n");
-	printf(B_RED "\n'+' and '-' in Numeric Pad:\033[0m\n");
-	printf(ITALIC "If any object has been selected:\n\033[0m");
-	printf(L_BLUE "Scale the object.\n\033[0m");
+	printf(ITALIC "following rotation will be applied to object.\n"RE);
+	printf(ITALIC "Else, rotation will be applied to Camera\n"RE);
+	printf(L_BLUE "Rotations:\n"RE);
+	printf(L_BLUE "↑: tilt UP\t\t↓: tilt DOWN\n"RE);
+	printf(L_BLUE "←: turn LEFT\t\t→: turn RIGHT\n"RE);
+	printf(L_BLUE "<: roll LEFT\t\t>: roll RIGHT\n"RE);
+	printf(B_RED "\nPress '*' in Numeric Pad");
+	printf(B_RED ", on a selected cylinder:\n"RE);
+	printf(L_BLUE "Select the width\n"RE);
+	printf(B_RED "\nPress '/' in Numeric Pad");
+	printf(B_RED ", on a selected cylinder:\n"RE);
+	printf(L_BLUE "Select the height\n"RE);
+	printf(B_RED "\nScroll the wheel:\n"RE);
+	printf(ITALIC "If any object has been selected:\n"RE);
+	printf(L_BLUE "Scale the object.\n"RE);
+	printf(ITALIC "If cylinder Width or Height are selected:\n"RE);
+	printf(L_BLUE "Scale just Width / Heigh of the cylinder.\n"RE);
+	printf(ITALIC "If the Light is selected:\n"RE);
+	printf(L_BLUE "Change the diffuse light ratio.\n"RE);
+	printf(ITALIC "If nothing is selected:\n"RE);
+	printf(L_BLUE "Zoom In and Out Camera\n"RE);
+	printf(B_RED "\n'+' and '-' in Numeric Pad:\n"RE);
+	printf(ITALIC "If any object has been selected:\n"RE);
+	printf(L_BLUE "Scale the object.\n"RE);
 	print_prompt3();
 }
 
 static void	print_prompt(void)
 {
 	printf(PURPLE "\t\t\t🌀Instruction for Keyboard and ");
-	printf("Mouse Activties🌀\033[0m\n");
-	printf(ITALIC "NOTE:\nWait until high quality image\033[0m");
-	printf(ITALIC " of the scene is rendered.\033[0m\n");
-	printf(ITALIC "Everytime any change is made,\n\033[0m");
-	printf(ITALIC "the scene will be rendered with low quality\033[0m");
-	printf(ITALIC " for the reason of performance.\n\033[0m\n");
-	printf(B_RED "Press 'SPACE':\033[0m\n");
-	printf(L_BLUE "Render current scene with high quality.\n\n\033[0m");
-	printf(B_RED "Left Mouse Click on Objects:\033[0m\n");
-	printf(L_BLUE "Select the Object clicked\033[0m\n");
-	printf(B_RED "\nPress 'L':\033[0m\n");
-	printf(L_BLUE "Select Light\033[0m\n");
-	printf(B_RED "\n'W'-'A'-'S'-'D'-'Q'-'E':\033[0m\n");
-	printf(ITALIC "If any object/light has been selected, \033[0m");
-	printf(ITALIC "following movement will be applied to object\033[0m");
-	printf(ITALIC "/light.\033[0m\n");
-	printf(ITALIC "Else, movement will be applied to Camera\033[0m\n");
-	printf(L_BLUE "Translations:\033[0m\n");
-	printf(L_BLUE "W: move UP\t\tS: move DOWN\033[0m\n");
-	printf(L_BLUE "A: move LEFT\t\tD: move RIGHT\033[0m\n");
-	printf(L_BLUE "Q: move FORWARD\t\tE: move BACKARD\033[0m\n");
-	printf(B_RED "\n↑ ↓ → ← '<' '>':\033[0m\n");
-	printf(ITALIC "If any object has been selected, \033[0m");
+	printf("Mouse Activties🌀\n"RE);
+	printf(ITALIC "NOTE:\nWait until high quality image"RE);
+	printf(ITALIC " of the scene is rendered.\n"RE);
+	printf(ITALIC "Everytime any change is made,\n"RE);
+	printf(ITALIC "the scene will be rendered with low quality"RE);
+	printf(ITALIC " for the reason of performance.\n\n"RE);
+	printf(B_RED "Press 'SPACE':\n"RE);
+	printf(L_BLUE "Render current scene with high quality.\n\n"RE);
+	printf(B_RED "Left Mouse Click on Objects:\n"RE);
+	printf(L_BLUE "Select the Object clicked\n"RE);
+	printf(B_RED "\nPress 'L':\n"RE);
+	printf(L_BLUE "Select Light\n"RE);
+	printf(B_RED "\n'W'-'A'-'S'-'D'-'Q'-'E':\n"RE);
+	printf(ITALIC "If any object/light has been selected, "RE);
+	printf(ITALIC "following movement will be applied to object"RE);
+	printf(ITALIC "/light.\n"RE);
+	printf(ITALIC "Else, movement will be applied to Camera\n"RE);
+	printf(L_BLUE "Translations:\n"RE);
+	printf(L_BLUE "W: move UP\t\tS: move DOWN\n"RE);
+	printf(L_BLUE "A: move LEFT\t\tD: move RIGHT\n"RE);
+	printf(L_BLUE "Q: move FORWARD\t\tE: move BACKARD\n"RE);
+	printf(B_RED "\n↑ ↓ → ← '<' '>':\n"RE);
+	printf(ITALIC "If any object has been selected, "RE);
 	print_prompt2();
 }
 
