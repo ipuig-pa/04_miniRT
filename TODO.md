@@ -14,7 +14,7 @@ IRENE (rendering):
 E -> initialize material properties!? -->
 <!-- E -> create port after parsing? -->
 <!-- -> resize circles according to cylinder height and width!? -->
-- Store all hits and not only the most proximal??? For reflection?
+<!-- - Store all hits and not only the most proximal??? For reflection? --> NOT DONE
 <!-- - Store all pixel hits to handle more efficiently light changes -->
 <!-- - need to normalize vector after transformations?!?!! (try with different cases!) -->
 
@@ -45,23 +45,23 @@ week 03/03/2025: rotations etc -->
 <!-- - Specular reflection: Shine in proper place, just in objects that haev shine, where to put shininess and where 0.9, etc. -->
 <!-- - Solve shading in planes when specular reflection is added -->
 
-- establish tmax and tmin for ray impact (r(t) = o + td)
+<!-- - establish tmax and tmin for ray impact (r(t) = o + td) --> NOT DONE
 <!-- - decide pointers or direct objects inside scene -->
-- light color not working properly
+<!-- - light color not working properly -->
 
 <!-- - somehow do all the hits and then all the shading, to be easier when light changes, no need to re-render -> correspondance of each pixel to each hit (store the pixel i, j in the hit structure) and have a structure of hits inside the scene instead of just one hit that is updated -->
 
-MORE
+<!-- MORE
 - include triangle intersection, so we can have complex forms represented as a meshed of triangles
 - Bouncing, reflextion, refraction, etc
 - Antialiasing (to smooth contours)
-- optimize checking of ALL objects to find first hit? objects as a linked list according to their proximity to camera?? OR not, beause when it hits one, we have to change again the order? OR subdivide the space?
+- optimize checking of ALL objects to find first hit? objects as a linked list according to their proximity to camera?? OR not, beause when it hits one, we have to change again the order? OR subdivide the space? -->NOT DONE
 
 <!-- - Include functions for vector operation (add and substract without needing to do everytime in each function) -->
 
-EDGE CASES:
+<!-- EDGE CASES: -->
 <!-- - light inside an object (illuminated from the inside?) -->
-- camera inside an object??
+<!-- - camera inside an object?? -->
 <!-- - plane in the middle of the light!!!! Has some "pixelations", as some is hitting the plane and some the light!?!? -> IMPORTANT TO SOLVE!!! -->
 
 TOGETHER DECIDE:
@@ -70,9 +70,9 @@ TOGETHER DECIDE:
 <!-- E -> Parsing material type (metal, plstic, matte) an initialize k_s and n_s accordint to that -->
 <!-- - Define materials? (shiny metal / glossy plastic / matte) with specific k_s and n_s?? Or have directly the parameters in the object? -->
 <!-- - Eliminate cylinder caps (make scaling and rotation difficult)?? -->
-- Bonus:
+<!-- - Bonus:
 	- Include light color
-	- Take from the scene file if we are introducing a filter??
+	- Take from the scene file if we are introducing a filter?? -->
 
 HOOKS
 <!-- - Scroll mouse has some errors!?!? -->
@@ -84,28 +84,23 @@ HOOKS
 	- E?- mouse click to select the object -->
 <!-- - Double click on object to duplicate?? Or create new white objects with hooks?? --> NOT DONE YET
 <!-- - Add color changing of selected object with RGB!?!? -->
-- Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
-E- 0 to reset to default scene! (parse again and restart)
-- how to change parameters w, h, of a cylinder separately??? -> use / and * (/ for height, * for width, and also + i - set to increase or decrease a part from what they were doing)
+<!-- - Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
+E- 0 to reset to default scene! (parse again and restart) -->
+<!-- - how to change parameters w, h, of a cylinder separately??? -> use / and * (/ for height, * for width, and also + i - set to increase or decrease a part from what they were doing) -->
 <!-- - Use the same for camera rotation and object rotation, just depending if object is selected.
 - Light movement!!!! (press L to change from camera to light, for example!?? set a flag!?)
 - Change light color when it is selected!!! -->
 
 <!-- E - Put git clone minilibx -->
 <!-- E - hook to close with the CROSS, as with ESC -->
-Hooks to minimize / resize / ...?
+<!-- Hooks to minimize / resize / ...? -->
 E - if camera / light / etc is not parsed or some other errors, we have to exit the program!? -> is it done like that?
-E - create something like clean_scene that gc_free non needed things, but not everything, when 0 is pressed!!! (and solve all the problems in memory)
+<!-- E - create something like clean_scene that gc_free non needed things, but not everything, when 0 is pressed!!! (and solve all the problems in memory) -->
 
-09/03/2025
+<!-- 09/03/2025 -->
 <!-- - Rotation of objects with mouse --> NOT DONE WITH THE MOUSE
 <!-- - Solve problems with < > after having translate the camera -> when translating it creates the viewport again by the default orientation, not the one of the new viewport. Delete the possibility to rotate viewport alone?  -->
 <!-- - light hooks / transformations -->
-
-- Norminette
-- Delete test files and minilibx
-- Write instructions on hooks (README) or better in a prompt in the terminal when we launch the program
-
 
 10/03/2025
 <!-- - Select /deselect light
@@ -114,7 +109,7 @@ E - create something like clean_scene that gc_free non needed things, but not ev
 - put the array of keys for windows / linux commented out -->
 <!-- - Check transformations work -> scroll in the proper direction!??!? -->
 <!-- - + and - work the same as mouse scrolling ?? (or when nothing is selected, leave one for zoom and one for amblight ratio?!?!?) -->
-- Be able to include new objects, colors, etc.
+<!-- - Be able to include new objects, colors, etc. --> NOT DONE
 <!-- - Change light color when it is selected!!!(see light_selection, change relative and not absolute) -->
 <!-- - Obj rotation not working properly when they have been moved -> transform reference !! -->
 
@@ -125,29 +120,35 @@ IRENE
 <!-- 2 - Uncapped cyl after transofrmations!?!?? -->
 <!-- 3 - clicking on the top to move selects an object!!! AVOID in order to move the hiq render without entering low q render -->
 <!-- - some problem with Cyl when moving -->
-- Cyl resize with different w and h independently: hooks
+<!-- - Cyl resize with different w and h independently: hooks -->
 <!-- - problem with spehere with testfile.rt -->
 <!-- 4 - Light overlaping problem solve -> when shadow ray is very tangent to the direction of light (check in find hit somehow different treatment for shadow rays!?!?) -->
 <!-- - + and - add env light ratio -->
 2 - change simple transformation with vector additions and not matrix if no needed
 <!-- Hook 0 is working? Memory leaks?!? -->
-Memory leaks?!?
-- Check prompt
-- Check what happens when 0 is pressed (memory!?!?)
+<!-- Memory leaks?!?
+- Check what happens when 0 is pressed (memory!?!?) -->
 - Can the performance be increased if we assume sph with r = 1 and cyl =1 etc....? and have matrices from the start? -> other calculation optimizations (Claude!?)
 
 12/03/2025
 <!-- - check inside light correclty do -->
 <!-- - cyl resize w and h independently: hooks -->
-add hooks for cyl height and width to prompt! (E)
+<!-- add hooks for cyl height and width to prompt! (E) -->
 <!-- 1- highlight width or heigt -->
-2- scale sphere also width ang height?!?
-3- improve performance: scale of sphere directly changing radius, change scale obj to use only for direct for cyl
-- general checking! (input errors, mouse clicks sometimes not working?)
+<!-- 2- scale sphere also width ang height?!? --> NOT DONE
+3- improve performance: scale of sphere directly changing radius, change scale obj to use only for direct for cyl, etc
+- general checking! (input errors!!!, mouse clicks sometimes not working?, light colors??)
+- Minilibx in makefile, according to subject?!? copy folder!?
 
-11/03/2025
-ERYA
-- Add things to prompt
-- add hooks for cyl height and width to prompt! (E)
-- Check what happens when 0 is pressed (memory!?!?)
-- Git minilibx
+
+13/03/2025
+- norm_vector and u_vector are the same!?!? unify!?!
+- Improve performance? Sphere change radius instead of matrix?
+- Try to have the images in the subject
+- Minilibx in makefile, according to subject?!? copy folder!?
+- Check input errors (Elements which are defined by a capital letter can only be declared once in
+the scene, etc)
+- Check memory leaks
+- light color and light filter?!?!
+- Norminette
+- Delete test files and minilibx
