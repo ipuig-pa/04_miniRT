@@ -6,35 +6,11 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 11:33:47 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 12:28:56 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:27:25 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// typedef struct s_ray
-// {
-// 	t_vector	o; //origin point. these will keep changing as the ray is reflected, refracted or absorbed
-// 	t_vector	d; //direction (unitary vector)
-// 	t_color		color; //in hex
-// 	// bool		end; //?? neeeded?
-// }			t_ray;
-
-// typedef struct s_hit
-// {
-// 	t_vector	p;
-// 	t_vector	real_p;
-// 	int			obj_id; //then, they have to be in an array, not a linked list
-// 	float		dist; //distance from the camera to the point of intersection
-// 	float		light_dist; //distance from the hit point to the light
-// 	bool		occur;
-// 	t_vector	normal;
-// }			t_hit;
-/**
- * CLICK: to select
- * MOVE: to rot
- * KEYS: +/- tp scale
-*/
 
 void	select_obj(int x, int y, t_env *env)
 {
@@ -134,52 +110,3 @@ void	scale_obj(int key, t_env *env)
 		loq_rerender(env, false);
 	}
 }
-
-/*
-void	move_obj(t_env *env, int key)
-{
-	t_obj	*obj;
-
-	if (env->scene->select_obj != -1)
-	{
-		obj = &env->scene->obj[env->scene->select_obj];
-		if (key == OBJ_F)
-			o_translate(obj, scalar_mult(env->scene->vp.front, -TRANSL));
-		else if (key == OBJ_B)
-			o_translate(obj, scalar_mult(env->scene->vp.front, TRANSL));
-		else if (key == OBJ_UP)
-			o_translate(obj, scalar_mult(env->scene->vp.up, TRANSL));
-		else if (key == OBJ_D)
-			o_translate(obj, scalar_mult(env->scene->vp.up, -TRANSL));
-		else if (key == OBJ_R)
-			o_translate(obj, scalar_mult(env->scene->vp.right, TRANSL));
-		else if (key == OBJ_L)
-			o_translate(obj, scalar_mult(env->scene->vp.right, -TRANSL));
-		loq_rerender(env, false);
-	}
-}*/
-
-/*
-void	rotate_obj(t_obj *obj, float dx, float dy, t_viewport vp)
-{
-	float	rad;
-	float	tan;
-	float	tan30;
-	float	tan60;
-
-	tan60 = sqrtf(3.0);
-	tan30 = 1.0 / tan60;
-	tan = fabs(dy) / fabs(dx);
-	rad = to_rad(ROT);
-	if (dx < 0 || (dy > 0 && !(tan < tan60)))
-	{
-		if (dy > 0 || tan < tan30)
-			rad = -rad;
-	}
-	if (tan < tan30)
-		o_rotate(obj, ROT, vp.up);
-	else if (tan < tan60)
-		o_rotate(obj, ROT, vp.front);
-	else
-		o_rotate(obj, ROT, vp.right);
-}*/

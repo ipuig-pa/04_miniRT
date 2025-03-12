@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:15:59 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 11:35:06 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:36:13 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,36 +52,6 @@ void	scale_caps(t_obj *obj, t_matrix4 sc_m)
 		i++;
 	}
 }
-
-// //using transformation matrix for scaling on cyl axis
-// void	cyl_h_scale(t_obj *obj, float s)
-// {
-// 	t_matrix4	sc_m;
-// 	t_vector	axis;
-// 	t_vector	ref;
-
-// 	ref = obj->param.cyl.c;
-// 	ref = v_transform(ref, obj->m, 'v');
-// 	axis = unit_v(v_transform(obj->param.cyl.a, obj->m, 'v'));
-// 	sc_m = identity();
-// 	sc_m.m[0][0] += (s - 1.0f) * axis.x * axis.x;
-// 	sc_m.m[0][1] += (s - 1.0f) * axis.x * axis.y;
-// 	sc_m.m[0][2] += (s - 1.0f) * axis.x * axis.z;
-// 	sc_m.m[1][0] += (s - 1.0f) * axis.y * axis.x;
-// 	sc_m.m[1][1] += (s - 1.0f) * axis.y * axis.y;
-// 	sc_m.m[1][2] += (s - 1.0f) * axis.y * axis.z;
-// 	sc_m.m[2][0] += (s - 1.0f) * axis.z * axis.x;
-// 	sc_m.m[2][1] += (s - 1.0f) * axis.z * axis.y;
-// 	sc_m.m[2][2] += (s - 1.0f) * axis.z * axis.z;
-// 	obj->m = m_multiply(\
-// 				m_multiply(\
-// 					m_multiply(\
-// 						translate(ref), sc_m), \
-// 					translate(invert_v(ref))), \
-// 				obj->m);
-// 	obj->inv_m = m_invert(obj->m);
-// 	scale_caps(obj, sc_m);
-// }
 
 void	cyl_h_scale(t_obj *obj, float s)
 {

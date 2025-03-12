@@ -6,12 +6,13 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 08:56:13 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 12:18:59 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:12:02 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HOOK_H
 # define HOOK_H
+
 # include <stdbool.h>
 # include "env.h"
 # include "scene.h"
@@ -41,14 +42,6 @@
 # define HEIGHT 75 // / in numeric keyboard
 # define KEY_REVERT 82 //0 in numeric keyboard
 
-// # define OBJ_F 89 //7 forward
-// # define OBJ_B 92 //9 back
-// # define OBJ_UP 91 //8 up
-// # define OBJ_D 87 //5 down
-// # define OBJ_R 88 //6 right
-// # define OBJ_L 86 //4 left
-
-
 // //WINDOWS
 // # define ESC 27
 // # define SPACE 32
@@ -70,7 +63,6 @@
 // # define SCROLL_UP 5
 // # define KEY_PLUS 107
 // # define KEY_MINUS 109
-
 
 // //LINUX
 // # define ESC 65307        // Escape key

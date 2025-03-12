@@ -144,7 +144,7 @@ IRENE
 13/03/2025
 - norm_vector and u_vector are the same!?!? unify!?!
 - Improve performance? Sphere change radius instead of matrix?
-- Try to have the images in the subject
+- Try to have the images that appear on the subject
 - Minilibx in makefile, according to subject?!? copy folder!?
 - Check input errors (Elements which are defined by a capital letter can only be declared once in
 the scene, etc)
@@ -152,3 +152,13 @@ the scene, etc)
 - light color and light filter?!?!
 - Norminette
 - Delete test files and minilibx
+- maths to rad in which header?? Now is on linalg!?!?
+
+ERYA:
+Errors in parsing:
+- Elements which are defined by a capital letter can only be declared once in
+the scene
+- 3d normalized orientation vector. In range [-1,1] for each x,y,z axis (FOR CAMERA, PLANES AND CYL):
+0.0,0.0,1.0
+- Explicit error messages saying range (must be between 0 and 180FOV : Horizontal field of view in degrees in range [0,180]: 70 (explicit message saying must be between 0 and 180); the light brightness ratio in range [0.0,1.0]:, Color values 0-255)
+- All vectors are stored as unit vectors!?!?

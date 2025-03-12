@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:44 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/08 10:50:55 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:39:57 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static void	normal_sph(t_hit *hit, t_sph *sph, t_scene *scene)
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
 		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
-		hit->normal = unit_v(hit->normal); //make unit vector after transformatio!?!?
+		hit->normal = unit_v(hit->normal);
 	}
 }
 
+//can have 2 normals. Check the one in the direction we are interested
 static void	normal_pl(t_hit *hit, t_pl *pl, t_scene *scene)
 {
-	//can have 2 normals. Check the one in the direction we are interested (in the direction towards the camera once transformed if needed)
-	hit->normal = pl->n; // if it is already unit vector, which should be for intersect costheta, no need to devide for modulus
+	hit->normal = pl->n;
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
 		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
-		hit->normal = unit_v(hit->normal);  //make unit vector after transformation??!?
+		hit->normal = unit_v(hit->normal);
 	}
 	if (dot_prod(v_subt(scene->cam.p, hit->real_p), hit->normal) < 0)
-		hit->normal = invert_v(hit->normal); //make unit vector??!?
+		hit->normal = invert_v(hit->normal);
 }
 
 static void	normal_cyl(t_hit *hit, t_cyl *cyl, t_scene *scene)
@@ -46,17 +46,18 @@ static void	normal_cyl(t_hit *hit, t_cyl *cyl, t_scene *scene)
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
 		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
-		hit->normal = unit_v(hit->normal);  //make unit vector after transformation??!?
+		hit->normal = unit_v(hit->normal);
 	}
 }
 
+//can have 2 normals. Check the one in the direction we are interested
 static void	normal_cir(t_hit *hit, t_cir *cir, t_scene *scene)
 {
 	hit->normal = cir->n;
 	if (scene->obj[hit->obj_id].m.exist == true)
 	{
 		hit->normal = v_transform(hit->normal, scene->obj[hit->obj_id].m, 'v');
-		hit->normal = unit_v(hit->normal);  //make unit vector after transformation??!?
+		hit->normal = unit_v(hit->normal);
 	}
 	if (dot_prod(v_subt(scene->cam.p, hit->real_p), hit->normal) < 0)
 		hit->normal = invert_v(cir->n);

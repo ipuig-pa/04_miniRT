@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_transform.c                                  :+:      :+:    :+:   */
+/*   linalg_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/09 11:30:41 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:36:03 by ipuig-pa         ###   ########.fr       */
+/*   Created: 2025/02/20 16:57:25 by ipuig-pa          #+#    #+#             */
+/*   Updated: 2025/03/12 18:47:35 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void	light_translate(t_light *light, t_vector tv)
+t_vector	unit_v(t_vector v)
 {
-	light->p = v_transform(light->p, translate(tv), 'p');
+	float		mod;
+	t_vector	u_v;
+
+	mod = v_modulus(v);
+	u_v.x = v.x / mod;
+	u_v.y = v.y / mod;
+	u_v.z = v.z / mod;
+	u_v.w = 0;
+	return (u_v);
 }
 
-void	light_scale(float *ratio, float factor)
+t_vector	v_reflect(t_vector in, t_vector n)
 {
-	*ratio = *ratio * factor;
-	if (*ratio < 0)
-		*ratio = 0;
-	if (*ratio > 1)
-		*ratio = 1;
+	n = unit_v(n);
+	in = unit_v(in);
+	return (v_subt(in, scalar_mult(n, 2 * dot_prod(in, n))));
 }

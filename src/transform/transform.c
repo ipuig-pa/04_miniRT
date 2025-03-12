@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:15:19 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 15:22:02 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:29:29 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ t_matrix4	translate(t_vector t)
 	return (m);
 }
 
-//to rotate uisng a specific point as pivot, combine to the origin of coordinates, with translation back and forth.
-t_matrix4	rotate(float r, t_vector a) //rotate r rad (angle) about an axis defined by the vector a (should be the vectors of up, front and right of viewport!!!)
+t_matrix4	rotate(float r, t_vector a)
 {
 	t_matrix4	m;
 
@@ -85,14 +84,9 @@ t_matrix4	rotate(float r, t_vector a) //rotate r rad (angle) about an axis defin
 	m.m[3][2] = 0;
 	m.m[3][3] = 1;
 	m.exist = true;
-	// if (obj->m.exist == false)
-	// 	obj.m = m;
-	// else
-	// 	obj.m = m_multiply(obj.m * m); // in case we pass as parameter the object we want to modify (if this is not used for camera rotations, etc??? Then camera rotations should be handled differently, directly affecting the vector? or applying the same matrix to all the obejcts in a while loop???)
 	return (m);
 }
 
-//combine to translation to the origin of coordinates and back to original position.
 t_matrix4	scale(float sx, float sy, float sz)
 {
 	t_matrix4	m;

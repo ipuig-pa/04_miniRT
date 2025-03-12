@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 11:19:05 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 11:14:46 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:55:52 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MINIRT_H
 
 # include "../libft/libft.h"
-# include "linalg.h"
+# include "maths.h"
 # include "scene.h"
 # include "env.h"
 # include "color.h"

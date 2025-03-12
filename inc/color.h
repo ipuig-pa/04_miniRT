@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 15:47:07 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 13:29:29 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:06:21 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 # include "env.h"
 # include <stdbool.h>
-
-# define BLACK ((t_color){{0, 0, 0, 0}})
-# define WHITE ((t_color){{1, 1, 1, 0}})
-# define RED ((t_color){{1, 0, 0, 0}})
-# define GREEN ((t_color){{0, 1, 0, 0}})
-# define BLUE ((t_color){{0, 0, 1, 0}})
-# define PINK ((t_color){{1, 0, 1, 0}})
-# define FILTER WHITE //or define when init the scene, so we can change it even in the parsing as a bonus??
 
 typedef union u_color
 {

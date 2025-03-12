@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 17:18:00 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 18:27:01 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 //
 static void	print_prompt3(void)
 {
+	printf("\033[3;32mIf cylinder Width or Height are selected:\n\033[0m");
+	printf("\033[34mScale just Width / Heigh of the cylinder.\n\033[0m");
 	printf("\033[3;32mIf the Light is selected:\n\033[0m");
 	printf("\033[34mChange the diffuse light ratio.\n\033[0m");
 	printf("\033[3;32mIf nothing is selected:\n\033[0m");
@@ -58,13 +60,17 @@ static void	print_prompt3(void)
 
 static void	print_prompt2(void)
 {
+	printf("\033[3;32mfollowing rotation will be applied to object.\033[0m\n");
+	printf("\033[3;32mElse, rotation will be applied to Camera\033[0m\n");
 	printf("\033[34mRotations:\033[0m\n");
 	printf("\033[34m↑: tilt UP\t\t↓: tilt DOWN\033[0m\n");
 	printf("\033[34m←: turn LEFT\t\t→: turn RIGHT\033[0m\n");
 	printf("\033[34m<: roll LEFT\t\t>: roll RIGHT\033[0m\n");
-	printf("\033[1;31m\nPress '*' in Numeric Pad, on a selected cylinder:\033[0m\n");
+	printf("\033[1;31m\nPress '*' in Numeric Pad\033[0m");
+	printf("\033[1;31m, on a selected cylinder:\033[0m\n");
 	printf("\033[34mSelect the width\033[0m\n");
-	printf("\033[1;31m\nPress '/' in Numeric Pad, on a selected cylinder:\033[0m\n");
+	printf("\033[1;31m\nPress '/' in Numeric Pad\033[0m");
+	printf("\033[1;31m, on a selected cylinder:\033[0m\n");
 	printf("\033[34mSelect the height\033[0m\n");
 	printf("\033[1;31m\nScroll the wheel:\033[0m\n");
 	printf("\033[3;32mIf any object has been selected:\n\033[0m");
@@ -78,8 +84,6 @@ static void	print_prompt2(void)
 	printf("\033[1;31m\n'+' and '-' in Numeric Pad:\033[0m\n");
 	printf("\033[3;32mIf any object has been selected:\n\033[0m");
 	printf("\033[34mScale the object.\n\033[0m");
-	printf("\033[3;32mIf cylinder Width or Height are selected:\n\033[0m");
-	printf("\033[34mScale just Width / Heigh of the cylinder.\n\033[0m");
 	print_prompt3();
 }
 
@@ -87,8 +91,10 @@ static void	print_prompt(void)
 {
 	printf("\t\t\t\033[1;35m🌀Instruction for Keyboard and \033[0m");
 	printf("\033[1;35mMouse Activties🌀\033[0m\n");
-	printf("\033[3;32mNOTE:\nWait until high quality image of the scene is rendered.\033[0m\n");
-	printf("\033[3;32mEverytime any change is made,\nthe scene will be rendered with low quality\033[0m");
+	printf("\033[3;32mNOTE:\nWait until high quality image\033[0m");
+	printf("\033[3;32m of the scene is rendered.\033[0m\n");
+	printf("\033[3;32mEverytime any change is made,\n\033[0m");
+	printf("\033[3;32mthe scene will be rendered with low quality\033[0m");
 	printf("\033[3;32m for the reason of performance.\n\033[0m\n");
 	printf("\033[1;31mPress 'SPACE':\033[0m\n");
 	printf("\033[34mRender current scene with high quality.\n\n\033[0m");
@@ -107,8 +113,6 @@ static void	print_prompt(void)
 	printf("\033[34mQ: move FORWARD\t\tE: move BACKARD\033[0m\n");
 	printf("\033[1;31m\n↑ ↓ → ← '<' '>':\033[0m\n");
 	printf("\033[3;32mIf any object has been selected, \033[0m");
-	printf("\033[3;32mfollowing rotation will be applied to object.\033[0m\n");
-	printf("\033[3;32mElse, rotation will be applied to Camera\033[0m\n");
 	print_prompt2();
 }
 
@@ -117,13 +121,17 @@ int	main(int ac, char **av)
 	t_env	env;
 
 	if (ac != 2)
-		return (p_err("Error\nInvalid number of arguments! A single rt file should be provided"), 1);
+	{
+		p_err("Error\nInvalid number of arguments! \
+			A single rt file should be provided");
+		return (1);
+	}
 	if (!parsing_scene(&env, av[1]))
 		return (1);
 	create_viewport(env.scene);
 	init_env(&env);
 	print_prompt();
-	// env.res.res = 10; //DELETE!! JUST TO GO FASTER IN DEBUGING
+	env.res.res = 10; //DELETE!! JUST TO GO FASTER IN DEBUGING
 	ray_tracer(&env);
 	mlx_put_image_to_window(env.mlx, env.mlx_window, env.img.img, 0, 0);
 	set_hooks(&env);
