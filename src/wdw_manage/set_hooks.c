@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
+/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/10 15:36:37 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:58:16 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	close_window(t_env *env)
 int	key_action(int key, t_env *env)
 {
 	if (key == ESC)
-		finish_env(env, 0, "Exit with keyboard ESC!");
+		return (finish_env(env, 0, "Exit with keyboard ESC!"), 0);
 	else if (key == SPACE)
 		hiq_rerender(env);
 	else if (key == L)
