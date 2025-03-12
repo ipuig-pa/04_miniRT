@@ -138,8 +138,9 @@ Memory leaks?!?
 
 12/03/2025
 <!-- - check inside light correclty do -->
-- cyl resize w and h independently: hooks -> add to prompt! (E)
-1- highlight width or heigt
+<!-- - cyl resize w and h independently: hooks -->
+add hooks for cyl height and width to prompt! (E)
+<!-- 1- highlight width or heigt -->
 2- scale sphere also width ang height?!?
 3- improve performance: scale of sphere directly changing radius, change scale obj to use only for direct for cyl
 - general checking! (input errors, mouse clicks sometimes not working?)
@@ -147,5 +148,6 @@ Memory leaks?!?
 11/03/2025
 ERYA
 - Add things to prompt
+- add hooks for cyl height and width to prompt! (E)
 - Check what happens when 0 is pressed (memory!?!?)
 - Git minilibx

@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 10:02:04 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/11 19:08:06 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/12 13:37:36 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 static void	check_selected(int hit, int sel, t_ray *ray, const t_scene *scene)
 {
-	if (scene->obj[hit].type == CIR)
+	int	checked;
+
+	checked = hit;
+	if (scene->obj[hit].type == CIR && !scene->select_height)
 	{
 		while (scene->obj[hit].type != CYL)
 			hit--;
 	}
-	if (hit == sel)
+	if (hit == sel && (scene->obj[checked].type != CYL || !scene->select_width))
 		ray->color = col_add(ray->color, col_sc_prod(WHITE, 0.2));
 }
 
