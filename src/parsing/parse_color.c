@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 20:55:23 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:01:42 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_color	parse_color(char *token)
 	clr = gc_split(token, ',');
 	if (para_nbr(clr) != 3 && para_nbr(clr) != 4)
 		return (p_err("Error:\nInvalid parameter number for color or \
-			malloc failed! Exit!"), err_color());
+malloc failed! Exit!"), err_color());
 	if (!clr)
 		return (p_err("Error:\nMalloc failed! Exit!"), err_color());
 	if (!clr[0] || !clr[1] || !clr[2] || (para_nbr(clr) == 4 && !clr[3]))
