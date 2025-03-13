@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/13 10:21:48 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:42:34 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 	{
 		p_err("Error\nInvalid number of arguments! \
-			A single rt file should be provided");
+A single rt file should be provided");
 		return (1);
 	}
 	if (!parsing_scene(&env, av[1]))
