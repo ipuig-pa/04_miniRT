@@ -111,7 +111,7 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(MLX):
-	git clone https://github.com/U-Mina/minilibx_openGL.git $(MLX_DIR)
+	@git clone https://github.com/U-Mina/minilibx_openGL.git $(MLX_DIR)
 	make -C $(MLX_DIR)
 
 clean : 
