@@ -6,7 +6,7 @@
 /*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:25:56 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 19:37:32 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:04:55 by ewu              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	set_hooks(t_env *env)
 
 int	close_window(t_env *env)
 {
-	finish_env(env, 0, "Exit with mouse click!");
+	finish_env(env, 0, RE"Exit with mouse click!");
 	return (0);
 }
 
 int	key_action(int key, t_env *env)
 {
 	if (key == ESC)
-		return (finish_env(env, 0, "Exit with keyboard ESC!"), 0);
+		return (finish_env(env, 0, RE"Exit with keyboard ESC!"), 0);
 	else if (key == SPACE)
 		hiq_rerender(env);
 	else if (key == L)
