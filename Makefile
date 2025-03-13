@@ -42,7 +42,7 @@ SOURCES =	gc_malloc_free.c\
 			parse_color.c\
 			parse_light.c\
 			parse_vector.c\
-			bonus_material.c\
+			material.c\
 			parse.c\
 			exit_on_parsing.c\
 			shape_cylinder.c\
