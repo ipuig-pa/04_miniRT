@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:33 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:43:21 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:18:52 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ static float	inside_cyl(t_vector p, t_cyl *cyl)
 
 static bool	check_inside(t_vector light, t_scene *scene, int i)
 {
-	float	t;
-
-	t = -1;
 	if (scene->obj[i].type == SPH)
 		return (inside_sph(light, &scene->obj[i].param.sph));
 	else if (scene->obj[i].type == CYL)

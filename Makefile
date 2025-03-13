@@ -1,4 +1,4 @@
-NAME = minirt
+NAME = miniRT
 
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 
@@ -111,13 +111,12 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 $(MLX):
-	@git clone https://github.com/U-Mina/minilibx_openGL.git $(MLX_DIR)
+	git clone https://github.com/U-Mina/minilibx_openGL.git $(MLX_DIR)
 	make -C $(MLX_DIR)
 
 clean : 
 	rm -rf $(OBJ_DIR)
 	make clean -C $(LIBFT_DIR)
-#make clean -C $(MLX_DIR)
 	rm -rf $(MLX_DIR)
 
 fclean : clean

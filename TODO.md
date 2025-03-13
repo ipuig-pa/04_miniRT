@@ -153,6 +153,10 @@ the scene, etc)
 - Norminette
 - Delete test files and minilibx
 - maths to rad in which header?? Now is on linalg!?!?
+- check with camera not in the origin!! (translations and rotations still working??)
+- Errror canoot open the file is duplicated!!
+- Why we have mlx in the PHONY in the makefile?!?!
+- Exit sentence in blue format
 
 ERYA:
 Errors in parsing:

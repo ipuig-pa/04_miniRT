@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 10:44:08 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 18:36:40 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/13 10:20:40 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ void	cam_translate(t_scene *scene, t_camera *cam, t_vector tv)
 
 void	cam_rotate(t_scene *scene, t_camera *cam, float r, t_vector a)
 {
-	t_vector	ref;
 	t_matrix4	rot;
 	t_vector	cam_to_vp;
 
-	ref = cam->p;
 	rot = rotate(r, a);
 	cam->v = v_transform(cam->v, rot, 'v');
 	scene->vp.right = unit_v(v_transform(scene->vp.right, rot, 'v'));
