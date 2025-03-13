@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:34:14 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:34:04 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:14:28 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,9 @@ t_matrix4	transpose(t_matrix4 m)
 		i++;
 	}
 	return (t);
+}
+
+t_matrix4	m_invert(t_matrix4 m)
+{
+	return (sm_divide(adj(transpose(m)), det4(m)));
 }

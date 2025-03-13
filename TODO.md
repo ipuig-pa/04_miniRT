@@ -152,12 +152,12 @@ the scene, etc)
 - light color and light filter?!?!
 - Norminette
 - Delete test files and minilibx
-- maths to rad in which header?? Now is on linalg!?!?
+<!-- - maths to rad in which header?? Now is on linalg!?!? -->
 - check with camera not in the origin!! (translations and rotations still working??)
 <!-- - Errror canoot open the file is duplicated!! -->
-- Why we have mlx in the PHONY in the makefile?!?!
-- Exit sentence in blue format
-- Still -1 and 0 vector!!
+<!-- - Why we have mlx in the PHONY in the makefile?!?! -->
+<!-- - Exit sentence in blue format -->
+<!-- - Still -1 and 0 vector!! -->
 
 ERYA:
 Errors in parsing:
