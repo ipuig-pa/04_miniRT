@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shape_sphere.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 15:25:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 20:43:27 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:00:23 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	parse_sphere(t_obj *obj, char **tokens, int i)
 	obj->param.sph.r = ft_atofloat(tokens[2]) / 2.0f;
 	if (obj->param.sph.r < 0.0f)
 		return (p_err("Error:\nSphere diameter must be \
-			positive number! Exit!"), -1);
+positive number! Exit!"), -1);
 	obj->m = identity();
 	parse_material(obj, tokens[4]);
 	get_material(obj);

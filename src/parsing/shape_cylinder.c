@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   shape_cylinder.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:36:32 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 20:31:35 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:00:53 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// obj[0]=> curved part, obj[1][2]=> 2 circles
 int	parse_cylinder(t_obj *obj, char **tokens, int i)
 {
 	if (check_para_num(tokens, 'y') == -1)
@@ -23,11 +22,9 @@ int	parse_cylinder(t_obj *obj, char **tokens, int i)
 		create_topcir(&obj[0], &obj[2]);
 	}
 	else
-		return (p_err("Error:\nFail to create cylinder! Exit!"), -1);
+		return (-1);
 	return (i + 3);
 }
-
-//cy (b: 50,0,20) (a: 0,1,0) (d: 14.2) (h: 21.42) 10,0,255; para = 6
 
 int	create_surface(t_obj *obj, char **tokens)
 {
@@ -38,17 +35,18 @@ int	create_surface(t_obj *obj, char **tokens)
 	obj->param.cyl.c = parse_vector(tokens[1], 'p');
 	if (obj->param.cyl.c.w == -1.0f)
 		return (-1);
-	obj->param.cyl.a = norm_vector(parse_vector(tokens[2], 'v'));
-	if (obj->param.cyl.a.w == -1.0f)
-		return (-1);
+	obj->param.cyl.a = parse_vector(tokens[2], 'v');
 	if (check_norm_range(obj->param.cyl.a) == -1)
 		return (p_err("Error:\nCylinder orientation vector \
-			out of range! Should be within [-1,1]. Exit!"), -1);
+out of range! Should be within [-1,1]. Exit!"), -1);
+	obj->param.cyl.a = norm_vector(obj->param.cyl.a);
+	if (obj->param.cyl.a.w == -1.0f)
+		return (-1);
 	obj->param.cyl.r = ft_atofloat(tokens[3]) / 2.0f;
 	obj->param.cyl.h = ft_atofloat(tokens[4]);
 	if (obj->param.cyl.r < 0.0f || obj->param.cyl.h < 0.0f)
 		return (p_err("Error:\nDiameter and Height must be \
-			positive numbers! Exit!"), -1);
+positive numbers! Exit!"), -1);
 	obj->param.cyl.b = v_subt(obj->param.cyl.c, \
 						scalar_mult(obj->param.cyl.a, obj->param.cyl.h / 2));
 	parse_material(obj, tokens[6]);
@@ -79,8 +77,3 @@ void	create_topcir(t_obj *cyl, t_obj *obj)
 	obj->m = identity();
 	obj->mat = cyl->mat;
 }
-// include obj circle (cir), and for each cyl, create 2 objects circles:
-// ==> create_cir() func
-// * one with c = b (center at the base of the cylinder, being the base
-// of the cylinder: c - h/2*a),  n = invert_v(cyl->a)
-// * other with c = pv_add(c, scalar_mult(cyl->a, cyl->h)), and n = cyl->a

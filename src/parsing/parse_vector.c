@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_vector.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 14:37:21 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 20:56:33 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:01:24 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_vector	parse_vector(char *token, char key)
 	if (!coord[0] || !coord[1] || !coord[2])
 		return (free_double_pointer(coord), \
 		p_err("Error:\nInvalid vector! Must be \
-			the format of (x, y, z). Exit"), err_vector());
+the format of (x, y, z). Exit"), err_vector());
 	p.x = ft_atofloat(coord[0]);
 	p.y = ft_atofloat(coord[1]);
 	p.z = ft_atofloat(coord[2]);

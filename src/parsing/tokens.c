@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokens.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 12:30:54 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 21:05:44 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 10:58:57 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,6 @@ int	check_dup(char **lines)
 	}
 	if (cap_a > 1 || cap_c > 1 || cap_l > 1)
 		return (p_err("Error:\nMore than one Camera/Light/Ambient \
-			parameter passed! Exit"), exit_on_parse(), 0);
+parameter passed! Exit"), exit_on_parse(), 0);
 	return (1);
 }

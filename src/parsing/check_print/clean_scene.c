@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_scene.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:04:39 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 20:49:13 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 11:02:23 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	clean_scene(t_env *env)
 {
 	if (!env->scene)
 		return ((void)p_err("Error:\nNo proper scene \
-			data found to rerender!"), gc_clean());
+data found to rerender!"), gc_clean());
 	if (env->scene->obj)
 	{
 		gc_free(env->scene->obj);
