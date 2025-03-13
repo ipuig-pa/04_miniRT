@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 15:34:14 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 18:35:56 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/03/13 11:25:04 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,31 @@ float	det4(t_matrix4 m)
 	return (det);
 }
 
+static void	add_to_m3(float elem, t_matrix3 *m3)
+{
+	static int	m3i = 0;
+	static int	m3j = 0;
+
+	m3->m[m3i][m3j] = elem;
+	if (m3j < 2)
+		m3j++;
+	else
+	{
+		m3j = 0;
+		if (m3i < 2)
+			m3i++;
+		else
+			m3i = 0;
+	}
+}
+
 t_matrix3	c_minor(t_matrix4 m4, int r, int c)
 {
 	int			m4i;
-	int			m3i;
 	int			m4j;
-	int			m3j;
 	t_matrix3	m3;
 
 	m4i = 0;
-	m3i = 0;
 	while (m4i < 4)
 	{
 		if (m4i == r)
@@ -64,20 +79,14 @@ t_matrix3	c_minor(t_matrix4 m4, int r, int c)
 		if (m4i < 4)
 		{
 			m4j = 0;
-			m3j = 0;
 			while (m4j < 4)
 			{
 				if (m4j == c)
 					m4j++;
 				if (m4j < 4)
-				{
-					m3.m[m3i][m3j] = m4.m[m4i][m4j];
-					m4j++;
-					m3j++;
-				}
+					add_to_m3(m4.m[m4i][m4j++], &m3);
 			}
 			m4i++;
-			m3i++;
 		}
 	}
 	return (m3);
@@ -94,9 +103,4 @@ float	det3(t_matrix3 m)
 			m.m[0][1] * m.m[1][0] * m.m[2][2] - \
 			m.m[2][1] * m.m[1][2] * m.m[0][0];
 	return (det3);
-}
-
-t_matrix4	m_invert(t_matrix4 m)
-{
-	return (sm_divide(adj(transpose(m)), det4(m)));
 }
