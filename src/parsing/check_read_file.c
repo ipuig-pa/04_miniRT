@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_read_file.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 11:30:07 by ewu               #+#    #+#             */
-/*   Updated: 2025/03/12 20:51:01 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 10:40:30 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*read_file(const char *filename)
 
 	fd = valid_file(filename);
 	if (fd < 0)
-		return (p_err("Error:\n Cannot open file! Exit!"), NULL);
+		return (NULL);
 	content = gc_strdup("");
 	line = get_next_line(fd);
 	while (line != NULL)

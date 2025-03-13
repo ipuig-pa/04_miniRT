@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:39:42 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 20:59:07 by ewu              ###   ########.fr       */
+/*   Updated: 2025/03/13 10:36:42 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	parse_valid_tk(t_scene *scene, char *line, int i)
 
 	tokens = split_tokens(line, ' ');
 	if (!tokens || !tokens[0])
-		return (p_err("Error:\n Malloc failed! Exit!"), -1);
+		return (p_err("Error:\nMalloc failed! Exit!"), -1);
 	if (ft_strncmp(tokens[0], "A", 2) == 0)
 		return (parse_ambient(&scene->amblight, tokens, i));
 	else if (ft_strncmp(tokens[0], "C", 2) == 0)
