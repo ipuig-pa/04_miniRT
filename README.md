@@ -22,6 +22,7 @@ Transformation of the scene objects are rendered in real-time.
 ### Resources
 
 - miniLibX: this project uses miniLibX graphical library, from 42 School.
+- Custom libft library
 
 ## Rendering
 
