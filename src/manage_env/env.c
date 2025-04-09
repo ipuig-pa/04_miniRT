@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ewu <ewu@student.42heilbronn.de>           +#+  +:+       +#+        */
+/*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 16:26:09 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/12 21:08:15 by ewu              ###   ########.fr       */
+/*   Updated: 2025/04/09 16:29:33 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	init_env(t_env *env)
 	env->mlx = mlx_init();
 	if (!env->mlx)
 		finish_env(env, 1, "Error:\nEnvironment can not be initalized");
-	env->mlx_window = mlx_new_window(env->mlx, WDW_WIDTH, WDW_HEIGHT, "Scene");
+	env->mlx_window = mlx_new_window(env->mlx, WDW_WIDTH, WDW_HEIGHT, env->rt_scene_file);
 	if (!env->mlx_window)
 		finish_env(env, 1, "Error:\nEnvironment can not be initalized");
 	env->img.img = mlx_new_image(env->mlx, WDW_WIDTH, WDW_HEIGHT);
