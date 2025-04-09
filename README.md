@@ -144,25 +144,13 @@ Select or deselect Light (selected light appears highlighted in blue)
 · If any object/light has been selected, following movement will be applied to object/light.
 · Else, movement will be applied to Camera
 Translations:
-W: move UP              S: move DOWN
-A: move LEFT            D: move RIGHT
-Q: move FORWARD         E: move BACKWARD
+W: move UP; S: move DOWN; A: move LEFT; D: move RIGHT; Q: move FORWARD; E: move BACKWARD
 
 **↑ ↓ → ← '<' '>':**
 · If any object has been selected, following rotation will be applied to object.
 · Else, rotation will be applied to Camera
-Rotations:
-↑: tilt UP
-
-←: turn LEFT
-
-<: roll LEFT          
-
-↓: tilt DOWN
-
-→: turn RIGHT
-
->: roll RIGHT
+Rotations: 
+↑: tilt UP; ↓: tilt DOWN; ←: turn LEFT; →: turn RIGHT; <: roll LEFT; >: roll RIGHT
 
 **Press '*' in Numeric Pad, on a selected cylinder:**
 Select the width (just bases will remain highlighted)
