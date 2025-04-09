@@ -6,7 +6,7 @@
 /*   By: ipuig-pa <ipuig-pa@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/19 10:30:03 by ipuig-pa          #+#    #+#             */
-/*   Updated: 2025/03/13 11:42:34 by ipuig-pa         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:10:49 by ipuig-pa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	print_prompt2(void)
 static void	print_prompt(void)
 {
 	printf(PURPLE "\t\t\t🌀Instruction for Keyboard and ");
-	printf("Mouse Activties🌀\n"RE);
+	printf("Mouse Activities🌀\n"RE);
 	printf(ITALIC "NOTE:\nWait until high quality image"RE);
 	printf(ITALIC " of the scene is rendered.\n"RE);
 	printf(ITALIC "Everytime any change is made,\n"RE);
@@ -68,9 +68,9 @@ static void	print_prompt(void)
 	printf(B_RED "Press 'SPACE':\n"RE);
 	printf(L_BLUE "Render current scene with high quality.\n\n"RE);
 	printf(B_RED "Left Mouse Click on Objects:\n"RE);
-	printf(L_BLUE "Select the Object clicked\n"RE);
+	printf(L_BLUE "Select or Deselect the Object clicked\n"RE);
 	printf(B_RED "\nPress 'L':\n"RE);
-	printf(L_BLUE "Select Light\n"RE);
+	printf(L_BLUE "Select or Deselect Light\n"RE);
 	printf(B_RED "\n'W'-'A'-'S'-'D'-'Q'-'E':\n"RE);
 	printf(ITALIC "If any object/light has been selected, "RE);
 	printf(ITALIC "following movement will be applied to object"RE);
@@ -79,7 +79,7 @@ static void	print_prompt(void)
 	printf(L_BLUE "Translations:\n"RE);
 	printf(L_BLUE "W: move UP\t\tS: move DOWN\n"RE);
 	printf(L_BLUE "A: move LEFT\t\tD: move RIGHT\n"RE);
-	printf(L_BLUE "Q: move FORWARD\t\tE: move BACKARD\n"RE);
+	printf(L_BLUE "Q: move FORWARD\t\tE: move BACWKARD\n"RE);
 	printf(B_RED "\n↑ ↓ → ← '<' '>':\n"RE);
 	printf(ITALIC "If any object has been selected, "RE);
 	print_prompt2();
