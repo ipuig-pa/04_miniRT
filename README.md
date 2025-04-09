@@ -152,9 +152,17 @@ Q: move FORWARD         E: move BACKWARD
 · If any object has been selected, following rotation will be applied to object.
 · Else, rotation will be applied to Camera
 Rotations:
-↑: tilt UP              ↓: tilt DOWN
-←: turn LEFT            →: turn RIGHT
-<: roll LEFT            >: roll RIGHT
+↑: tilt UP
+
+←: turn LEFT
+
+<: roll LEFT          
+
+↓: tilt DOWN
+
+→: turn RIGHT
+
+>: roll RIGHT
 
 **Press '*' in Numeric Pad, on a selected cylinder:**
 Select the width (just bases will remain highlighted)
