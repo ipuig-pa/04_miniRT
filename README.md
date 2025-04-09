@@ -219,6 +219,5 @@ Multi-object scene used in example .rt file and in real-time transformation vide
 
 <video width="640" height="360" controls>
   <source src="https://raw.githubusercontent.com/ipuig-pa/04_miniRT/master/videos/miniRT.mp4" type="video/mp4">
-  Your browser does not support the video tag.
 </video>
 Real-time transformations
