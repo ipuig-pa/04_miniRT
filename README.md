@@ -217,6 +217,5 @@ Multi-object scene used in example .rt file and in real-time transformation vide
 
 
 
-<video src="https://user-images.githubusercontent.com/ipuig-pa/04_miniRT/raw/master/videos/miniRT.mp4" controls="controls" style="max-width: 730px;">
-</video>
+https://github.com/ipuig-pa/04_miniRT/issues/1#issue-2983293245
 Real-time transformations
