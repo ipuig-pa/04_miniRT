@@ -217,5 +217,5 @@ Multi-object scene used in example .rt file and in real-time transformation vide
 
 
 
-[![Watch the video](https://studio.youtube.com/video/ZhiS-Lemgcg/edit)
+[![Watch the video](https://studio.youtube.com/video/ZhiS-Lemgcg/edit)]
 Real-time transformations
