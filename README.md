@@ -195,17 +195,27 @@ Exit this program!
 ![Alt text](https://github.com/ipuig-pa/04_miniRT/blob/master/images/basic1_matte.png)
 Simple sphere in matte material
 
+
+
 ![Alt text](https://github.com/ipuig-pa/04_miniRT/blob/master/images/basic1_plastic.png)
 Simple sphere in plastic material
+
+
 
 ![Alt text](https://github.com/ipuig-pa/04_miniRT/blob/master/images/basic1_metallic.png)
 Simple sphere in metallic material
 
+
+
 ![Alt text](https://github.com/ipuig-pa/04_miniRT/blob/master/images/columns.png)
 Multi-object scene recreating a column landscape
+
+
 
 ![Alt text](https://github.com/ipuig-pa/04_miniRT/blob/master/images/multi_obj2.png)
 Multi-object scene used in example .rt file and in real-time transformation video
 
 
+
+https://github.com/ipuig-pa/04_miniRT/blob/master/videos/miniRT.mp4
 Real-time transformations
