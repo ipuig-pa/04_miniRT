@@ -13,8 +13,8 @@ https://github.com/user-attachments/assets/b770cba7-8340-44ab-8cf4-d39764247167
 
 This project was developed by:
 
-- U-Mina (parsing and window management - hooks)
-- ipuig-pa (rendering, transformations and window management - hooks)
+- @U-Mina (parsing and window management - hooks)
+- @ipuig-pa (rendering, transformations and window management - hooks)
 
 ## Project Overview
 
@@ -219,7 +219,11 @@ Multi-object scene recreating a column landscape
 ![Alt text](https://github.com/ipuig-pa/04_miniRT/blob/master/images/multi_obj2.png)
 Multi-object scene used in example .rt file and in real-time transformation video
 
+## License
 
+---
+
+This project was developed as part of the curriculum at 42 School. Use of this code must comply with the school's academic integrity policies.
 
 
 https://github.com/user-attachments/assets/386929b8-0800-456f-8973-c7502eac0d85
